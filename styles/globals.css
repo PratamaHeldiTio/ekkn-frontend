@@ -1,6 +1,7 @@
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
+@import url("https://fonts.googleapis.com/css2?family=Roboto&display=swap");
 
 :root {
   --max-width: 1100px;
@@ -42,4 +43,8 @@
   --callout-border-rgb: 172, 175, 176;
   --card-rgb: 180, 185, 188;
   --card-border-rgb: 131, 134, 135;
+}
+
+html {
+  font-family: "Roboto", sans-serif;
 }
