@@ -16,11 +16,11 @@ export default function LoginComp() {
   return (
     <div className="w-full h-screen flex items-center">
       {/* root bg */}
-      <div className="w-3/6 h-full bg-[#60A5FA] inline-block absolute" />
-      <div className="w-3/6 h-full bg-[#19376D] inline-block absolute ml-1/2" />
+      <div className="w-3/6 h-full bg-[#60A5FA] inline-block absolute sm:hidden" />
+      <div className="w-3/6 h-full bg-[#19376D] inline-block absolute ml-1/2 sm:hidden" />
 
       {/* wrapper bg */}
-      <div className="w-900 h-600 relative z-10 bg-white mx-auto my-auto rounded-2xl flex flex-row">
+      <div className="w-900 h-600 relative z-10 bg-white mx-auto my-auto rounded-2xl flex flex-row sm:inline-block">
         {/* part left */}
         <div className="basis-7/12 flex flex-col items-center">
           <Image
@@ -68,7 +68,7 @@ export default function LoginComp() {
         </div>
 
         {/* part right */}
-        <div className="basis-8/12">
+        <div className="basis-8/12 sm:hidden">
           <Image
             alt="universitas trunojoyo madura"
             src={utm}
