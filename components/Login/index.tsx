@@ -36,25 +36,25 @@ export default function LoginComp() {
       });
   };
   return (
-    <div className="w-full h-screen flex items-center">
+    <div className="w-full h-screen flex items-center sm:bg-gray-200">
       {/* root bg */}
       <div className="w-3/6 h-full bg-[#60A5FA] inline-block absolute sm:hidden" />
       <div className="w-3/6 h-full bg-[#19376D] inline-block absolute ml-1/2 sm:hidden" />
 
       {/* wrapper bg */}
-      <div className="w-900 h-600 relative z-10 bg-white mx-auto my-auto rounded-2xl flex flex-row sm:inline-block">
+      <div className="w-900 h-600 relative z-10 bg-white mx-auto sm:bg-gray-200 my-auto rounded-2xl flex flex-row sm:block">
         {/* part left */}
-        <div className="basis-7/12 text-center">
+        <div className="basis-7/12 text-center sm:w-11/12 mx-auto rounded-2xl sm:bg-white">
           <Image
             alt="logo universitas trunojoyo madura"
             src={logo}
-            className="w-20 mt-20 mx-auto"
+            className="w-20 pt-12 mx-auto"
           />
           <h1 className="text-3xl mt-5">Welcome Back</h1>
 
           {/* input */}
           <form onSubmit={handleLogin}>
-            <div className="bg-gray-200 w-32 h-10 leading-10 rounded-lg mt-5 mx-auto">
+            <div className="bg-gray-200 w-32 h-10 leading-10 rounded-lg my-5 mx-auto">
               <select
                 id="role"
                 className="bg-transparent"
@@ -69,7 +69,7 @@ export default function LoginComp() {
               type="text"
               name="nim"
               placeholder="Masukan NIM"
-              className="w-60 h-10 p-5 border-2 border-grey-900 rounded-lg my-5"
+              className="w-60 h-10 p-5 border-2 border-grey-900 rounded-lg my-3"
               onChange={(e) => setNim(e.target.value)}
               required
             />
@@ -77,7 +77,7 @@ export default function LoginComp() {
               type="password"
               name="password"
               placeholder="Masukan Password"
-              className="w-60 h-10 p-5 border-2 border-grey-900 rounded-lg"
+              className="w-60 h-10 p-5 border-2 border-grey-900 rounded-lg my-3 block mx-auto"
               onChange={(e) => setPassword(e.target.value)}
               required
             />
@@ -88,7 +88,7 @@ export default function LoginComp() {
             />
           </form>
 
-          <p>
+          <p className="p-12 mt-3">
             Kembali ke{" "}
             <Link href="/" className="text-blue">
               beranda
