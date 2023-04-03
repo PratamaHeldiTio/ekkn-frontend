@@ -12,6 +12,10 @@ module.exports = {
           DEFAULT: "#1d4ed8",
           dark: "#1e40af",
         },
+        danger: {
+          border: "#e11d48",
+          bg: "#fecdd3",
+        },
       },
       screens: {
         sm: { max: "639px" },

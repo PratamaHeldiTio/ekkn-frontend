@@ -1,5 +1,5 @@
 import { useRouter } from "next/router";
-import React, { useEffect } from "react";
+import { useEffect } from "react";
 import Cookies from "universal-cookie";
 const cookies = new Cookies();
 import Link from "next/link";
@@ -7,10 +7,8 @@ import Link from "next/link";
 export default function UnauthorizedPage() {
   const router = useRouter();
   useEffect(() => {
-    cookies.remove("AUTH_LGN");
-
     setTimeout(() => {
-      router.push("/login");
+      router.replace("/");
     }, 3000);
   }, []);
 
@@ -28,10 +26,10 @@ export default function UnauthorizedPage() {
           </p>
           <div className="mt-10 flex items-center justify-center gap-x-6">
             <Link
-              href="/login"
+              href="/"
               className="rounded-md bg-indigo-600 px-3.5 py-2.5 text-sm font-semibold text-white shadow-sm hover:bg-indigo-500 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-600"
             >
-              Go back login
+              Go back Home
             </Link>
           </div>
         </div>

@@ -18,7 +18,7 @@ export default function InputField({
       className={
         className
           ? className
-          : "w-60 h-10 p-5 outline outline-1 text-sm outline-gray-400 rounded-lg my-3 block mx-auto"
+          : "h-10 w-full outline outline-1 text-sm outline-gray-400 rounded-lg my-3 px-4"
       }
       onChange={onChange}
       required={required}

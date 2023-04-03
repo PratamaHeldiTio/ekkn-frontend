@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import { useState } from "react";
 import Image from "next/image";
 import utm from "../../public/utm.png";
 import logo from "../../public/logo.png";
@@ -8,6 +8,7 @@ import Cookies from "universal-cookie";
 import { useRouter } from "next/router";
 import InputField from "@/components/InputField";
 import { IInputValue } from "./Login.types";
+import Alert from "@/components/Alert";
 
 export default function LoginComp() {
   const [inputvalue, setInputValue] = useState<IInputValue>({
@@ -16,12 +17,13 @@ export default function LoginComp() {
   });
   const { nim, password } = inputvalue;
   const [role, setRole] = useState("students");
-  const [errLogin, setErrLogin] = useState(false);
+  const [alert, setAlert] = useState(false);
   const cookies = new Cookies();
   const router = useRouter();
 
   const handleLogin = (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
+
     axios
       .post(`${process.env.BASE_URL}/api/v1/auth/${role}/login`, {
         nim,
@@ -35,11 +37,10 @@ export default function LoginComp() {
           maxAge: 3600,
         });
 
-        router.push("/student/activity");
-        console.log("first");
+        router.replace("/student/activity");
       })
       .catch(() => {
-        setErrLogin(!errLogin);
+        setAlert(true);
       });
   };
 
@@ -60,59 +61,63 @@ export default function LoginComp() {
       <div className="w-900 h-600 relative z-10 bg-white mx-auto sm:bg-gray-200 my-auto rounded-2xl flex flex-row sm:block">
         {/* part left */}
         <div className="basis-7/12 text-center sm:w-11/12 mx-auto rounded-2xl sm:bg-white">
-          <Image
-            alt="logo universitas trunojoyo madura"
-            src={logo}
-            className="w-20 pt-12 mx-auto"
-          />
-          <h1 className="text-2xl font-bold mt-5">Welcome Back</h1>
-          {errLogin && (
-            <p className="border-2 text-sm border-rose-600 bg-rose-200 rounded-lg py-2 m-4 px-4 w-fit mx-auto">
-              Id atau password anda salah
+          <div className="w-9/12 p-8 sm:p-4 mx-auto">
+            <Image
+              alt="logo universitas trunojoyo madura"
+              src={logo}
+              className="w-20 mx-auto"
+            />
+            <h1 className="text-2xl font-bold mt-5">Welcome Back</h1>
+            {alert && (
+              <Alert
+                background="bg-danger-bg"
+                border="border-danger-border"
+                message="Data yang anda masukan salah"
+              />
+            )}
+            {/* input */}
+            <form onSubmit={handleLogin}>
+              <div className="bg-gray-200 w-32 h-10 leading-10 rounded-lg my-5 mx-auto">
+                <select
+                  id="role"
+                  className="bg-transparent"
+                  onChange={(e) => setRole(e.target.value)}
+                >
+                  <option value="students">Mahasiswa</option>
+                  <option value="lectures">Dosen</option>
+                </select>
+              </div>
+
+              <InputField
+                type="text"
+                name="nim"
+                value={nim}
+                placeholder="Masukan NIM"
+                onChange={handleChange}
+                required={true}
+              />
+              <InputField
+                type="password"
+                name="password"
+                value={password}
+                placeholder="Masukan Password"
+                onChange={handleChange}
+                required={true}
+              />
+              <InputField
+                type="submit"
+                value="Login"
+                className="w-full h-10 bg-blue hover:bg-blue-dark text-white rounded-lg my-3"
+              />
+            </form>
+
+            <p className="mt-3 mb-14">
+              Kembali ke{" "}
+              <Link href="/" className="text-blue">
+                beranda
+              </Link>
             </p>
-          )}
-          {/* input */}
-          <form onSubmit={handleLogin}>
-            <div className="bg-gray-200 w-32 h-10 leading-10 rounded-lg my-5 mx-auto">
-              <select
-                id="role"
-                className="bg-transparent"
-                onChange={(e) => setRole(e.target.value)}
-              >
-                <option value="students">Mahasiswa</option>
-                <option value="lectures">Dosen</option>
-              </select>
-            </div>
-
-            <InputField
-              type="text"
-              name="nim"
-              value={nim}
-              placeholder="Masukan NIM"
-              onChange={handleChange}
-              required={true}
-            />
-            <InputField
-              type="password"
-              name="password"
-              value={password}
-              placeholder="Masukan Password"
-              onChange={handleChange}
-              required={true}
-            />
-            <InputField
-              type="submit"
-              value="Login"
-              className="w-60 h-10 bg-blue hover:bg-blue-dark text-white rounded-lg my-5"
-            />
-          </form>
-
-          <p className="p-12 mt-3">
-            Kembali ke{" "}
-            <Link href="/" className="text-blue">
-              beranda
-            </Link>
-          </p>
+          </div>
         </div>
 
         {/* part right */}
