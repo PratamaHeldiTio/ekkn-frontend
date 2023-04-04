@@ -5,7 +5,6 @@ export default function InputField({
   name,
   value,
   placeholder,
-  className,
   onChange,
   required,
 }: IInputField) {
@@ -15,11 +14,7 @@ export default function InputField({
       name={name}
       placeholder={placeholder}
       value={value}
-      className={
-        className
-          ? className
-          : "h-10 w-full outline outline-1 text-sm outline-gray-400 rounded-lg my-3 px-4"
-      }
+      className="h-10 w-full outline outline-2 text-sm outline-slate-400 rounded-lg my-3 px-4 font-bold"
       onChange={onChange}
       required={required}
     />

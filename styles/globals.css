@@ -5,5 +5,11 @@
 
 :root {
   font-family: "Plus Jakarta Sans", sans-serif;
-  color: #0f172a;
+  color: #19376d;
+  background-color: #f8fafc;
+}
+
+div,
+button {
+  background-color: #f8fafc;
 }

@@ -9,6 +9,7 @@ import { useRouter } from "next/router";
 import InputField from "@/components/InputField";
 import { IInputValue } from "./Login.types";
 import Alert from "@/components/Alert";
+import InputSubmit from "../InputSubmit";
 
 export default function LoginComp() {
   const [inputvalue, setInputValue] = useState<IInputValue>({
@@ -52,15 +53,15 @@ export default function LoginComp() {
     }));
   };
   return (
-    <div className="w-full h-screen flex items-center sm:bg-gray-200">
+    <div className="w-full h-screen flex items-center sm:bg-slate-200">
       {/* root bg */}
       <div className="w-3/6 h-full bg-[#60A5FA] inline-block absolute sm:hidden" />
-      <div className="w-3/6 h-full bg-[#19376D] inline-block absolute ml-1/2 sm:hidden" />
+      <div className="w-3/6 h-full bg-primary inline-block absolute ml-1/2 sm:hidden" />
 
       {/* wrapper bg */}
-      <div className="w-900 h-600 relative z-10 bg-white mx-auto sm:bg-gray-200 my-auto rounded-2xl flex flex-row sm:block">
+      <div className="w-900 h-600 relative z-10 mx-auto sm:bg-slate-200 my-auto rounded-2xl flex flex-row sm:block">
         {/* part left */}
-        <div className="basis-7/12 text-center sm:w-11/12 mx-auto rounded-2xl sm:bg-white">
+        <div className="basis-7/12 text-center sm:w-11/12 mx-auto rounded-2xl">
           <div className="w-9/12 p-8 sm:p-4 mx-auto">
             <Image
               alt="logo universitas trunojoyo madura"
@@ -77,7 +78,7 @@ export default function LoginComp() {
             )}
             {/* input */}
             <form onSubmit={handleLogin}>
-              <div className="bg-gray-200 w-32 h-10 leading-10 rounded-lg my-5 mx-auto">
+              <div className="bg-slate-200 font-bold w-32 h-10 leading-10 rounded-lg my-5 mx-auto">
                 <select
                   id="role"
                   className="bg-transparent"
@@ -104,16 +105,12 @@ export default function LoginComp() {
                 onChange={handleChange}
                 required={true}
               />
-              <InputField
-                type="submit"
-                value="Login"
-                className="w-full h-10 bg-blue bg-primary text-white rounded-lg my-3 hover:bg-secondary"
-              />
+              <InputSubmit value="Login" />
             </form>
 
-            <p className="mt-3 mb-14">
+            <p className="mt-3 mb-14 font-semibold">
               Kembali ke{" "}
-              <Link href="/" className="text-blue">
+              <Link href="/" className="text-colorHover">
                 beranda
               </Link>
             </p>
