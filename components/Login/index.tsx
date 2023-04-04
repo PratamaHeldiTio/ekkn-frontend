@@ -107,7 +107,7 @@ export default function LoginComp() {
               <InputField
                 type="submit"
                 value="Login"
-                className="w-full h-10 bg-blue hover:bg-blue-dark text-white rounded-lg my-3"
+                className="w-full h-10 bg-blue bg-primary text-white rounded-lg my-3 hover:bg-secondary"
               />
             </form>
 
