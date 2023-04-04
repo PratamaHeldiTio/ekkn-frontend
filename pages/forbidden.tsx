@@ -10,7 +10,7 @@ export default function UnauthorizedPage() {
     setTimeout(() => {
       router.replace("/");
     }, 3000);
-  }, []);
+  });
 
   return (
     <>
@@ -20,7 +20,7 @@ export default function UnauthorizedPage() {
           <h1 className="mt-4 text-3xl font-bold tracking-tight text-gray-900">
             FORBIDDEN!
           </h1>
-          <p className="mt-6 text-2xl leading-7 text-gray-600">
+          <p className="mt-6 text-2xl  sm:text-xl leading-7 text-gray-600">
             Sorry, we couldn’t provid the page you were looking for. because you
             dont’t have access.
           </p>
