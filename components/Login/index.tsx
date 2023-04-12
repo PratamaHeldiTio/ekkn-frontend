@@ -17,7 +17,7 @@ export default function LoginComp() {
     password: "",
   });
   const { nim, password } = inputvalue;
-  const [role, setRole] = useState("students");
+  const [role, setRole] = useState("student");
   const [alert, setAlert] = useState(false);
   const cookies = new Cookies();
   const router = useRouter();
@@ -26,7 +26,7 @@ export default function LoginComp() {
     e.preventDefault();
 
     axios
-      .post(`${process.env.BASE_URL}/api/v1/auth/${role}/login`, {
+      .post(`${process.env.BASE_URL_V1}/auth/${role}/login`, {
         nim,
         password,
       })
@@ -84,8 +84,8 @@ export default function LoginComp() {
                   className="bg-transparent"
                   onChange={(e) => setRole(e.target.value)}
                 >
-                  <option value="students">Mahasiswa</option>
-                  <option value="lectures">Dosen</option>
+                  <option value="student">Mahasiswa</option>
+                  <option value="lecture">Dosen</option>
                 </select>
               </div>
 
