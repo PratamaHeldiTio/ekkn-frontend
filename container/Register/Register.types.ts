@@ -9,7 +9,7 @@ export interface IStudent {
   prodi: string;
   fakultas: string;
   gender: string;
-  maduraLang: boolean;
+  maduraLang: string;
 }
 
 export interface IRegisterPage {

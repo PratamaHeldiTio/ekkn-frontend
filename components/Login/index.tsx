@@ -71,8 +71,7 @@ export default function LoginComp() {
             <h1 className="text-2xl font-bold mt-5">Welcome Back</h1>
             {alert && (
               <Alert
-                background="bg-danger-bg"
-                border="border-danger-border"
+                background="bg-danger"
                 message="Data yang anda masukan salah"
               />
             )}

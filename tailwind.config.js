@@ -15,11 +15,7 @@ module.exports = {
         active: "#2563EB",
         process: "#EA580C",
         success: "#059669",
-
-        danger: {
-          border: "#e11d48",
-          bg: "#fecdd3",
-        },
+        danger: "#e11d48",
       },
       width: {
         900: "900px",

@@ -14,5 +14,11 @@ export interface IStudent {
   prodi: string;
   fakultas: string;
   gender: string;
-  maduraLang: boolean;
+  maduraLang: string;
+}
+
+export interface IPeriodAPI {
+  period_id: string;
+  semester: string;
+  tahun_ajaran: string;
 }

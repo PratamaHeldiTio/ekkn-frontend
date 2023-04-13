@@ -1,9 +1,9 @@
 import { IAlert } from "./Alert.types";
 
-export default function Alert({ border, background, message }: IAlert) {
+export default function Alert({ background, message }: IAlert) {
   return (
     <p
-      className={`border-2 text-sm ${border} ${background} rounded-lg my-4 p-2 w-full`}
+      className={`text-lg text-center ${background} font-bold rounded-lg my-4 p-3 text-secondary`}
     >
       {message}
     </p>

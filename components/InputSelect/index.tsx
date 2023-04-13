@@ -6,6 +6,7 @@ export default function InputSelect({
   name,
   onChange,
   value,
+  required,
   options = [],
 }: IInputSelect) {
   return (
@@ -16,6 +17,7 @@ export default function InputSelect({
         className="h-10 w-full outline outline-2 outline-slate-400 bg-secondary rounded-lg my-3 px-4 font-light"
         value={value}
         onChange={onChange}
+        required={required}
       >
         <option value="">Pilih {label}</option>
         {options.map((option: IInputOption) => (

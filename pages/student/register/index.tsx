@@ -1,6 +1,6 @@
 import axios from "axios";
 import dynamic from "next/dynamic";
-import { IPeriod, IRegister, IStudent } from "./register.type";
+import { IPeriod, IPeriodAPI, IRegister, IStudent } from "./register.type";
 import { decodeJWT } from "@/helper";
 
 const Register = dynamic(() => import("@/container/Register"));
@@ -12,55 +12,47 @@ export async function getServerSideProps(context: any) {
   // get token from cookies
   const token = context.req.cookies["AUTH_LGN"];
 
+  // parse token get nim
+  const nim = decodeJWT(token).id;
+
   // get period
-  let response = await axios
-    .get(`${process.env.BASE_URL_V1}/period`, {
-      headers: {
-        Authorization: `Bearer ${token}`,
-      },
-    })
-    .then((response) => {
-      return response.data;
-    })
-    .catch((error) => {
-      console.log(error);
-    });
+  const [periodResponse, studentResponse]: any = await axios
+    .all([
+      axios.get(`${process.env.BASE_URL_V1}/period`, {
+        headers: {
+          Authorization: `Bearer ${token}`,
+        },
+      }),
+      axios.get(`${process.env.BASE_URL_V1}/student/${nim}`, {
+        headers: {
+          Authorization: `Bearer ${token}`,
+        },
+      }),
+    ])
+    .then(
+      axios.spread((periodData, studentData) => {
+        return [periodData.data.data, studentData.data.data];
+      })
+    );
 
   // map like type props in input select
   const periods: IPeriod[] = [];
-  response.data.map((res: any) => {
+  periodResponse.map((period: IPeriodAPI) => {
     const data = {
-      id: res.id_period,
-      value: `${res.semester} ${res.tahun_ajaran}`,
+      id: period.period_id,
+      value: `${period.semester} ${period.tahun_ajaran}`,
     };
     periods.push(data);
   });
 
-  // parse token get nim
-  const nim = decodeJWT(token).id;
-
-  // get user by nim
-  response = await axios
-    .get(`${process.env.BASE_URL_V1}/student/${nim}`, {
-      headers: {
-        Authorization: `Bearer ${token}`,
-      },
-    })
-    .then((response) => {
-      return response.data.data;
-    })
-    .catch((error) => {
-      console.log(error);
-    });
-
   // map data to type student
   const student: IStudent = {
-    nim: response.nim,
-    name: response.name,
-    prodi: response.prodi,
-    fakultas: response.fakultas,
-    gender: response.gender,
-    maduraLang: response.madura_lang,
+    nim: studentResponse.nim,
+    name: studentResponse.name,
+    prodi: studentResponse.prodi,
+    fakultas: studentResponse.fakultas,
+    gender: studentResponse.gender,
+    maduraLang: studentResponse.madura_lang,
   };
 
   return {
