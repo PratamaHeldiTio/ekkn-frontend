@@ -11,7 +11,7 @@ export function middleware(request: NextRequest) {
   }
 
   if (url.pathname == "/login" && cookie) {
-    return NextResponse.redirect(new URL("/student/activity", url));
+    return NextResponse.redirect(new URL("/student/register/history", url));
   }
   if (url.pathname != "/login" && !cookie) {
     return NextResponse.redirect(new URL("/login", url));

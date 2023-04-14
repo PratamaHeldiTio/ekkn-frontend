@@ -3,7 +3,6 @@ import dynamic from "next/dynamic";
 import Header from "@/components/Header";
 import user from "@/public/user.png";
 import Alert from "@/components/Alert";
-import { statusColor } from "./History.types";
 import { formatTimeUnix } from "@/helper";
 
 const StudentLayout = dynamic(() => import("@/layout/StudentLayout"));

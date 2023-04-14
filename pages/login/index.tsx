@@ -1,5 +1,7 @@
-import LoginComp from "@/components/Login";
+import dynamic from "next/dynamic";
 
-export default function Login() {
-  return <LoginComp />;
+const Login = dynamic(() => import("@/container/Login"));
+
+export default function LoginPage() {
+  return <Login />;
 }
