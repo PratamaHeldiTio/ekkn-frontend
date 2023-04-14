@@ -11,7 +11,7 @@ export default function Header({ navigations, image }: IHeader) {
             <Link
               href={nav.link}
               key={nav.title}
-              className="inline-block mx-4 text-2xl font-bold"
+              className="inline-block mx-4 text-2xl font-bold hover:text-active"
             >
               {nav.title}
             </Link>
