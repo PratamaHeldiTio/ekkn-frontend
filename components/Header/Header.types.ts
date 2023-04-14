@@ -1,6 +1,11 @@
 import { StaticImageData } from "next/image";
 
 export interface IHeader {
-  links: string[];
+  navigations: INavigation[];
   image: StaticImageData;
+}
+
+export interface INavigation {
+  title: string;
+  link: string;
 }

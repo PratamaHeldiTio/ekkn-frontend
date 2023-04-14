@@ -13,6 +13,7 @@ import { useState } from "react";
 import axios from "axios";
 import Cookies from "universal-cookie";
 import Alert from "@/components/Alert";
+import router from "next/router";
 
 // import layout
 const StudentLayout = dynamic(() => import("@/layout/StudentLayout"));
@@ -92,6 +93,9 @@ export default function Register({ periods, student }: IRegisterPage) {
       .then(() => {
         setAlertFail(false);
         setAlertSuccess(true);
+        setTimeout(() => {
+          router.push("register/history");
+        }, 3000);
       })
       .catch(() => {
         setAlertSuccess(false);
@@ -102,12 +106,25 @@ export default function Register({ periods, student }: IRegisterPage) {
   return (
     <StudentLayout>
       <div>
-        <Header links={["Pendaftaran", "Riwayat"]} image={user} />
+        <Header
+          navigations={[
+            {
+              title: "Pendaftaran",
+              link: "/student/register",
+            },
+            {
+              title: "Riwayat",
+              link: "/student/register/history",
+            },
+          ]}
+          image={user}
+        />
         <div className="rounded-3xl mt-8 p-8 bg-secondary">
           {alertSuccess && (
             <Alert
-              background="bg-success"
+              background="bg-active"
               message="Pendaftaran KKN berhasil lihat status pada riwayat"
+              textSize="text-xl"
             />
           )}
 
@@ -115,6 +132,7 @@ export default function Register({ periods, student }: IRegisterPage) {
             <Alert
               background="bg-danger"
               message="Pendaftaran KKN gagal dilakukan"
+              textSize="text-xl"
             />
           )}
 

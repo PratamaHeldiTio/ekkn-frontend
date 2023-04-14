@@ -10,7 +10,7 @@ const SidebarLayout = dynamic(() => import("@/layout/SidebarLayout"));
 
 export default function StudentLayout({ children }: IStudentLayout) {
   return (
-    <div className="p-10 grid grid-cols-12 ">
+    <div className="p-10 grid grid-cols-12 min-h-screen">
       <div className="lg:col-span-4 xl:col-span-3">
         <SidebarLayout>
           <SideLink

@@ -13,9 +13,9 @@ module.exports = {
         primary: "#19376D",
         secondary: "#f8fafc",
         active: "#2563EB",
-        process: "#EA580C",
         success: "#059669",
         danger: "#e11d48",
+        warning: "#ea580c",
       },
       width: {
         900: "900px",
