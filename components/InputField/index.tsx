@@ -11,7 +11,7 @@ export default function InputField({
   readOnly,
 }: IInputField) {
   return (
-    <label className="font-bold text-lg">
+    <label className="font-bold lg:text-lg">
       {label}
       <input
         type={type ? type : "text"}

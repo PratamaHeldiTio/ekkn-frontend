@@ -22,39 +22,43 @@ export default function History({ registeredStudents }: any) {
         ]}
         image={user}
       />
-      {registeredStudents.map((registeredStudent: any) => {
-        return (
-          <div
-            key={registeredStudent.student_registration_id}
-            className="bg-secondary rounded-3xl mt-10 flex justify-between items-center py-3 px-8"
-          >
-            <div className="col-span-4">
-              <h3 className="text-2xl font-bold mb-2">
-                Periode Semester {registeredStudent.semester}{" "}
-                {registeredStudent.tahun_ajaran}
-              </h3>
-              <p className="font-light tracking-wide">
-                Tanggal pendaftaran{" "}
-                {formatTimeUnix(registeredStudent.created_at)}
-              </p>
+      <div className="mt-12 p-4 lg:p-0">
+        {registeredStudents.map((registeredStudent: any) => {
+          return (
+            <div
+              key={registeredStudent.student_registration_id}
+              className="bg-secondary rounded-3xl mt-6 py-3 px-8 flex flex-col-reverse lg:grid lg:grid-cols-6 lg:items-center"
+            >
+              <div className="lg:col-span-4">
+                <h3 className="lg:text-xl font-bold mt-1">
+                  Periode Semester {registeredStudent.semester}{" "}
+                  {registeredStudent.tahun_ajaran}
+                </h3>
+                <p className="font-light tracking-wide">
+                  Tanggal pendaftaran{" "}
+                  {formatTimeUnix(registeredStudent.created_at)}
+                </p>
+              </div>
+              <div className="lg:w-40 w-32 lg:col-span-2 lg:justify-self-end text-sm lg:text-base">
+                <Alert
+                  background={
+                    registeredStudent.status == "true"
+                      ? "bg-active"
+                      : "bg-warning"
+                  }
+                  message={
+                    registeredStudent.status == "true"
+                      ? "Terdaftar"
+                      : "Belum Validasi"
+                  }
+                  margin="my-0"
+                  padding="p-1 lg:p-2"
+                />
+              </div>
             </div>
-            <div className="w-40">
-              <Alert
-                background={
-                  registeredStudent.status == "true"
-                    ? "bg-active"
-                    : "bg-warning"
-                }
-                message={
-                  registeredStudent.status == "true"
-                    ? "Terdaftar"
-                    : "Belum Validasi"
-                }
-              />
-            </div>
-          </div>
-        );
-      })}
+          );
+        })}
+      </div>
     </StudentLayout>
   );
 }

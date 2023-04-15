@@ -10,7 +10,7 @@ export default function InputSelect({
   options = [],
 }: IInputSelect) {
   return (
-    <label className="font-bold text-lg">
+    <label className="font-bold lg:text-lg ">
       {label}
       <select
         name={name}

@@ -41,7 +41,10 @@ export default function LoginComp() {
         router.replace("/student/register/history");
       })
       .catch(() => {
-        setAlert(true);
+        setAlert(!alert);
+        setTimeout(() => {
+          setAlert((prev) => !prev);
+        }, 3000);
       });
   };
 

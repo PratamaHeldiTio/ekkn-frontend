@@ -18,7 +18,7 @@ export async function getServerSideProps(context: any) {
   // get period
   const [periodResponse, studentResponse]: any = await axios
     .all([
-      axios.get(`${process.env.BASE_URL_V1}/period`, {
+      axios.get(`${process.env.BASE_URL_V1}/period/student`, {
         headers: {
           Authorization: `Bearer ${token}`,
         },

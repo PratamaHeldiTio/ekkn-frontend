@@ -9,7 +9,7 @@ import dataFakultas from "@/global/fakultas.json";
 import dataProdi from "@/global/prodi.json";
 import InputSubmit from "@/components/InputSubmit";
 import { IRegisterPage, IInputValue } from "./Register.types";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import axios from "axios";
 import Cookies from "universal-cookie";
 import Alert from "@/components/Alert";
@@ -34,6 +34,11 @@ export default function Register({ periods, student }: IRegisterPage) {
 
   const [alertSuccess, setAlertSuccess] = useState(false);
   const [alertFail, setAlertFail] = useState(false);
+
+  // to top after register
+  useEffect(() => {
+    window.scrollTo(0, 0);
+  }, [alertFail, alertSuccess]);
 
   const { nim, name, gender, fakultas, prodi, maduraLang, periodInput } =
     inputvalue;
@@ -91,15 +96,20 @@ export default function Register({ periods, student }: IRegisterPage) {
         ),
       ])
       .then(() => {
-        setAlertFail(false);
-        setAlertSuccess(true);
+        setAlertSuccess(!alertSuccess);
+        setTimeout(() => {
+          setAlertSuccess((prev) => !prev);
+        }, 3000);
+
         setTimeout(() => {
           router.push("register/history");
-        }, 3000);
+        }, 5000);
       })
       .catch(() => {
-        setAlertSuccess(false);
-        setAlertFail(true);
+        setAlertFail(!alertFail);
+        setTimeout(() => {
+          setAlertFail((prev) => !prev);
+        }, 3000);
       });
   };
   // return element
@@ -119,12 +129,11 @@ export default function Register({ periods, student }: IRegisterPage) {
           ]}
           image={user}
         />
-        <div className="rounded-3xl mt-8 p-8 bg-secondary">
+        <div className="my-20 lg:m-0 mx-5 rounded-3xl lg:mt-8 lg:p-8 p-6 bg-secondary">
           {alertSuccess && (
             <Alert
               background="bg-active"
-              message="Pendaftaran KKN berhasil lihat status pada riwayat"
-              textSize="text-xl"
+              message="Pendaftaran KKN berhasil dilakukan"
             />
           )}
 
@@ -132,7 +141,6 @@ export default function Register({ periods, student }: IRegisterPage) {
             <Alert
               background="bg-danger"
               message="Pendaftaran KKN gagal dilakukan"
-              textSize="text-xl"
             />
           )}
 
@@ -144,7 +152,7 @@ export default function Register({ periods, student }: IRegisterPage) {
               onChange={handleChangeSelect}
               required={true}
             />
-            <div className="grid grid-cols-2 gap-6 mt-4">
+            <div className="grid lg:grid-cols-2 gap-6 mt-5">
               <InputField
                 label="NIM"
                 value={nim}
@@ -193,7 +201,7 @@ export default function Register({ periods, student }: IRegisterPage) {
               />
             </div>
 
-            <div className="w-80 mx-auto my-4">
+            <div className="lg:w-80 lg:mx-auto mt-4">
               <InputSubmit value="Daftar" />
             </div>
           </form>

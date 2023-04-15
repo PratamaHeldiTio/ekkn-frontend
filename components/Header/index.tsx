@@ -4,21 +4,27 @@ import Link from "next/link";
 
 export default function Header({ navigations, image }: IHeader) {
   return (
-    <div className="bg-secondary grid grid-cols-3 justify-items-stretch p-4 px-8 rounded-3xl place-items-center">
-      <ul className="col-span-2 ">
-        {navigations.map((nav) => {
-          return (
-            <Link
-              href={nav.link}
-              key={nav.title}
-              className="inline-block mx-4 text-2xl font-bold hover:text-active"
-            >
-              {nav.title}
-            </Link>
-          );
-        })}
-      </ul>
-      <Image alt="profile user" src={image} className="w-12 justify-self-end" />
+    <div className="fixed top-0 left-0 right-0 bg-secondary drop-shadow-lg lg:static lg:drop-shadow-none lg:rounded-3xl">
+      <div className="grid grid-cols-4 justify-items-stretch p-3 lg:p-4 px-8 lg:px-12 place-items-center">
+        <ul className="col-span-3">
+          {navigations.map((nav) => {
+            return (
+              <Link
+                href={nav.link}
+                key={nav.title}
+                className="mr-4 lg:text-xl xl:text-2xl font-bold hover:text-active"
+              >
+                {nav.title}
+              </Link>
+            );
+          })}
+        </ul>
+        <Image
+          alt="profile user"
+          src={image}
+          className="w-10 lg:w-12 justify-self-end"
+        />
+      </div>
     </div>
   );
 }

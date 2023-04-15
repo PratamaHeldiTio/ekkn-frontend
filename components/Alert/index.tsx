@@ -1,9 +1,16 @@
 import { IAlert } from "./Alert.types";
 
-export default function Alert({ background, message, textSize }: IAlert) {
+export default function Alert({
+  background,
+  message,
+  margin,
+  padding,
+}: IAlert) {
   return (
     <p
-      className={` w-full ${textSize} text-center ${background} font-bold rounded-3xl my-4 p-3 text-secondary`}
+      className={` w-full text-center ${background} font-bold rounded-3xl ${
+        padding ? padding : "p-3"
+      } ${margin ? margin : "my-4"} text-secondary`}
     >
       {message}
     </p>
