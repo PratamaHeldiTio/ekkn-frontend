@@ -13,7 +13,7 @@ export default function StudentLayout({ children }: IStudentLayout) {
     <div className="lg:p-10 lg:grid lg:grid-cols-12 lg:min-h-screen">
       <div className="lg:col-span-4 xl:col-span-3">
         <SidebarLayout>
-          <div className="grid grid-cols-5 p-3 lg:inline-block">
+          <div className="grid grid-cols-5 p-3 lg:inline-block z-100">
             <SideLink
               destination="register"
               icon={register}
