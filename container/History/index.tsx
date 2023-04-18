@@ -20,20 +20,20 @@ export default function History({
   ];
   return (
     <StudentLayout navigations={navigations}>
-      <div className="mt-12 p-4 lg:p-0">
+      <div className="mt-16 lg:mt-8">
         {studentRegistrations.map(
           (studentRegistration: IStudentRegistration) => {
             return (
               <div
                 key={studentRegistration.studentRegistrationId}
-                className="bg-secondary rounded-3xl mt-6 py-3 px-8 flex flex-col-reverse lg:grid lg:grid-cols-6 lg:items-center"
+                className="bg-secondary rounded-2xl mt-6 py-3 px-8 flex flex-col-reverse lg:grid lg:grid-cols-6 lg:items-center"
               >
                 <div className="lg:col-span-4">
                   <h3 className="lg:text-xl font-bold mt-1">
                     Periode Semester {studentRegistration.semester}{" "}
                     {studentRegistration.tahunAjaran}
                   </h3>
-                  <p className="font-light tracking-wide">
+                  <p className="font-light text-sm tracking-wide">
                     Tanggal pendaftaran{" "}
                     {formatTimeUnix(studentRegistration.createdAt)}
                   </p>

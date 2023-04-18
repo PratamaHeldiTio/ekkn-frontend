@@ -125,7 +125,7 @@ export default function Register({ periods, student }: IRegisterPage) {
   return (
     <StudentLayout navigations={navigations}>
       <div>
-        <div className="my-20 lg:m-0 mx-5 rounded-3xl lg:mt-8 lg:p-8 p-6 bg-secondary">
+        <div className="my-16 lg:m-0 rounded-3xl lg:mt-8 lg:p-8 p-6 bg-secondary">
           {alertSuccess && (
             <Alert
               background="bg-active"

@@ -21,7 +21,7 @@ export default function Member() {
   ];
   return (
     <StudentLayout navigations={navigations}>
-      <div>Member {periodId}</div>
+      <div className="mt-32">Member {periodId}</div>
       <p>haloooo</p>
     </StudentLayout>
   );

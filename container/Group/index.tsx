@@ -16,23 +16,24 @@ export default function Group({ registeredStudents }: IRegisteredStudents) {
   ];
   return (
     <StudentLayout navigations={navigations}>
-      <div className="md:grid md:grid-cols-2 md:gap-8 mt-12 p-10 lg:p-0 lg:mt-10">
+      <div className="md:grid md:grid-cols-2 md:gap-8 my-16 lg:my-8">
         {registeredStudents.map((registeredStudent: IRegisteredStudent) => {
           return (
             <Link
               href={`/student/group/member/${registeredStudent.periodId}`}
               key={registeredStudent.periodId}
-              className="bg-secondary rounded-3xl mb-6 drop-shadow-lg"
             >
-              <Image
-                alt="picture kelompok"
-                src={heroGroup}
-                className="rounded-t-3xl"
-              />
-              <p className="font-bold p-4 md:text-xl">
-                Periode Semester {registeredStudent.semester}{" "}
-                {registeredStudent.tahunAjaran}
-              </p>
+              <div className="bg-secondary rounded-3xl mb-6">
+                <Image
+                  alt="picture kelompok"
+                  src={heroGroup}
+                  className="rounded-t-3xl"
+                />
+                <p className="font-bold p-4 md:text-xl">
+                  Periode Semester {registeredStudent.semester}{" "}
+                  {registeredStudent.tahunAjaran}
+                </p>
+              </div>
             </Link>
           );
         })}
