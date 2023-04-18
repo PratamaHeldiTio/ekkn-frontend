@@ -1,31 +1,27 @@
-export interface IRegisteredStudent {
-  semester: string;
-  nim: string;
-  name: string;
-  prodi: string;
-  fakultas: string;
-  status: string;
-  createdAt: Number;
+export interface IStudentRegistration {
   studentRegistrationId: string;
+  semester: string;
   tahunAjaran: string;
+  status: string;
+  createdAt: number;
 }
 
-export interface IRegisteredStudents {
-  registeredStudents: IRegisteredStudent[];
+export interface IStudentRegistrations {
+  studentRegistrations: IStudentRegistration[];
 }
 
-export const mapData = (data: any): IRegisteredStudent => {
-  const dataFormat = {
-    semester: data.semester,
-    nim: data.nim,
-    name: data.name,
-    prodi: data.prodi,
-    fakultas: data.fakultas,
-    status: data.status,
-    createdAt: data.created_at,
-    studentRegistrationId: data.studentR_rgistration_id,
-    tahunAjaran: data.tahun_ajaran,
-  };
+export const mapingData = (dataAPI: any): IStudentRegistration[] => {
+  const studentRegistrations: IStudentRegistration[] = [];
 
-  return dataFormat;
+  dataAPI.map((data: any) => {
+    studentRegistrations.push({
+      studentRegistrationId: data.student_registration_id,
+      semester: data.semester,
+      tahunAjaran: data.tahun_ajaran,
+      status: data.status,
+      createdAt: data.created_at,
+    });
+  });
+
+  return studentRegistrations;
 };

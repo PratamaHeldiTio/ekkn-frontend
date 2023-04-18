@@ -97,11 +97,11 @@ export default function Register({ periods, student }: IRegisterPage) {
         setAlertSuccess(!alertSuccess);
         setTimeout(() => {
           setAlertSuccess((prev) => !prev);
-        }, 3000);
+        }, 2000);
 
         setTimeout(() => {
           router.push("register/history");
-        }, 5000);
+        }, 3000);
       })
       .catch(() => {
         setAlertFail(!alertFail);

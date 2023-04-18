@@ -1,6 +1,7 @@
 import React from "react";
 import dynamic from "next/dynamic";
 import axios from "axios";
+import { mapingData } from "./group.types";
 const Group = dynamic(() => import("@/container/Group"));
 
 export default function GroupPage({ registeredStudents }: any) {
@@ -12,7 +13,7 @@ export async function getServerSideProps(context: any) {
   const token = context.req.cookies["AUTH_LGN"];
 
   // get period
-  const registeredStudents = await axios
+  const dataAPI = await axios
     .get(`${process.env.BASE_URL_V1}/student/registration/registered`, {
       headers: {
         Authorization: `Bearer ${token}`,
@@ -21,6 +22,8 @@ export async function getServerSideProps(context: any) {
     .then((response) => {
       return response.data.data;
     });
+
+  const registeredStudents = mapingData(dataAPI);
 
   return {
     props: {

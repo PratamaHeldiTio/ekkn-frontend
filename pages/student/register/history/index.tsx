@@ -1,10 +1,11 @@
 import React from "react";
 import dynamic from "next/dynamic";
 import axios from "axios";
+import { mapingData } from "./history.types";
 const History = dynamic(() => import("@/container/History"));
 
-export default function HistoryPage({ registeredStudents }: any) {
-  return <History registeredStudents={registeredStudents} />;
+export default function HistoryPage({ studentRegistrations }: any) {
+  return <History studentRegistrations={studentRegistrations} />;
 }
 
 export async function getServerSideProps(context: any) {
@@ -12,7 +13,7 @@ export async function getServerSideProps(context: any) {
   const token = context.req.cookies["AUTH_LGN"];
 
   // get period
-  const registeredStudents = await axios
+  const dataAPI = await axios
     .get(`${process.env.BASE_URL_V1}/student_registration/student_id`, {
       headers: {
         Authorization: `Bearer ${token}`,
@@ -22,9 +23,10 @@ export async function getServerSideProps(context: any) {
       return response.data.data;
     });
 
+  const studentRegistrations = mapingData(dataAPI);
   return {
     props: {
-      registeredStudents,
+      studentRegistrations,
     },
   };
 }
