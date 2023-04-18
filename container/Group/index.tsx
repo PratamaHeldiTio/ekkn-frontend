@@ -7,22 +7,19 @@ import heroGroup from "@/public/bgGroup.png";
 import Link from "next/link";
 const StudentLayout = dynamic(() => import("@/layout/StudentLayout"));
 export default function Group({ registeredStudents }: any) {
+  const navigations = [
+    {
+      title: "Kelompok",
+      link: "/student/group",
+    },
+  ];
   return (
-    <StudentLayout>
-      <Header
-        image={profile}
-        navigations={[
-          {
-            title: "Kelompok",
-            link: "/student/group",
-          },
-        ]}
-      ></Header>
+    <StudentLayout navigations={navigations}>
       <div className="md:grid md:grid-cols-2 md:gap-8 mt-12 p-10 lg:p-0 lg:mt-10">
         {registeredStudents.map((registeredStudent: any) => {
           return (
             <Link
-              href={`/student/group/${registeredStudent.period_id}`}
+              href={`/student/group/member/${registeredStudent.period_id}`}
               key={registeredStudent.period_id}
               className="bg-secondary rounded-3xl mb-6 drop-shadow-lg"
             >

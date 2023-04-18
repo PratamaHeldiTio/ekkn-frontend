@@ -6,9 +6,13 @@ import output from "@/public/output.png";
 import group from "@/public/group.png";
 import SideLink from "@/components/SideLink";
 import dynamic from "next/dynamic";
+import Header from "@/components/Header";
 const SidebarLayout = dynamic(() => import("@/layout/SidebarLayout"));
 
-export default function StudentLayout({ children }: IStudentLayout) {
+export default function StudentLayout({
+  children,
+  navigations,
+}: IStudentLayout) {
   return (
     <div className="lg:p-10 lg:grid lg:grid-cols-12 lg:min-h-screen">
       <div className="lg:col-span-4 xl:col-span-3">
@@ -26,8 +30,10 @@ export default function StudentLayout({ children }: IStudentLayout) {
           </div>
         </SidebarLayout>
       </div>
-
-      <div className="lg:col-span-8 xl:col-span-9 lg:ml-12">{children}</div>
+      <div className="lg:col-span-8 xl:col-span-9 lg:ml-12">
+        <Header navigations={navigations} />
+        {children}
+      </div>
     </div>
   );
 }

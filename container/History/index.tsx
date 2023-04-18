@@ -7,21 +7,18 @@ import { formatTimeUnix } from "@/helper";
 
 const StudentLayout = dynamic(() => import("@/layout/StudentLayout"));
 export default function History({ registeredStudents }: any) {
+  const navigations = [
+    {
+      title: "Pendaftaran",
+      link: "/student/register",
+    },
+    {
+      title: "Riwayat",
+      link: "/student/register/history",
+    },
+  ];
   return (
-    <StudentLayout>
-      <Header
-        navigations={[
-          {
-            title: "Pendaftaran",
-            link: "/student/register",
-          },
-          {
-            title: "Riwayat",
-            link: "/student/register/history",
-          },
-        ]}
-        image={user}
-      />
+    <StudentLayout navigations={navigations}>
       <div className="mt-12 p-4 lg:p-0">
         {registeredStudents.map((registeredStudent: any) => {
           return (

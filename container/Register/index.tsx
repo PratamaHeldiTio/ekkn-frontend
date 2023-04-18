@@ -1,6 +1,4 @@
-import Header from "@/components/Header";
 import dynamic from "next/dynamic";
-import user from "@/public/user.png";
 import InputField from "@/components/InputField";
 import InputSelect from "@/components/InputSelect";
 import dataGender from "@/global/gender.json";
@@ -112,23 +110,21 @@ export default function Register({ periods, student }: IRegisterPage) {
         }, 3000);
       });
   };
+
+  const navigations = [
+    {
+      title: "Pendaftaran",
+      link: "/student/register",
+    },
+    {
+      title: "Riwayat",
+      link: "/student/register/history",
+    },
+  ];
   // return element
   return (
-    <StudentLayout>
+    <StudentLayout navigations={navigations}>
       <div>
-        <Header
-          navigations={[
-            {
-              title: "Pendaftaran",
-              link: "/student/register",
-            },
-            {
-              title: "Riwayat",
-              link: "/student/register/history",
-            },
-          ]}
-          image={user}
-        />
         <div className="my-20 lg:m-0 mx-5 rounded-3xl lg:mt-8 lg:p-8 p-6 bg-secondary">
           {alertSuccess && (
             <Alert
