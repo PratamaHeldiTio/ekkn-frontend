@@ -14,7 +14,7 @@ export async function getServerSideProps(context: any) {
 
   // get period
   const dataAPI = await axios
-    .get(`${process.env.BASE_URL_V1}/student/registration/registered`, {
+    .get(`${process.env.BASE_URL_V1}/student/registered`, {
       headers: {
         Authorization: `Bearer ${token}`,
       },

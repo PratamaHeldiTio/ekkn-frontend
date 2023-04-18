@@ -82,7 +82,7 @@ export default function Register({ periods, student }: IRegisterPage) {
           }
         ),
         axios.post(
-          `${process.env.BASE_URL_V1}/student_registration`,
+          `${process.env.BASE_URL_V1}/student/registration`,
           {
             period_id: periodInput,
           },
