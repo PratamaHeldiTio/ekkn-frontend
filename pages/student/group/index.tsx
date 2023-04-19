@@ -25,6 +25,8 @@ export async function getServerSideProps(context: any) {
 
   const registeredStudents = mapingData(dataAPI);
 
+  console.log(dataAPI);
+
   return {
     props: {
       registeredStudents,

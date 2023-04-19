@@ -13,7 +13,7 @@ export async function getServerSideProps(context: any) {
 
   // get period
   const dataAPI = await axios
-    .get(`${process.env.BASE_URL_V1}/group/${periodId}`, {
+    .get(`${process.env.BASE_URL_V1}/student/registration/${periodId}`, {
       headers: {
         Authorization: `Bearer ${token}`,
       },
@@ -24,8 +24,6 @@ export async function getServerSideProps(context: any) {
     .catch(() => {
       return null;
     });
-
-  console.log(dataAPI);
 
   return {
     props: {

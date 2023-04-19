@@ -6,7 +6,6 @@ import InputSubmit from "@/components/InputSubmit";
 const StudentLayout = dynamic(() => import("@/layout/StudentLayout"));
 
 export default function Member({ group }: any) {
-  // console.log(group);
   const router = useRouter();
   const { periodId } = router.query;
   const navigations = [
@@ -23,6 +22,11 @@ export default function Member({ group }: any) {
       link: `/student/group/output/${periodId}`,
     },
   ];
+
+  // if student not registered but input period valid
+  if (group.status == "false") {
+    return <div>Anda tidak memiliki akses silahkan balik lagi</div>;
+  }
 
   if (!group) {
     return (
