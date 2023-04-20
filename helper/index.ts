@@ -1,4 +1,7 @@
 export function decodeJWT(token: string) {
+  if (!token) {
+    return;
+  }
   var arr = token.split(".");
   const payload = JSON.parse(atob(arr[1]));
   return payload;
