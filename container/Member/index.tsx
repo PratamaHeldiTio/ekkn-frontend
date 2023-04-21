@@ -34,6 +34,11 @@ export default function Member({ group, leader }: any) {
     },
   ];
 
+  // to top after register
+  useEffect(() => {
+    window.scrollTo(0, 0);
+  }, [alertFail, alertSuccess]);
+
   const handleCreateGroup = (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
     axios
@@ -94,6 +99,29 @@ export default function Member({ group, leader }: any) {
 
   const handleRegisterGroup = (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
+    axios
+      .put(
+        `${process.env.BASE_URL_V1}/group/register/${group.id}`,
+        {},
+        {
+          headers: {
+            Authorization: `Bearer ${token}`,
+          },
+        }
+      )
+      .then(() => {
+        setAlertSuccess(!alertSuccess);
+        setTimeout(() => {
+          setAlertSuccess((prev) => !prev);
+          router.reload();
+        }, 1500);
+      })
+      .catch(() => {
+        setAlertFail(!alertFail);
+        setTimeout(() => {
+          setAlertFail((prev) => !prev);
+        }, 2000);
+      });
   };
 
   // student registered and haven't group
@@ -167,6 +195,19 @@ export default function Member({ group, leader }: any) {
           <h1 className="font-bold text-center text-xl lg:text-2xl mb-4">
             Anggota Kelompok
           </h1>
+          {alertSuccess && (
+            <Alert
+              background="bg-active"
+              message="Kelompok berhasil didaftarkan"
+            />
+          )}
+
+          {alertFail && (
+            <Alert
+              background="bg-danger"
+              message="Kelompok gagal didaftarkan"
+            />
+          )}
           <ul className="lg:text-lg">
             <li className="my-2 truncate">Nama : {group.name}</li>
             <li className="my-2 truncate">Ketua : {group.leader}</li>
@@ -214,7 +255,7 @@ export default function Member({ group, leader }: any) {
                         {student.prodi}
                       </td>
                       <td className="text-center  border border-primary min-w-[10rem] p-3">
-                        {student.madura_lang}
+                        {student.madura_lang == "true" ? "Ya" : "Tidak"}
                       </td>
                     </tr>
                   );
@@ -224,7 +265,10 @@ export default function Member({ group, leader }: any) {
           </div>
           {group.leader == leader && (
             <form onSubmit={handleRegisterGroup} className="max-w-sm mx-auto">
-              <InputSubmit value="Daftarkan" />
+              <InputSubmit
+                value={group.status == "true" ? "Terdaftar" : "Daftarkan"}
+                disabled={group.status == "true" && true}
+              />
             </form>
           )}
         </div>
