@@ -212,7 +212,10 @@ export default function Member({ group, leader }: any) {
             <li className="my-2 truncate">Nama : {group.name}</li>
             <li className="my-2 truncate">Ketua : {group.leader}</li>
             <li className="my-2 truncate">
-              Desa : {group.desa ? group.desa : "Belum ada desa"}{" "}
+              Tempat :{" "}
+              {group.village.name != ""
+                ? `Desa ${group.village.name}, Kecamatan ${group.village.kecamatan}, Kabupaten ${group.village.kabupaten}`
+                : "Belum ada desa"}{" "}
             </li>
             <li className="my-2 truncate">
               Status :{" "}
