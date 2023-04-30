@@ -11,7 +11,7 @@ const SidebarLayout = dynamic(() => import("@/layout/SidebarLayout"));
 
 export default function StudentLayout({
   children,
-  navigations,
+  navigations = [],
 }: IStudentLayout) {
   return (
     <div className="lg:p-10 p-6 lg:grid lg:grid-cols-12 lg:min-h-screen">

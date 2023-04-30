@@ -12,9 +12,6 @@ export async function getServerSideProps(context: any) {
   // get token from cookies
   const token = context.req.cookies["AUTH_LGN"];
 
-  // parse token get nim
-  const nim = decodeJWT(token).id;
-
   // get period
   const [periodResponse, studentResponse]: any = await axios
     .all([
@@ -23,7 +20,7 @@ export async function getServerSideProps(context: any) {
           Authorization: `Bearer ${token}`,
         },
       }),
-      axios.get(`${process.env.BASE_URL_V1}/student/${nim}`, {
+      axios.get(`${process.env.BASE_URL_V1}/student`, {
         headers: {
           Authorization: `Bearer ${token}`,
         },

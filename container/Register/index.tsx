@@ -67,7 +67,7 @@ export default function Register({ periods, student }: IRegisterPage) {
     axios
       .all([
         axios.put(
-          `${process.env.BASE_URL_V1}/student/${nim}`,
+          `${process.env.BASE_URL_V1}/student`,
           {
             name,
             gender,

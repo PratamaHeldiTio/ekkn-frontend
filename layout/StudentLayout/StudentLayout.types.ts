@@ -2,7 +2,7 @@ import { ReactNode } from "react";
 
 export interface IStudentLayout {
   children: ReactNode;
-  navigations: INavigation[];
+  navigations?: INavigation[];
 }
 export interface INavigation {
   title: string;
