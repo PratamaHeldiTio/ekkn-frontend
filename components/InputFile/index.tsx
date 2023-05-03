@@ -29,7 +29,7 @@ export default function InputFile({
             ></path>
           </svg>
 
-          {file.name != "" ? (
+          {file.name != "" && (
             <div>
               <p className="mb-2 text-sm text-gray-500">Klik Kirim {label}</p>
               <a
@@ -40,7 +40,9 @@ export default function InputFile({
                 {file.name}
               </a>
             </div>
-          ) : (
+          )}
+
+          {file.name == "" && (
             <div>
               <p className="mb-2 text-sm text-gray-500">
                 Klik Untuk Upload {label}
@@ -49,7 +51,7 @@ export default function InputFile({
             </div>
           )}
 
-          <input type="file" className="hidden" onChange={onChange} />
+          <input type="file" className="hidden" required onChange={onChange} />
         </div>
       </label>
     </div>

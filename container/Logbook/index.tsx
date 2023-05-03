@@ -1,31 +1,30 @@
-import React from "react";
+import {
+  IRegisteredStudent,
+  IRegisteredStudents,
+} from "@/pages/student/logbook/logbook.types";
+import heroLogbook from "@/public/heroLogbook.jpg";
 import dynamic from "next/dynamic";
-import Image from "next/image";
-import heroGroup from "@/public/bgGroup.png";
-import Link from "next/link";
-import { IRegisteredStudent, IRegisteredStudents } from "./Group.types";
 const StudentLayout = dynamic(() => import("@/layout/StudentLayout"));
-export default function Group({ registeredStudents }: IRegisteredStudents) {
-  const navigations = [
-    {
-      title: "Kelompok",
-      link: "/student/group",
-    },
-  ];
+import Image from "next/image";
+import Link from "next/link";
+
+export default function Logbook({ registeredStudents }: IRegisteredStudents) {
   return (
-    <StudentLayout navigations={navigations}>
+    <StudentLayout
+      navigations={[{ title: "Logbook", link: "/student/logbook" }]}
+    >
       <div className="md:grid md:grid-cols-2 md:gap-8 my-16 lg:my-8">
         {registeredStudents.map((registeredStudent: IRegisteredStudent) => {
           return (
             <Link
-              href={`/student/group/member/${registeredStudent.periodId}`}
+              href={`/student/logbook/${registeredStudent.periodId}`}
               key={registeredStudent.periodId}
             >
               <div className="bg-secondary rounded-3xl mb-6">
                 <Image
                   alt="picture kelompok"
-                  src={heroGroup}
-                  className="rounded-t-3xl"
+                  src={heroLogbook}
+                  className="rounded-t-3xl max-h-60"
                 />
                 <p className="font-bold p-4 md:text-xl">
                   Periode Semester {registeredStudent.semester}{" "}
