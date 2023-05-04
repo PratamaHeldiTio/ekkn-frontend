@@ -6,6 +6,7 @@ export interface group {
 
 export interface ILogbookDetail {
   group: group;
+  logbooks: any;
 }
 
 export const mapToGroup = (dataApi: any): group => {
