@@ -65,13 +65,12 @@ export async function getServerSideProps(context: any) {
     return {
       props: {
         group: null,
-        logbooks,
+        logbooks: [],
       },
     };
   }
 
   const group = mapToGroup(dataAPIGroup);
-
   return {
     props: {
       group,

@@ -55,15 +55,6 @@ export async function getServerSideProps(context: any) {
     }
   });
 
-  if (dataGroup == null) {
-    return {
-      props: {
-        group: null,
-        village: villages,
-      },
-    };
-  }
-
   const group = ToGroupFromAPI(dataGroup);
 
   return {

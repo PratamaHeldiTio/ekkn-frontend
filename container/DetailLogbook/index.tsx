@@ -37,11 +37,6 @@ export default function DetailLogbook({ group, logbooks }: ILogbookDetail) {
   const [alertMessage, setAlertMessage] = useState("");
 
   useEffect(() => {
-    if (group == null) {
-      router.replace("/404");
-      return;
-    }
-
     if (navigator.geolocation) {
       navigator.geolocation.getCurrentPosition(
         (position) => {
@@ -132,6 +127,17 @@ export default function DetailLogbook({ group, logbooks }: ILogbookDetail) {
         }, 2000);
       });
   };
+
+  if (group == null) {
+    return (
+      <StudentLayout
+        navigations={[{ title: "Kembali ", link: "/student/logbook" }]}
+      >
+        <LockAcces message="Anda tidak dapat membuka halaman ini jika belum memiliki group" />
+        ;
+      </StudentLayout>
+    );
+  }
 
   return (
     <StudentLayout

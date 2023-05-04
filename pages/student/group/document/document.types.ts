@@ -15,6 +15,24 @@ export interface IVillage {
 }
 
 export const ToGroupFromAPI = (dataAPI: any): IGroup => {
+  if (dataAPI == null) {
+    const group: IGroup = {
+      id: "",
+      report: "",
+      potential: "",
+      village: {
+        id: "",
+        value: "",
+        strength: "",
+        weakness: "",
+        oportunities: "",
+        threats: "",
+      },
+    };
+
+    return group;
+  }
+
   const group: IGroup = {
     id: dataAPI.id,
     report: dataAPI.report,

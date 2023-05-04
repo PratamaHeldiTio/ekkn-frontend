@@ -34,6 +34,7 @@ export default function Document({ group, villages }: IDocumentPage) {
     name: "",
     fileUrl: "",
   });
+
   const [inputvalue, setInputValue] = useState({
     strength: group.village.strength,
     weakness: group.village.weakness,
@@ -176,10 +177,10 @@ export default function Document({ group, villages }: IDocumentPage) {
   };
 
   // condition render component
-  if (group == null) {
+  if (group.id == "") {
     return (
       <StudentLayout navigations={navigations}>
-        <LockAcces />;
+        <LockAcces message="Anda tidak memiliki akses pada halaman ini" />;
       </StudentLayout>
     );
   } else {
