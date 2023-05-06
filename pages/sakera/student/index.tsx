@@ -1,7 +1,7 @@
 import axios from "axios";
 import dynamic from "next/dynamic";
 import { IStudentPage, mapingDataToStudents } from "./student.types";
-const Student = dynamic(() => import("@/container/Student"));
+const Student = dynamic(() => import("@/container/Admin/Student"));
 
 export default function StudentPage({ students }: IStudentPage) {
   return <Student students={students} />;

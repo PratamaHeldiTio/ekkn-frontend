@@ -2,7 +2,7 @@ import axios from "axios";
 import dynamic from "next/dynamic";
 import React from "react";
 import { IEditStudent, IStudent } from "./EditStduent.types";
-const EditStudent = dynamic(() => import("@/container/EditStudent"));
+const EditStudent = dynamic(() => import("@/container/Admin/EditStudent"));
 export default function EditStudentPage({ student }: IEditStudent) {
   return <EditStudent student={student} />;
 }

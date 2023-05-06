@@ -1,13 +1,13 @@
 import { useState } from "react";
 import Image from "next/image";
-import utm from "../../public/utm.png";
-import logo from "../../public/logo.png";
+import utm from "@/public/utm.png";
+import logo from "@/public/logo.png";
 import Link from "next/link";
 import axios from "axios";
 import Cookies from "universal-cookie";
 import { useRouter } from "next/router";
 import InputField from "@/components/InputField";
-import { IInputValue } from "./LoginAdmin.types";
+import { IInputValue } from "./Login.types";
 import Alert from "@/components/Alert";
 import InputSubmit from "@/components/InputSubmit";
 
@@ -37,7 +37,7 @@ export default function LoginComp() {
           maxAge: 3600,
         });
 
-        router.replace("/sakera"); //mean home page cms alias sakera
+        router.replace("/sakera/student"); //mean home page cms alias sakera
       })
       .catch(() => {
         setAlert(!alert);

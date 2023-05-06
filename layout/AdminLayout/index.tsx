@@ -1,6 +1,6 @@
 import { IAdminLayout } from "./AdminLayout.types";
 import student from "@/public/student.png";
-// import contract from "@/public/contract.png";
+import register from "@/public/register.png";
 // import logbook from "@/public/logbook.png";
 // import output from "@/public/output.png";
 import group from "@/public/group.png";
@@ -24,8 +24,13 @@ export default function StudentLayout({
               content="Mahasiswa"
               role="sakera"
             />
+            <SideLink
+              role="admin"
+              destination="register/student"
+              icon={register}
+              content="Pendaftaran"
+            />
             {/* 
-            <SideLink destination="kki" icon={contract} content="KKI" />
             <SideLink destination="logbook" icon={logbook} content="Logbookk" />
             <SideLink destination="output" icon={output} content="Luaran" />
             <SideLink destination="group" icon={group} content="Kelompok" /> */}
