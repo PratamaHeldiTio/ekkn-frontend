@@ -15,7 +15,9 @@ export default function Header({ navigations = [], admin }: IHeader) {
               <Link
                 href={nav.link}
                 key={nav.title}
-                className="mr-8 lg:text-xl xl:text-2xl font-bold hover:text-active"
+                className={`mr-8 lg:text-xl xl:text-2xl font-bold ${
+                  nav.isActive && "text-active"
+                }`}
               >
                 {nav.title}
               </Link>

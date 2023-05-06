@@ -19,14 +19,14 @@ export default function StudentLayout({
         <SidebarLayout>
           <div className="grid grid-cols-5 p-3 lg:inline-block">
             <SideLink
-              destination="register"
+              destination="student"
               icon={student}
               content="Mahasiswa"
               role="sakera"
             />
             <SideLink
-              role="admin"
-              destination="register/student"
+              role="sakera"
+              destination="registration/student"
               icon={register}
               content="Pendaftaran"
             />
