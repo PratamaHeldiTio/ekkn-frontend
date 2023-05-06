@@ -1,10 +1,8 @@
-import { ReactNode } from "react";
+import { Dispatch, ReactNode, SetStateAction } from "react";
 
 export interface IAdminLayout {
   children: ReactNode;
-  navigations?: INavigation[];
-}
-export interface INavigation {
-  title: string;
-  link: string;
+  navigations?: string[];
+  setPage?: Dispatch<SetStateAction<string>>;
+  page?: string;
 }

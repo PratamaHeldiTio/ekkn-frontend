@@ -1,10 +1,8 @@
-export interface IHeader {
-  navigations: INavigation[];
-  admin: boolean;
-}
+import { Dispatch, SetStateAction } from "react";
 
-export interface INavigation {
-  title: string;
-  link: string;
-  isActive?: boolean;
+export interface IHeader {
+  navigations: string[];
+  admin: boolean;
+  setPage?: Dispatch<SetStateAction<string>>;
+  page?: string;
 }

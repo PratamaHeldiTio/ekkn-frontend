@@ -12,6 +12,8 @@ const SidebarLayout = dynamic(() => import("@/layout/SidebarLayout"));
 export default function StudentLayout({
   children,
   navigations = [],
+  setPage,
+  page,
 }: IAdminLayout) {
   return (
     <div className="lg:p-10 p-6 lg:grid lg:grid-cols-12 lg:min-h-screen">
@@ -26,7 +28,7 @@ export default function StudentLayout({
             />
             <SideLink
               role="sakera"
-              destination="registration/student"
+              destination="registration"
               icon={register}
               content="Pendaftaran"
             />
@@ -38,7 +40,12 @@ export default function StudentLayout({
         </SidebarLayout>
       </div>
       <div className="lg:col-span-8 xl:col-span-9 lg:ml-12">
-        <Header navigations={navigations} admin={true} />
+        <Header
+          navigations={navigations}
+          admin={true}
+          setPage={setPage}
+          page={page}
+        />
         {children}
       </div>
     </div>
