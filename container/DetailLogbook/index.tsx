@@ -185,7 +185,7 @@ export default function DetailLogbook({ group, logbooks }: ILogbookDetail) {
                 }}
               />
             </div>
-            <div className="w-60 mt-4 mx-auto">
+            <div className="w-60 mt-4 mx-auto h-10">
               <InputSubmit value="Kirim" />
             </div>
           </form>

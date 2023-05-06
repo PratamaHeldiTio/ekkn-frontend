@@ -176,14 +176,14 @@ export default function Student({ students }: IStudentPage) {
               onChange={(e) => setName(e.target.value)}
             />
           </div>
-          <div className="w-80 mx-auto">
+          <div className="w-80 mx-auto h-10">
             <InputSubmit value="Tambah" />
           </div>
         </form>
       </div>
       <div className="rounded-3xl p-8 bg-secondary">
         <h1 className="text-2xl font-bold">Daftar Mahasiswa</h1>
-        <div className="overflow-hidden rounded-lg border border-gray-200 shadow-md m-5">
+        <div className="overflow-x-scroll rounded-lg border border-gray-200 shadow-md m-5">
           <table className="w-full border-collapse bg-white text-left text-sm text-gray-500">
             <thead className="bg-gray-50">
               <tr>

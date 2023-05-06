@@ -256,7 +256,7 @@ export default function Document({ group, villages }: IDocumentPage) {
                   placeholder="Hambatan eksternal dalam pengembangan desa"
                   onChange={handleChange}
                 />
-                <div className="w-60 mx-auto">
+                <div className="w-60 mx-auto h-10">
                   <InputSubmit value="Simpan" />
                 </div>
               </form>
@@ -291,7 +291,7 @@ export default function Document({ group, villages }: IDocumentPage) {
                     });
                   }}
                 />
-                <div className="w-60 mt-4 mx-auto">
+                <div className="w-60 mt-4 mx-auto h-10">
                   <InputSubmit value="Kirim" />
                 </div>
               </form>
@@ -326,7 +326,7 @@ export default function Document({ group, villages }: IDocumentPage) {
                     });
                   }}
                 />
-                <div className="w-60 mt-4 mx-auto">
+                <div className="w-60 mt-4 mx-auto h-10">
                   <InputSubmit value="Kirim" />
                 </div>
               </form>

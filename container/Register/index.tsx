@@ -198,7 +198,7 @@ export default function Register({ periods, student }: IRegisterPage) {
               />
             </div>
 
-            <div className="lg:w-80 lg:mx-auto mt-4">
+            <div className="lg:w-80 lg:mx-auto mt-4 h-10">
               <InputSubmit value="Daftar" />
             </div>
           </form>

@@ -269,7 +269,10 @@ export default function Member({ group, leader }: any) {
             </table>
           </div>
           {group.leader == leader && (
-            <form onSubmit={handleRegisterGroup} className="max-w-sm mx-auto">
+            <form
+              onSubmit={handleRegisterGroup}
+              className="max-w-sm mx-auto h-10"
+            >
               <InputSubmit
                 value={group.status == "true" ? "Terdaftar" : "Daftarkan"}
                 disabled={group.status == "true" && true}

@@ -197,7 +197,7 @@ export default function Profile({ student }: IProfile) {
             />
           </div>
 
-          <div className="lg:w-80 lg:mx-auto mt-4">
+          <div className="lg:w-80 lg:mx-auto mt-4 h-10">
             <InputSubmit value="Simpan" />
           </div>
         </form>

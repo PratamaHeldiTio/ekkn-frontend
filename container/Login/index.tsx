@@ -101,9 +101,11 @@ export default function LoginComp() {
               onChange={handleChange}
               required={true}
             />
-            <InputSubmit value="Login" />
+            <div className="h-10">
+              <InputSubmit value="Login" />
+            </div>
           </form>
-          <p className="mt-3 font-semibold">
+          <p className="mt-8 font-semibold">
             Kembali ke{" "}
             <Link href="/" className="text-active">
               beranda
