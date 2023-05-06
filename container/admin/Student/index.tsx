@@ -149,7 +149,9 @@ export default function Student({ students }: IStudentPage) {
   };
 
   return (
-    <AdminLayout navigations={["Mahasiswa"]}>
+    <AdminLayout
+      navigations={[{ title: "Mahasiswa", link: "/sakera/student" }]}
+    >
       <div className="rounded-3xl p-8 bg-secondary my-8">
         {alertSuccess && (
           <Alert background="bg-active" message={alertMessage} />

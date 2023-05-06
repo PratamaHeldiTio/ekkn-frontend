@@ -7,13 +7,15 @@ import group from "@/public/group.png";
 import SideLink from "@/components/SideLink";
 import dynamic from "next/dynamic";
 import Header from "@/components/Header";
+import HeaderState from "@/components/HeaderState";
 const SidebarLayout = dynamic(() => import("@/layout/SidebarLayout"));
 
 export default function StudentLayout({
   children,
   navigations = [],
-  setPage,
+  navigationState = [],
   page,
+  setPage,
 }: IAdminLayout) {
   return (
     <div className="lg:p-10 p-6 lg:grid lg:grid-cols-12 lg:min-h-screen">
@@ -40,12 +42,17 @@ export default function StudentLayout({
         </SidebarLayout>
       </div>
       <div className="lg:col-span-8 xl:col-span-9 lg:ml-12">
-        <Header
-          navigations={navigations}
-          admin={true}
-          setPage={setPage}
-          page={page}
-        />
+        {navigationState.length > 0 && (
+          <HeaderState
+            navigationState={navigationState}
+            page={page}
+            setPage={setPage}
+          />
+        )}
+
+        {navigations.length > 0 && (
+          <Header navigations={navigations} admin={true} />
+        )}
         {children}
       </div>
     </div>

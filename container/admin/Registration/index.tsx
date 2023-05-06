@@ -16,7 +16,7 @@ export default function Regitration({ periods }: IRegistration) {
 
   return (
     <AdminLayout
-      navigations={["Mahasiswa", "Dosen", "Kelompok"]}
+      navigationState={["Mahasiswa", "Dosen", "Kelompok"]}
       setPage={setCurrentPage}
       page={currentPage}
     >

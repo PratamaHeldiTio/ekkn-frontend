@@ -3,12 +3,13 @@ import dynamic from "next/dynamic";
 import Alert from "@/components/Alert";
 import { formatTimeUnix } from "@/helper";
 import { IStudentRegistration, IStudentRegistrations } from "./History.types";
+import { INavigation } from "@/components/Header/Header.types";
 
 const StudentLayout = dynamic(() => import("@/layout/StudentLayout"));
 export default function History({
   studentRegistrations,
 }: IStudentRegistrations) {
-  const navigations = [
+  const navigations: INavigation[] = [
     {
       title: "Pendaftaran",
       link: "/student/register",
@@ -16,6 +17,7 @@ export default function History({
     {
       title: "Riwayat",
       link: "/student/register/history",
+      isActive: true,
     },
   ];
   return (

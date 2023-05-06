@@ -7,6 +7,7 @@ import axios from "axios";
 import Cookies from "universal-cookie";
 import Alert from "@/components/Alert";
 import { decodeJWT } from "@/helper";
+import { INavigation } from "@/components/Header/Header.types";
 const StudentLayout = dynamic(() => import("@/layout/StudentLayout"));
 
 export default function Member({ group, leader }: any) {
@@ -19,10 +20,11 @@ export default function Member({ group, leader }: any) {
   // get cookie
   const cookies = new Cookies();
   const token = cookies.get("AUTH_LGN");
-  const navigations = [
+  const navigations: INavigation[] = [
     {
       title: "Anggota",
       link: `/student/group/member/${periodId}`,
+      isActive: true,
     },
     {
       title: "Dokumen",

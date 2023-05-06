@@ -115,6 +115,7 @@ export default function Register({ periods, student }: IRegisterPage) {
     {
       title: "Pendaftaran",
       link: "/student/register",
+      isActive: true,
     },
     {
       title: "Riwayat",

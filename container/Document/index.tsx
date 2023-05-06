@@ -1,4 +1,5 @@
 import Alert from "@/components/Alert";
+import { INavigation } from "@/components/Header/Header.types";
 import InputField from "@/components/InputField";
 import InputFile from "@/components/InputFile";
 import InputSelect from "@/components/InputSelect";
@@ -50,7 +51,7 @@ export default function Document({ group, villages }: IDocumentPage) {
   }, [alertFail, alertSuccess]);
 
   // navigation header
-  const navigations = [
+  const navigations: INavigation[] = [
     {
       title: "Anggota",
       link: `/student/group/member/${periodId}`,
@@ -58,6 +59,7 @@ export default function Document({ group, villages }: IDocumentPage) {
     {
       title: "Dokumen",
       link: `/student/group/document/${periodId}`,
+      isActive: true,
     },
     {
       title: "Luaran",

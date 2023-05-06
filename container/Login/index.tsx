@@ -38,7 +38,7 @@ export default function LoginComp() {
           maxAge: 3600,
         });
 
-        router.replace("/student/register/history");
+        router.replace("/student/profile");
       })
       .catch(() => {
         setAlert(!alert);
