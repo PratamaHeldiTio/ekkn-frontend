@@ -4,4 +4,5 @@ export interface ISideLink {
   destination: string;
   icon: StaticImageData;
   content: string;
+  role: string;
 }

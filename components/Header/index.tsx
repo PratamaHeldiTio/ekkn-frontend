@@ -4,11 +4,11 @@ import Link from "next/link";
 import userImage from "@/public/user.png";
 import { useRouter } from "next/router";
 
-export default function Header({ navigations = [] }: IHeader) {
+export default function Header({ navigations = [], admin }: IHeader) {
   const router = useRouter();
   return (
     <div className="fixed top-0 left-0 right-0 bg-secondary drop-shadow-lg lg:static lg:drop-shadow-none lg:rounded-3xl">
-      <div className="grid grid-cols-4 justify-items-stretch p-3 lg:p-4 px-8 lg:px-12 place-items-center">
+      <div className="grid grid-cols-4 justify-items-stretch p-3 lg:p-4 px-8 lg:px-12 place-items-center min-h-[5rem]">
         <ul className="col-span-3">
           {navigations.map((nav) => {
             return (
@@ -22,12 +22,14 @@ export default function Header({ navigations = [] }: IHeader) {
             );
           })}
         </ul>
-        <Image
-          alt="profile user"
-          src={userImage}
-          className="w-10 lg:w-12 justify-self-end"
-          onClick={() => router.push("/student/profile")}
-        />
+        {admin == false && (
+          <Image
+            alt="profile user"
+            src={userImage}
+            className="w-10 lg:w-12 justify-self-end"
+            onClick={() => router.push("/student/profile")}
+          />
+        )}
       </div>
     </div>
   );

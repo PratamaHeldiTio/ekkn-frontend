@@ -19,19 +19,40 @@ export default function StudentLayout({
         <SidebarLayout>
           <div className="grid grid-cols-5 p-3 lg:inline-block">
             <SideLink
+              role="student"
               destination="register"
               icon={register}
               content="Pendaftaran"
             />
-            <SideLink destination="kki" icon={contract} content="KKI" />
-            <SideLink destination="logbook" icon={logbook} content="Logbookk" />
-            <SideLink destination="output" icon={output} content="Luaran" />
-            <SideLink destination="group" icon={group} content="Kelompok" />
+            <SideLink
+              role="student"
+              destination="kki"
+              icon={contract}
+              content="KKI"
+            />
+            <SideLink
+              role="student"
+              destination="logbook"
+              icon={logbook}
+              content="Logbookk"
+            />
+            <SideLink
+              role="student"
+              destination="output"
+              icon={output}
+              content="Luaran"
+            />
+            <SideLink
+              role="student"
+              destination="group"
+              icon={group}
+              content="Kelompok"
+            />
           </div>
         </SidebarLayout>
       </div>
       <div className="lg:col-span-8 xl:col-span-9 lg:ml-12">
-        <Header navigations={navigations} />
+        <Header navigations={navigations} admin={false} />
         {children}
       </div>
     </div>

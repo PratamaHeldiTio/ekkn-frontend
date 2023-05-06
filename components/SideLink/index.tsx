@@ -2,10 +2,15 @@ import Link from "next/link";
 import { ISideLink } from "./SideLink.types";
 import Image from "next/image";
 
-export default function SideLink({ destination, icon, content }: ISideLink) {
+export default function SideLink({
+  destination,
+  icon,
+  content,
+  role,
+}: ISideLink) {
   return (
     <Link
-      href={`/student/${destination}`}
+      href={`/${role}/${destination}`}
       className="lg:flex lg:items-center lg:my-6"
     >
       <Image
