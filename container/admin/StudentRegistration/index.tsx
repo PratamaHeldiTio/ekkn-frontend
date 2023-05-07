@@ -78,7 +78,7 @@ export default function StudenRegistration({
     >
       <div className="bg-secondary p-8 rounded-3xl my-8">
         <h1 className="text-2xl font-bold mb-12">
-          Daftar mahasiswa yang telah terdaftar
+          Mahasiswa yang telah terdaftar
         </h1>
         {alertSuccess && (
           <Alert background="bg-active" message={alertMessage} />
@@ -87,8 +87,8 @@ export default function StudenRegistration({
         {alertFail && <Alert background="bg-danger" message={alertMessage} />}
 
         <div className="overflow-x-scroll rounded-lg border border-gray-200 shadow-md m-5">
-          <table className="w-full border-collapse bg-white text-left text-sm text-gray-500">
-            <thead className="bg-gray-50">
+          <table className="w-full border-collapse bg-white text-left text-gray-500">
+            <thead className="bg-gray-200">
               <tr>
                 <th
                   scope="col"

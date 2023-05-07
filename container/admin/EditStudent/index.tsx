@@ -99,8 +99,8 @@ export default function EditStudent({ student }: IEditStudent) {
         {alertFail && <Alert background="bg-danger" message={alertMessage} />}
 
         <form onSubmit={handleEdit}>
-          <h1 className=" text-xl lg:text-2xl font-bold">Informasi Pribadi</h1>
-          <div className="grid lg:grid-cols-2 gap-6 mt-2">
+          <h1 className="text-xl lg:text-2xl font-bold">Informasi Pribadi</h1>
+          <div className="grid lg:grid-cols-2 gap-6 mt-8">
             <InputField
               label="NIM"
               value={nim}
@@ -149,7 +149,7 @@ export default function EditStudent({ student }: IEditStudent) {
             />
           </div>
 
-          <div className="lg:w-80 lg:mx-auto mt-4">
+          <div className="lg:w-80 lg:mx-auto mt-4 h-10">
             <InputSubmit value="Simpan" />
           </div>
         </form>

@@ -10,7 +10,7 @@ export interface IRegistration {
 
 export const mapToPeriod = (dataApi: any): IPeriod => {
   const registration = {
-    id: dataApi.period_id,
+    id: dataApi.id,
     semester: dataApi.semester,
     tahunAjaran: dataApi.tahun_ajaran,
   };

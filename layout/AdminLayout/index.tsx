@@ -34,10 +34,12 @@ export default function StudentLayout({
               icon={register}
               content="Pendaftaran"
             />
-            {/* 
-            <SideLink destination="logbook" icon={logbook} content="Logbookk" />
-            <SideLink destination="output" icon={output} content="Luaran" />
-            <SideLink destination="group" icon={group} content="Kelompok" /> */}
+            <SideLink
+              role="sakera"
+              destination="period"
+              icon={register}
+              content="Periode"
+            />
           </div>
         </SidebarLayout>
       </div>

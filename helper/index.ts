@@ -22,3 +22,9 @@ export const formatTimeUnix = (time: number): string => {
 
   return `${stringDate}, ${stringTime}`;
 };
+
+export const formatUnixToDateHtml = (time: number): string => {
+  const date = new Date(time * 1000);
+
+  return date.toISOString().split("T")[0];
+};

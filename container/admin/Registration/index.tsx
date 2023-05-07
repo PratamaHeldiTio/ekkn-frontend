@@ -34,7 +34,7 @@ export default function Regitration({ periods }: IRegistration) {
                     src={studentHero}
                     className="rounded-t-3xl max-h-60 max-w-xl mx-auto"
                   />
-                  <p className="font-bold p-4 md:text-xl">
+                  <p className="font-bold p-4 text-2xl">
                     Pendaftaran Mahasiswa Periode Semester {period.semester}{" "}
                     {period.tahunAjaran}
                   </p>
