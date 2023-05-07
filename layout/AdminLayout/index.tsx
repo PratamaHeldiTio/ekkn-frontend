@@ -40,6 +40,12 @@ export default function StudentLayout({
               icon={register}
               content="Periode"
             />
+            <SideLink
+              role="sakera"
+              destination="village"
+              icon={register}
+              content="Data Desa"
+            />
           </div>
         </SidebarLayout>
       </div>

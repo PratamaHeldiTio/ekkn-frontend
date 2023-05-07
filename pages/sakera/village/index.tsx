@@ -2,9 +2,10 @@ import axios from "axios";
 import dynamic from "next/dynamic";
 import React from "react";
 import { IVillagePage, mapToPeriod } from "./village.types";
+const Village = dynamic(() => import("@/container/admin/Village"));
 
 export default function VillagePage({ periods }: IVillagePage) {
-  return <div>hiii</div>;
+  return <Village periods={periods} />;
 }
 
 export async function getServerSideProps(context: any) {
