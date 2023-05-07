@@ -149,7 +149,7 @@ export default function Document({ group, villages }: IDocumentPage) {
 
     axios
       .put(
-        `${process.env.BASE_URL_V1}/village/${group.village.id}`,
+        `${process.env.BASE_URL_V1}/village/add_desc/${group.village.id}`,
         {
           strength,
           weakness,
@@ -211,7 +211,7 @@ export default function Document({ group, villages }: IDocumentPage) {
                   value={village}
                   onChange={(e) => setVillage(e.target.value)}
                 />
-                <div className="w-40 mx-auto">
+                <div className="w-40 mx-auto mb-16 h-10">
                   <InputSubmit value="Pilih" />
                 </div>
               </form>

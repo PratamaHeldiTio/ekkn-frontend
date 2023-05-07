@@ -20,7 +20,7 @@ export async function getServerSideProps(context: any) {
   const token = context.req.cookies["AUTH_LGN"];
 
   // get period
-  const [dataGroup, dataVillage]: any = await axios.all([
+  let [dataGroup, dataVillage]: any = await axios.all([
     await axios
       .get(`${process.env.BASE_URL_V1}/group/leader/${periodId}`, {
         headers: {
@@ -33,8 +33,9 @@ export async function getServerSideProps(context: any) {
       .catch(() => {
         return null;
       }),
+
     await axios
-      .get(`${process.env.BASE_URL_V1}/village`, {
+      .get(`${process.env.BASE_URL_V1}/village/period/${periodId}`, {
         headers: {
           Authorization: `Bearer ${token}`,
         },
@@ -48,6 +49,16 @@ export async function getServerSideProps(context: any) {
   ]);
 
   // map data villages
+
+  if (dataVillage == null) {
+    dataVillage = [
+      {
+        id: "",
+        value: "",
+      },
+    ];
+  }
+
   const villages: IVillage[] = [];
   dataVillage.map((village: any) => {
     if (village.status == "false") {

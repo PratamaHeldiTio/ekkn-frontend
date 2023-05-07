@@ -1,6 +1,7 @@
 import axios from "axios";
 import dynamic from "next/dynamic";
 import { IStudentPage, mapingDataToStudents } from "./student.types";
+import { redirect } from "next/dist/server/api-utils";
 const Student = dynamic(() => import("@/container/admin/Student"));
 
 export default function StudentPage({ students }: IStudentPage) {
@@ -20,9 +21,25 @@ export async function getServerSideProps(context: any) {
     })
     .then((response) => {
       return response.data.data;
+    })
+    .catch((response) => {
+      if (response.response.data.code == 401) {
+        return 401;
+      }
     });
 
+  if (dataAPI == 401) {
+    return {
+      redirect: {
+        permanent: false,
+        destination: "/sakera-login",
+      },
+    };
+  }
+
   const students = mapingDataToStudents(dataAPI);
+
+  const redirect = null;
 
   return {
     props: {

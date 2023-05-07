@@ -37,8 +37,8 @@ export default function StudenRegistration({
           },
         }
       )
-      .then(() => {
-        setAlertMessage("Deskripsi desa berhasil disimpan");
+      .then((response) => {
+        setAlertMessage(response.data.message);
         setAlertSuccess(!alertSuccess);
         setTimeout(() => {
           setAlertSuccess((prev) => !prev);
@@ -63,8 +63,8 @@ export default function StudenRegistration({
             }, 2000);
           });
       })
-      .catch(() => {
-        setAlertMessage("Deskripsi desa gagal disimpan");
+      .catch((response) => {
+        setAlertMessage(response.response.data.message);
         setAlertFail(!alertFail);
         setTimeout(() => {
           setAlertFail((prev) => !prev);

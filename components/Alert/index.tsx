@@ -8,7 +8,7 @@ export default function Alert({
 }: IAlert) {
   return (
     <p
-      className={` w-full text-center ${background} font-bold rounded-3xl ${
+      className={` capitalize w-full text-center ${background} font-bold rounded-3xl ${
         padding ? padding : "p-3"
       } ${margin ? margin : "my-4"} text-secondary`}
     >

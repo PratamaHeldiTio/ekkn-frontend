@@ -8,6 +8,20 @@ export interface IVillagePage {
   periods: IPeriod[];
 }
 
+export interface IVillage {
+  id: string;
+  name: string;
+  kecamatan: string;
+  kabupaten: string;
+  latitude: number;
+  longitude: number;
+  status: string;
+}
+
+export interface IVillageByPeriodPage {
+  villages: IVillage[];
+}
+
 export const mapToPeriod = (dataApi: any): IPeriod[] => {
   const periods: IPeriod[] = [];
   dataApi.forEach((data: any) => {
@@ -20,4 +34,21 @@ export const mapToPeriod = (dataApi: any): IPeriod[] => {
   });
 
   return periods;
+};
+
+export const mapDataToVillages = (dataAPI: any): IVillage[] => {
+  const villages: IVillage[] = [];
+  dataAPI.map((data: any) => {
+    villages.push({
+      id: data.id,
+      name: data.name,
+      kecamatan: data.kecamatan,
+      kabupaten: data.kabupaten,
+      latitude: data.latitude,
+      longitude: data.longitude,
+      status: data.status,
+    });
+  });
+
+  return villages;
 };

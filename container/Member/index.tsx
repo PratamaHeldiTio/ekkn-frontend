@@ -158,7 +158,7 @@ export default function Member({ group, leader }: any) {
                   required={true}
                   onChange={(e) => setNameGroup(e.target.value)}
                 />
-                <div className="w-40 mx-auto mb-4">
+                <div className="w-40 mx-auto mb-8  h-10">
                   <InputSubmit value="Buat kelompok" />
                 </div>
               </form>
@@ -181,7 +181,7 @@ export default function Member({ group, leader }: any) {
                   required={true}
                   onChange={(e) => setReferral(e.target.value)}
                 />
-                <div className="w-40 mx-auto mb-4">
+                <div className="w-40 mx-auto mb-4 h-10">
                   <InputSubmit value="Gabung" />
                 </div>
               </form>
