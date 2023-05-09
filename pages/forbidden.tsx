@@ -14,7 +14,7 @@ export default function UnauthorizedPage() {
 
   return (
     <>
-      <main className="grid min-h-full place-items-center bg-white py-24 px-6 sm:py-32 lg:px-8">
+      <main className="grid min-h-screen place-items-center bg-white py-24 px-6 sm:py-32 lg:px-8">
         <div className="text-center">
           <p className="text-3xl font-semibold text-indigo-600">403</p>
           <h1 className="mt-4 text-3xl font-bold tracking-tight text-gray-900">

@@ -10,10 +10,15 @@ export function middleware(request: NextRequest) {
     role = decodeJWT(cookie).role;
   }
 
-  if (url.pathname == "/login" && cookie) {
-    return NextResponse.redirect(new URL("/student/register/history", url));
+  // for admin
+  if (url.pathname == "/sakera-login" && cookie) {
+    return NextResponse.redirect(new URL("/sakera/student", url));
   }
-  if (url.pathname != "/login" && !cookie) {
+
+  if (url.pathname == "/login" && cookie) {
+    return NextResponse.redirect(new URL("/student/profile", url));
+  }
+  if (url.pathname != "/login" && url.pathname != "/sakera-login" && !cookie) {
     return NextResponse.redirect(new URL("/login", url));
   }
 
@@ -25,11 +30,15 @@ export function middleware(request: NextRequest) {
     return NextResponse.redirect(new URL("/forbidden", url));
   }
 
+  if (role !== "admin" && url.pathname.startsWith("/sakera")) {
+    return NextResponse.redirect(new URL("/forbidden", url));
+  }
+
   return NextResponse.next();
 }
 
 export const config = {
-  matcher: ["/student/:path*", "/login", "/lecture:path*"],
+  matcher: ["/student/:path*", "/login", "/sakera/:path*"],
 };
 
 function decodeJWT(token: string) {

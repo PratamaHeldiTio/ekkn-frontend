@@ -11,7 +11,7 @@ import {
 import axios from "axios";
 import dynamic from "next/dynamic";
 import router from "next/router";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import Cookies from "universal-cookie";
 
 const AdminLayout = dynamic(() => import("@/layout/AdminLayout"));
@@ -27,6 +27,11 @@ export default function Period({ periods }: IPeriodPage) {
   const [alertFail, setAlertFail] = useState(false);
   const [alertMessage, setAlertMessage] = useState("");
   const [periodState, setPeriod] = useState(periods);
+
+  // to top after register
+  useEffect(() => {
+    window.scrollTo(0, 0);
+  }, [alertFail, alertSuccess]);
 
   const handleCreatePeriod = (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();

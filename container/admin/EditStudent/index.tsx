@@ -104,7 +104,7 @@ export default function EditStudent({ student }: IEditStudent) {
             <InputField
               label="NIM"
               value={nim}
-              readOnly={true}
+              readOnly
               name="nim"
               onChange={handleChangeField}
             />
@@ -114,7 +114,6 @@ export default function EditStudent({ student }: IEditStudent) {
               name="fakultas"
               options={dataFakultas}
               onChange={handleChangeSelect}
-              required={true}
             />
             <InputField
               label="Nama"
@@ -129,7 +128,6 @@ export default function EditStudent({ student }: IEditStudent) {
               value={prodi}
               options={dataProdi}
               onChange={handleChangeSelect}
-              required={true}
             />
             <InputSelect
               label="Jenis Kelamin"
@@ -137,7 +135,6 @@ export default function EditStudent({ student }: IEditStudent) {
               value={gender}
               options={dataGender}
               onChange={handleChangeSelect}
-              required={true}
             />
             <InputSelect
               label="Penguasaan Bahasa Madura"
@@ -145,7 +142,6 @@ export default function EditStudent({ student }: IEditStudent) {
               value={maduraLang}
               options={language}
               onChange={handleChangeSelect}
-              required={true}
             />
           </div>
 
