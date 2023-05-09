@@ -5,18 +5,19 @@ export interface group {
   village: string;
 }
 
-export interface ILogbookDetail {
-  group: group;
-  logbooks: any;
-}
-
 export const mapToGroup = (dataApi: any): group => {
   const group: group = {
     id: dataApi.id,
     name: dataApi.name,
     status: dataApi.status,
-    village: dataApi.village.name,
+    village: `Desa ${dataApi.village.name}, Kecamatan ${dataApi.village.kecamatan}, Kabupaten ${dataApi.village.kabupaten}`,
   };
 
   return group;
 };
+
+export interface IStudentLogbook {
+  group: group;
+  logbooks: any;
+  student: any;
+}

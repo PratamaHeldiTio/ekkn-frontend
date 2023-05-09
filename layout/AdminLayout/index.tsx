@@ -46,6 +46,12 @@ export default function StudentLayout({
               icon={register}
               content="Data Desa"
             />
+            <SideLink
+              role="sakera"
+              destination="logbook"
+              icon={register}
+              content="Logbook"
+            />
           </div>
         </SidebarLayout>
       </div>

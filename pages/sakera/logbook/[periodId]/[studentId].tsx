@@ -1,24 +1,33 @@
 import axios from "axios";
-import { ILogbookDetail, mapToGroup } from "./detailLogbook.types";
+import { IStudentLogbook, mapToGroup } from "./studentLogbook.types";
 import dynamic from "next/dynamic";
-const LogbookDetail = dynamic(() => import("@/container/DetailLogbook"));
+const StudentLogbook = dynamic(
+  () => import("@/container/admin/StudentLogbook")
+);
 
-export default function LogbookDetailPage({ group, logbooks }: ILogbookDetail) {
-  return <LogbookDetail group={group} logbooks={logbooks} />;
+export default function StudentLogbookPage({
+  group,
+  logbooks,
+  student,
+}: IStudentLogbook) {
+  return <StudentLogbook group={group} logbooks={logbooks} student={student} />;
 }
 
 export async function getServerSideProps(context: any) {
-  const { periodID } = context.query;
+  const { periodId, studentId } = context.query;
   // get token from cookies
   const token = context.req.cookies["AUTH_LGN"];
 
   // get period
   const dataAPIGroup = await axios
-    .get(`${process.env.BASE_URL_V1}/student/registration/${periodID}`, {
-      headers: {
-        Authorization: `Bearer ${token}`,
-      },
-    })
+    .get(
+      `${process.env.BASE_URL_V1}/student/registration/${periodId}/${studentId}`,
+      {
+        headers: {
+          Authorization: `Bearer ${token}`,
+        },
+      }
+    )
     .then(async (response) => {
       const groupId = response.data.data.group;
       const group = await axios
@@ -37,7 +46,7 @@ export async function getServerSideProps(context: any) {
     });
 
   const logbooks = await axios
-    .get(`${process.env.BASE_URL_V1}/logbooks/${periodID}`, {
+    .get(`${process.env.BASE_URL_V1}/logbook/${periodId}/${studentId}`, {
       headers: {
         Authorization: `Bearer ${token}`,
       },
@@ -47,6 +56,9 @@ export async function getServerSideProps(context: any) {
       response.data.data.map((data: any) => {
         const logbook = {
           id: data.id,
+          nim: data.student_id,
+          name: data.name,
+          prodi: data.prodi,
           date: data.date,
           activity: data.activity,
           image: data.image,
@@ -59,20 +71,28 @@ export async function getServerSideProps(context: any) {
     })
     .catch(() => []);
 
-  if (dataAPIGroup == null) {
-    return {
-      props: {
-        group: null,
-        logbooks: [],
+  const student = await axios
+    .get(`${process.env.BASE_URL_V1}/student/${studentId}`, {
+      headers: {
+        Authorization: `Bearer ${token}`,
       },
-    };
-  }
+    })
+    .then((response) => {
+      const student = {
+        nim: response.data.data.nim,
+        name: response.data.data.name,
+        prodi: response.data.data.prodi,
+      };
+      return student;
+    });
 
   const group = mapToGroup(dataAPIGroup);
+  console.log(group);
   return {
     props: {
       group,
       logbooks,
+      student,
     },
   };
 }

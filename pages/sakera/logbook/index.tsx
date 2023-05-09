@@ -1,10 +1,10 @@
 import axios from "axios";
-import { mapingData } from "./logbook.types";
 import dynamic from "next/dynamic";
-const Logbook = dynamic(() => import("@/container/Logbook"));
+import { ILogbookPage, mapToPeriod } from "./logbook.types";
+const Logbook = dynamic(() => import("@/container/admin/Logbook"));
 
-export default function LogbookPage({ registeredStudents }: any) {
-  return <Logbook registeredStudents={registeredStudents} />;
+export default function VillagePage({ periods }: ILogbookPage) {
+  return <Logbook periods={periods} />;
 }
 
 export async function getServerSideProps(context: any) {
@@ -13,7 +13,7 @@ export async function getServerSideProps(context: any) {
 
   // get period
   const dataAPI = await axios
-    .get(`${process.env.BASE_URL_V1}/student/registered`, {
+    .get(`${process.env.BASE_URL_V1}/period`, {
       headers: {
         Authorization: `Bearer ${token}`,
       },
@@ -22,11 +22,11 @@ export async function getServerSideProps(context: any) {
       return response.data.data;
     });
 
-  const registeredStudents = mapingData(dataAPI);
+  const periods = mapToPeriod(dataAPI);
 
   return {
     props: {
-      registeredStudents,
+      periods,
     },
   };
 }

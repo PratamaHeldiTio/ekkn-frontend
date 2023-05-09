@@ -9,7 +9,6 @@ import { formatTimeUnix } from "@/helper";
 import { ILogbookDetail } from "@/pages/student/logbook/[periodID]/detailLogbook.types";
 import axios from "axios";
 import dynamic from "next/dynamic";
-import Image from "next/image";
 import { useRouter } from "next/router";
 import { useEffect, useState } from "react";
 import Cookies from "universal-cookie";
@@ -128,12 +127,12 @@ export default function DetailLogbook({ group, logbooks }: ILogbookDetail) {
       });
   };
 
-  if (group == null) {
+  if (group == null || group.status == "false") {
     return (
       <StudentLayout
         navigations={[{ title: "Kembali ", link: "/student/logbook" }]}
       >
-        <LockAcces message="Anda tidak dapat membuka halaman ini jika belum memiliki group" />
+        <LockAcces message="Anda tidak dapat membuka halaman ini jika belum memiliki group atau group tidak terdaftar" />
         ;
       </StudentLayout>
     );
@@ -190,18 +189,19 @@ export default function DetailLogbook({ group, logbooks }: ILogbookDetail) {
             </div>
           </form>
         </div>
-        <div className="grid grid-cols-1 xl:grid-cols-2 gap-6 mt-6">
+        <div className="grid grid-cols-1 gap-6 mt-6">
           {logbooksData.map((logbook: any) => {
             return (
               <div
                 key={logbook.id}
-                className="bg-secondary rounded-3xl lg:p-8 lg:text-xl p-6 font-bold"
+                className="bg-secondary rounded-3xl lg:p-12 p-6 lg:text-xl font-bold mt-8"
               >
                 <h1>{formatTimeUnix(logbook.date).split(",")[0]}</h1>
                 <p className="font-light text-sm">
                   Dikirim pada {formatTimeUnix(logbook.submitted)} WIB
                 </p>
-                <p className="font-light text-sm lg:text-base mt-4 text-justify">
+                <hr className="border-2 border-primary mt-2" />
+                <p className="font-light text-sm lg:text-lg mt-8 text-justify xl:px-12 px-4">
                   {logbook.activity}
                 </p>
                 <a
@@ -211,7 +211,7 @@ export default function DetailLogbook({ group, logbooks }: ILogbookDetail) {
                   <img
                     src={`${process.env.BASE_URL}/static/logbook/${logbook.image}`}
                     alt="Dokumentasi kegiatan"
-                    className="mt-4 max-h-80 mx-auto"
+                    className="mt-8 max-h-60 mx-auto"
                   />
                 </a>
               </div>
