@@ -1,9 +1,11 @@
 import { IAdminLayout } from "./AdminLayout.types";
 import student from "@/public/student.png";
+import lecturer from "@/public/lecturer.png";
+import period from "@/public/period.png";
 import register from "@/public/register.png";
-// import logbook from "@/public/logbook.png";
-// import output from "@/public/output.png";
-import group from "@/public/group.png";
+import village from "@/public/village.png";
+import logbook from "@/public/logbook.png";
+import logout from "@/public/logout.png";
 import SideLink from "@/components/SideLink";
 import dynamic from "next/dynamic";
 import Header from "@/components/Header";
@@ -29,6 +31,12 @@ export default function StudentLayout({
               role="sakera"
             />
             <SideLink
+              destination="lecturer"
+              icon={lecturer}
+              content="Dosen"
+              role="sakera"
+            />
+            <SideLink
               role="sakera"
               destination="registration"
               icon={register}
@@ -37,20 +45,26 @@ export default function StudentLayout({
             <SideLink
               role="sakera"
               destination="period"
-              icon={register}
+              icon={period}
               content="Periode"
             />
             <SideLink
               role="sakera"
               destination="village"
-              icon={register}
+              icon={village}
               content="Data Desa"
             />
             <SideLink
               role="sakera"
               destination="logbook"
-              icon={register}
+              icon={logbook}
               content="Logbook"
+            />
+            <SideLink
+              role="sakera"
+              destination="logout"
+              icon={logout}
+              content="Keluar"
             />
           </div>
         </SidebarLayout>

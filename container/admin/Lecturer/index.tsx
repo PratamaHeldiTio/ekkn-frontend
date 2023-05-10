@@ -1,47 +1,43 @@
 import Alert from "@/components/Alert";
 import InputField from "@/components/InputField";
 import InputSubmit from "@/components/InputSubmit";
-import trash from "@/public/delete.png";
-import resetPassword from "@/public/resetPassword.png";
-import edit from "@/public/edit.png";
-import {
-  IStudent,
-  IStudentPage,
-  mapingDataToStudents,
-} from "@/pages/sakera/student/student.types";
 import axios from "axios";
 import dynamic from "next/dynamic";
 import React, { useEffect, useState } from "react";
 import Cookies from "universal-cookie";
-import Image from "next/image";
 import { useRouter } from "next/router";
+import {
+  ILecturer,
+  ILecturerPage,
+  mapingDataToLecturers,
+} from "@/pages/sakera/lecturer/lecture.types";
 const AdminLayout = dynamic(() => import("@/layout/AdminLayout"));
 
-export default function Student({ students }: IStudentPage) {
+export default function Student({ lecturers }: ILecturerPage) {
   const cookies = new Cookies();
   const token = cookies.get("AUTH_LGN");
   const router = useRouter();
 
-  const [nim, setNim] = useState<string>();
+  const [nip, setNim] = useState<string>();
   const [name, setName] = useState<string>();
   const [alertSuccess, setAlertSuccess] = useState<boolean>();
   const [alertFail, setAlertFail] = useState<boolean>();
   const [alertMessage, setAlertMessage] = useState();
-  const [statestudents, setStudents] = useState(students);
+  const [stateLecturers, setLecturers] = useState(lecturers);
 
   // to top after register
   useEffect(() => {
     window.scrollTo(0, 0);
   }, [alertFail, alertSuccess]);
 
-  const handleAddStudent = (e: React.FormEvent<HTMLFormElement>) => {
+  const handleAddLecturer = (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
 
     axios
       .post(
-        `${process.env.BASE_URL_V1}/student`,
+        `${process.env.BASE_URL_V1}/lecturer`,
         {
-          nim,
+          id: nip,
           name,
         },
         {
@@ -60,14 +56,14 @@ export default function Student({ students }: IStudentPage) {
         setName("");
 
         axios
-          .get(`${process.env.BASE_URL_V1}/students`, {
+          .get(`${process.env.BASE_URL_V1}/lecturers`, {
             headers: {
               Authorization: `Bearer ${token}`,
             },
           })
           .then((response) => {
-            const students = mapingDataToStudents(response.data.data);
-            setStudents(students);
+            const lecturers = mapingDataToLecturers(response.data.data);
+            setLecturers(lecturers);
           })
           .catch((response) => {
             setAlertMessage(response.response.data.message);
@@ -86,23 +82,23 @@ export default function Student({ students }: IStudentPage) {
       });
   };
 
-  const handleDelete = (nim: string) => {
+  const handleDelete = (nip: string) => {
     axios
-      .delete(`${process.env.BASE_URL_V1}/student/${nim}`, {
+      .delete(`${process.env.BASE_URL_V1}/lecturer/${nip}`, {
         headers: {
           Authorization: `Bearer ${token}`,
         },
       })
       .then(() => {
         axios
-          .get(`${process.env.BASE_URL_V1}/students`, {
+          .get(`${process.env.BASE_URL_V1}/lecturers`, {
             headers: {
               Authorization: `Bearer ${token}`,
             },
           })
           .then((response) => {
-            const students = mapingDataToStudents(response.data.data);
-            setStudents(students);
+            const lecturers = mapingDataToLecturers(response.data.data);
+            setLecturers(lecturers);
           })
           .catch((response) => {
             setAlertMessage(response.response.data.message);
@@ -121,10 +117,10 @@ export default function Student({ students }: IStudentPage) {
       });
   };
 
-  const handleResetPassword = (nim: string) => {
+  const handleResetPassword = (nip: string) => {
     axios
       .put(
-        `${process.env.BASE_URL_V1}/student/reset_password/${nim}`,
+        `${process.env.BASE_URL_V1}/lecturer/reset_password/${nip}`,
         {},
         {
           headers: {
@@ -149,23 +145,21 @@ export default function Student({ students }: IStudentPage) {
   };
 
   return (
-    <AdminLayout
-      navigations={[{ title: "Mahasiswa", link: "/sakera/student" }]}
-    >
+    <AdminLayout navigations={[{ title: "Dosen", link: "/sakera/lecturer" }]}>
       <div className="rounded-3xl p-8 bg-secondary my-8">
         {alertSuccess && (
           <Alert background="bg-active" message={alertMessage} />
         )}
 
         {alertFail && <Alert background="bg-danger" message={alertMessage} />}
-        <h1 className="text-2xl font-bold mb-6">Tambah Mahasiwa</h1>
-        <form onSubmit={handleAddStudent}>
+        <h1 className="text-2xl font-bold mb-6">Tambah Dosen</h1>
+        <form onSubmit={handleAddLecturer}>
           <div className="grid grid-cols-2 gap-8 mb-6">
             <InputField
-              label="NIM"
-              placeholder="Masukan NIM"
+              label="NIP"
+              placeholder="Masukan NIP"
               required
-              value={nim}
+              value={nip}
               onChange={(e) => setNim(e.target.value)}
             />
             <InputField
@@ -182,7 +176,7 @@ export default function Student({ students }: IStudentPage) {
         </form>
       </div>
       <div className="rounded-3xl p-8 bg-secondary">
-        <h1 className="text-2xl font-bold mb-12 ml-5">Daftar Mahasiswa</h1>
+        <h1 className="text-2xl font-bold mb-12 ml-5">Daftar Dosen</h1>
         <div className="overflow-scroll rounded-lg border border-gray-200 shadow-md m-5 max-h-[35rem]">
           <table className="w-full border-collapse bg-secondary text-left text-gray-500">
             <thead className="bg-gray-200">
@@ -191,7 +185,7 @@ export default function Student({ students }: IStudentPage) {
                   scope="col"
                   className="px-6 py-4 font-bold text-primary text-center"
                 >
-                  Nim
+                  NIP
                 </th>
                 <th
                   scope="col"
@@ -209,7 +203,25 @@ export default function Student({ students }: IStudentPage) {
                   scope="col"
                   className="px-6 py-4 font-bold text-primary text-center"
                 >
-                  Nilai
+                  Fakultas
+                </th>
+                <th
+                  scope="col"
+                  className="px-6 py-4 font-bold text-primary text-center"
+                >
+                  Jenis Kelamin
+                </th>
+                <th
+                  scope="col"
+                  className="px-6 py-4 font-bold text-primary text-center"
+                >
+                  Penguasaan Bahasa Madura
+                </th>
+                <th
+                  scope="col"
+                  className="px-6 py-4 font-bold text-primary text-center"
+                >
+                  Kontak
                 </th>
                 <th
                   scope="col"
@@ -220,13 +232,16 @@ export default function Student({ students }: IStudentPage) {
               </tr>
             </thead>
             <tbody className="divide-y divide-gray-100 border-t border-gray-100">
-              {statestudents.map((student: IStudent, index: any) => {
+              {stateLecturers.map((lecturer: ILecturer) => {
                 return (
-                  <tr className="hover:bg-gray-100" key={student.nim}>
-                    <td className="px-6 py-4">{student.nim}</td>
-                    <td className="px-6 py-4">{student.name}</td>
-                    <td className="px-6 py-4">{student.prodi}</td>
-                    <td className="px-6 py-4">{student.grade}</td>
+                  <tr className="hover:bg-gray-100" key={lecturer.nip}>
+                    <td className="px-6 py-4">{lecturer.nip}</td>
+                    <td className="px-6 py-4">{lecturer.name}</td>
+                    <td className="px-6 py-4">{lecturer.prodi}</td>
+                    <td className="px-6 py-4">{lecturer.fakultas}</td>
+                    <td className="px-6 py-4">{lecturer.gender}</td>
+                    <td className="px-6 py-4">{lecturer.maduraLang}</td>
+                    <td className="px-6 py-4">{lecturer.contact}</td>
                     <td className="px-6 py-5 flex justify-center gap-4">
                       <svg
                         xmlns="http://www.w3.org/2000/svg"
@@ -237,7 +252,7 @@ export default function Student({ students }: IStudentPage) {
                         className="h-6 w-6"
                         cursor="pointer"
                         onClick={() =>
-                          router.push(`/sakera/student/edit/${student.nim}`)
+                          router.push(`/sakera/lecturer/edit/${lecturer.nip}`)
                         }
                       >
                         <path
@@ -254,7 +269,7 @@ export default function Student({ students }: IStudentPage) {
                         stroke="currentColor"
                         className="h-6 w-6"
                         cursor="pointer"
-                        onClick={() => handleDelete(student.nim)}
+                        onClick={() => handleDelete(lecturer.nip)}
                       >
                         <path
                           strokeLinecap="round"
@@ -271,7 +286,7 @@ export default function Student({ students }: IStudentPage) {
                           stroke="currentColor"
                           className="h-8 w-8"
                           cursor="pointer"
-                          onClick={() => handleResetPassword(student.nim)}
+                          onClick={() => handleResetPassword(lecturer.nip)}
                         >
                           <path
                             strokeLinecap="round"

@@ -86,7 +86,7 @@ export default function StudenRegistration({
 
         {alertFail && <Alert background="bg-danger" message={alertMessage} />}
 
-        <div className="overflow-x-scroll rounded-lg border border-gray-200 shadow-md m-5">
+        <div className="overflow-scroll rounded-lg border border-gray-200 shadow-md m-5 max-h-[35rem]">
           <table className="w-full border-collapse bg-white text-left text-gray-500">
             <thead className="bg-gray-200">
               <tr>

@@ -16,7 +16,7 @@ export default function LogbookByPeriod({ students }: ILogbookByPeriodPage) {
       <div className="rounded-3xl p-8 bg-secondary my-8">
         <h1 className="text-2xl font-bold mb-12 ml-6">Logbook Mahasiwa</h1>
 
-        <div className="overflow-x-scroll rounded-lg border border-gray-200 shadow-md m-5">
+        <div className="overflow-scroll rounded-lg border border-gray-200 shadow-md m-5 max-h-[35rem]">
           <table className="w-full border-collapse bg-secondary text-left text-gray-500">
             <thead className="bg-gray-200">
               <tr>
