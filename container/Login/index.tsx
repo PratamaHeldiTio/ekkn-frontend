@@ -13,10 +13,10 @@ import InputSubmit from "@/components/InputSubmit";
 
 export default function LoginComp() {
   const [inputvalue, setInputValue] = useState<IInputValue>({
-    nim: "",
+    id: "",
     password: "",
   });
-  const { nim, password } = inputvalue;
+  const { id, password } = inputvalue;
   const [role, setRole] = useState("student");
   const [alert, setAlert] = useState(false);
   const cookies = new Cookies();
@@ -27,7 +27,7 @@ export default function LoginComp() {
 
     axios
       .post(`${process.env.BASE_URL_V1}/auth/${role}/login`, {
-        nim,
+        id,
         password,
       })
       .then((response) => {
@@ -38,7 +38,13 @@ export default function LoginComp() {
           maxAge: 3600,
         });
 
-        router.replace("/student/profile");
+        if (role == "student") {
+          router.replace("/student/profile");
+        }
+
+        if (role == "lecturer") {
+          router.replace("/lecturer/profile");
+        }
       })
       .catch(() => {
         setAlert(!alert);
@@ -81,15 +87,15 @@ export default function LoginComp() {
                 onChange={(e) => setRole(e.target.value)}
               >
                 <option value="student">Mahasiswa</option>
-                <option value="lecture">Dosen</option>
+                <option value="lecturer">Dosen</option>
               </select>
             </div>
 
             <InputField
               type="text"
-              name="nim"
-              value={nim}
-              placeholder="Masukan NIM"
+              name="id"
+              value={id}
+              placeholder={"Masukan NIM / NIP"}
               onChange={handleChange}
               required={true}
             />

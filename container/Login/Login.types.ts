@@ -1,4 +1,4 @@
 export interface IInputValue {
-  nim: string;
+  id: string;
   password: string;
 }
