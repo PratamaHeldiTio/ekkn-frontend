@@ -1,4 +1,4 @@
-import { ILecturer } from "../../sakera/lecturer/lecture.types";
+import { ILecturer } from "../lecture.types";
 
 export interface IEditLecturerPage {
   lecturer: ILecturer;
