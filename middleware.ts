@@ -16,7 +16,7 @@ export function middleware(request: NextRequest) {
   }
 
   if (url.pathname == "/login" && cookie) {
-    return NextResponse.redirect(new URL("/student/profile", url));
+    return NextResponse.redirect(new URL(`/${role}/profile`, url));
   }
   if (url.pathname != "/login" && url.pathname != "/sakera-login" && !cookie) {
     return NextResponse.redirect(new URL("/login", url));
@@ -30,7 +30,7 @@ export function middleware(request: NextRequest) {
     return NextResponse.redirect(new URL("/forbidden", url));
   }
 
-  if (role !== "admin" && url.pathname.startsWith("/sakera")) {
+  if (role !== "admin" && url.pathname.startsWith("/sakera/")) {
     return NextResponse.redirect(new URL("/forbidden", url));
   }
 
@@ -38,7 +38,7 @@ export function middleware(request: NextRequest) {
 }
 
 export const config = {
-  matcher: ["/student/:path*", "/login", "/sakera/:path*"],
+  matcher: ["/student/:path*", "/login", "/sakera-login", "/sakera/:path*"],
 };
 
 function decodeJWT(token: string) {

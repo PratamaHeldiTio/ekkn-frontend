@@ -5,7 +5,7 @@ import Cookies from "universal-cookie";
 export default function LogoutPage() {
   useEffect(() => {
     const cookies = new Cookies();
-    cookies.remove("AUTH_LGN");
+    cookies.remove("AUTH_LGN", { path: "/" });
 
     router.push("/");
   }, []);

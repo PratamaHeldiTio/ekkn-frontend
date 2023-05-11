@@ -1,18 +1,17 @@
 import axios from "axios";
 import dynamic from "next/dynamic";
-import { IEditLecturerPage, mapToEditLecturer } from "./EditLecturer.types";
-const EditLecturer = dynamic(() => import("@/container/admin/EditLecturer"));
-export default function EditStudentPage({ lecturer }: IEditLecturerPage) {
-  return <EditLecturer lecturer={lecturer} />;
+import { IProfilePage, mapToEditLecturer } from "./profile.types";
+const Profile = dynamic(() => import("@/container/lecturer/Profile"));
+export default function EditStudentPage({ lecturer }: IProfilePage) {
+  return <Profile lecturer={lecturer} />;
 }
 
 export async function getServerSideProps(context: any) {
   // get token from cookies
   const token = context.req.cookies["AUTH_LGN"];
-  const { id } = context.query;
 
   const dataAPI: any = await axios
-    .get(`${process.env.BASE_URL_V1}/lecturer/${id}`, {
+    .get(`${process.env.BASE_URL_V1}/lecturer`, {
       headers: {
         Authorization: `Bearer ${token}`,
       },

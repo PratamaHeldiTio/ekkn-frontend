@@ -9,26 +9,40 @@ import dataGender from "@/global/gender.json";
 import language from "@/global/language.json";
 import dataFakultas from "@/global/fakultas.json";
 import dataProdi from "@/global/prodi.json";
-import { IProfile } from "@/pages/student/profile/profile.types";
 import Alert from "@/components/Alert";
+import { IProfilePage } from "@/pages/lecturer/profile/profile.types";
 const StudentLayout = dynamic(() => import("@/layout/StudentLayout"));
-export default function Profile({ student }: IProfile) {
+export default function Profile({ lecturer }: IProfilePage) {
   // get token
   const cookies = new Cookies();
   const token = cookies.get("AUTH_LGN");
 
   // create state like input
   const [inputvalue, setInputValue] = useState({
-    nim: student.nim,
-    name: student.name,
-    gender: student.gender,
-    fakultas: student.fakultas,
-    prodi: student.prodi,
-    maduraLang: student.maduraLang,
+    nip: lecturer.nip,
+    name: lecturer.name,
+    prodi: lecturer.prodi,
+    fakultas: lecturer.fakultas,
+    gender: lecturer.gender,
+    contact: lecturer.contact,
+    maduraLang: lecturer.maduraLang,
     oldPassword: "",
     newPassword: "",
     repeatNewPassword: "",
   });
+
+  const {
+    nip,
+    name,
+    gender,
+    fakultas,
+    prodi,
+    maduraLang,
+    contact,
+    oldPassword,
+    newPassword,
+    repeatNewPassword,
+  } = inputvalue;
 
   const [alertSuccess, setAlertSuccess] = useState(false);
   const [alertFail, setAlertFail] = useState(false);
@@ -38,18 +52,6 @@ export default function Profile({ student }: IProfile) {
   useEffect(() => {
     window.scrollTo(0, 0);
   }, [alertFail, alertSuccess]);
-
-  const {
-    nim,
-    name,
-    gender,
-    fakultas,
-    prodi,
-    maduraLang,
-    oldPassword,
-    newPassword,
-    repeatNewPassword,
-  } = inputvalue;
 
   // handler change input field
   const handleChangeField = (e: React.ChangeEvent<HTMLInputElement>) => {
@@ -74,12 +76,14 @@ export default function Profile({ student }: IProfile) {
 
     axios
       .put(
-        `${process.env.BASE_URL_V1}/student`,
+        `${process.env.BASE_URL_V1}/lecturer`,
         {
+          id: nip,
           name,
           gender,
           fakultas,
           prodi,
+          contact,
           madura_lang: maduraLang,
         },
         {
@@ -109,7 +113,7 @@ export default function Profile({ student }: IProfile) {
 
     axios
       .put(
-        `${process.env.BASE_URL_V1}/student/change_password`,
+        `${process.env.BASE_URL_V1}/lecturer/change_password`,
         {
           old_password: oldPassword,
           new_password: newPassword,
@@ -139,7 +143,7 @@ export default function Profile({ student }: IProfile) {
 
   return (
     <StudentLayout navigations={[{ title: "Keluar", link: "/logout" }]}>
-      <div className="my-16 lg:m-0 rounded-3xl lg:mt-8 lg:p-8 p-6 bg-secondary">
+      <div className="mt-20 lg:m-0 rounded-3xl lg:mt-8 lg:p-8 p-6 bg-secondary">
         {alertSuccess && (
           <Alert background="bg-active" message={alertMessage} />
         )}
@@ -149,20 +153,13 @@ export default function Profile({ student }: IProfile) {
         <form onSubmit={handleSaveProfile}>
           <h1 className=" text-xl lg:text-2xl font-bold">Informasi Pribadi</h1>
           <div className="grid lg:grid-cols-2 gap-6 mt-2">
-            <InputField
-              label="NIM"
-              value={nim}
-              readOnly={true}
-              name="nim"
-              onChange={handleChangeField}
-            />
+            <InputField label="NIP" value={nip} readOnly name="nip" />
             <InputSelect
               label="Fakultas"
               value={fakultas}
               name="fakultas"
               options={dataFakultas}
               onChange={handleChangeSelect}
-              required={true}
             />
             <InputField
               label="Nama"
@@ -177,7 +174,6 @@ export default function Profile({ student }: IProfile) {
               value={prodi}
               options={dataProdi}
               onChange={handleChangeSelect}
-              required={true}
             />
             <InputSelect
               label="Jenis Kelamin"
@@ -185,7 +181,6 @@ export default function Profile({ student }: IProfile) {
               value={gender}
               options={dataGender}
               onChange={handleChangeSelect}
-              required={true}
             />
             <InputSelect
               label="Penguasaan Bahasa Madura"
@@ -193,19 +188,24 @@ export default function Profile({ student }: IProfile) {
               value={maduraLang}
               options={language}
               onChange={handleChangeSelect}
-              required={true}
+            />
+            <InputField
+              label="Kontak"
+              name="contact"
+              value={contact}
+              onChange={handleChangeField}
             />
           </div>
 
-          <div className="lg:w-80 lg:mx-auto mt-4 h-10">
+          <div className="lg:w-80 lg:mx-auto my-4 h-10">
             <InputSubmit value="Simpan" />
           </div>
         </form>
+      </div>
 
-        {/* change password section */}
-        <h1 className=" text-xl lg:text-2xl font-bold mt-8 mb-4">
-          Ubah Password
-        </h1>
+      {/* change password section */}
+      <div className="rounded-3xl mt-8 mb-16 lg:mb-2 lg:p-8 p-6 bg-secondary">
+        <h1 className=" text-xl lg:text-2xl font-bold mb-4">Ubah Password</h1>
         <form
           onSubmit={handleChangePassword}
           className="grid-cols-1 grid gap-4"
@@ -237,7 +237,7 @@ export default function Profile({ student }: IProfile) {
             value={repeatNewPassword}
             required
           />
-          <div className="lg:w-80 lg:mx-auto mt-4">
+          <div className="lg:w-80 lg:mx-auto mb-4">
             <InputSubmit value="Ubah Password" />
           </div>
         </form>

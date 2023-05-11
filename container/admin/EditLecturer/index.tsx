@@ -11,7 +11,7 @@ import React, { useState } from "react";
 import InputSubmit from "@/components/InputSubmit";
 import axios from "axios";
 import Cookies from "universal-cookie";
-import { IEditLecturerPage } from "@/pages/lecture/edit/EditStduent.types";
+import { IEditLecturerPage } from "@/pages/sakera/lecturer/edit/EditLecturer.types";
 const AdminLayout = dynamic(() => import("@/layout/AdminLayout"));
 
 export default function EditStudent({ lecturer }: IEditLecturerPage) {
