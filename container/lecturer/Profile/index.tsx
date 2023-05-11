@@ -11,7 +11,7 @@ import dataFakultas from "@/global/fakultas.json";
 import dataProdi from "@/global/prodi.json";
 import Alert from "@/components/Alert";
 import { IProfilePage } from "@/pages/lecturer/profile/profile.types";
-const StudentLayout = dynamic(() => import("@/layout/StudentLayout"));
+const LecturerLayout = dynamic(() => import("@/layout/LecturerLayout"));
 export default function Profile({ lecturer }: IProfilePage) {
   // get token
   const cookies = new Cookies();
@@ -142,7 +142,7 @@ export default function Profile({ lecturer }: IProfilePage) {
   };
 
   return (
-    <StudentLayout navigations={[{ title: "Keluar", link: "/logout" }]}>
+    <LecturerLayout navigations={[{ title: "Keluar", link: "/logout" }]}>
       <div className="mt-20 lg:m-0 rounded-3xl lg:mt-8 lg:p-8 p-6 bg-secondary">
         {alertSuccess && (
           <Alert background="bg-active" message={alertMessage} />
@@ -242,6 +242,6 @@ export default function Profile({ lecturer }: IProfilePage) {
           </div>
         </form>
       </div>
-    </StudentLayout>
+    </LecturerLayout>
   );
 }

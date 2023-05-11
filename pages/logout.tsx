@@ -7,6 +7,6 @@ export default function LogoutPage() {
     const cookies = new Cookies();
     cookies.remove("AUTH_LGN", { path: "/" });
 
-    router.push("/");
+    router.replace("/");
   }, []);
 }

@@ -4,7 +4,7 @@ import Link from "next/link";
 import userImage from "@/public/user.png";
 import { useRouter } from "next/router";
 
-export default function Header({ navigations = [], admin }: IHeader) {
+export default function Header({ navigations = [], admin, role }: IHeader) {
   const router = useRouter();
   return (
     <div className="fixed top-0 left-0 right-0 bg-secondary drop-shadow-lg lg:static lg:drop-shadow-none lg:rounded-3xl">
@@ -28,8 +28,8 @@ export default function Header({ navigations = [], admin }: IHeader) {
           <Image
             alt="profile user"
             src={userImage}
-            className="w-10 lg:w-12 justify-self-end"
-            onClick={() => router.push("/student/profile")}
+            className="w-10 lg:w-12 justify-self-end cursor-pointer"
+            onClick={() => router.push(`/${role}/profile`)}
           />
         )}
       </div>

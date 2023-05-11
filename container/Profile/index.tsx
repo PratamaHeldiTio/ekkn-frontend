@@ -139,7 +139,7 @@ export default function Profile({ student }: IProfile) {
 
   return (
     <StudentLayout navigations={[{ title: "Keluar", link: "/logout" }]}>
-      <div className="my-16 lg:m-0 rounded-3xl lg:mt-8 lg:p-8 p-6 bg-secondary">
+      <div className="mt-20 lg:m-0 rounded-3xl lg:mt-8 lg:p-8 p-6 bg-secondary">
         {alertSuccess && (
           <Alert background="bg-active" message={alertMessage} />
         )}
@@ -197,12 +197,14 @@ export default function Profile({ student }: IProfile) {
             />
           </div>
 
-          <div className="lg:w-80 lg:mx-auto mt-4 h-10">
+          <div className="lg:w-80 lg:mx-auto my-4 h-10">
             <InputSubmit value="Simpan" />
           </div>
         </form>
+      </div>
 
-        {/* change password section */}
+      {/* change password section */}
+      <div className="mt-8 mb-16 lg:mb-0 rounded-3xl bg-secondary p-6 lg:p-8">
         <h1 className=" text-xl lg:text-2xl font-bold mt-8 mb-4">
           Ubah Password
         </h1>
@@ -237,7 +239,7 @@ export default function Profile({ student }: IProfile) {
             value={repeatNewPassword}
             required
           />
-          <div className="lg:w-80 lg:mx-auto mt-4">
+          <div className="lg:w-80 lg:mx-auto my-4">
             <InputSubmit value="Ubah Password" />
           </div>
         </form>

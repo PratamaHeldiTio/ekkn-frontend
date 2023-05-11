@@ -23,22 +23,28 @@ export function middleware(request: NextRequest) {
   }
 
   if (role !== "student" && url.pathname.startsWith("/student")) {
-    return NextResponse.redirect(new URL("/forbidden", url));
+    return NextResponse.redirect(new URL("/logout", url));
   }
 
-  if (role !== "lecture" && url.pathname.startsWith("/lecture")) {
-    return NextResponse.redirect(new URL("/forbidden", url));
+  if (role !== "lecturer" && url.pathname.startsWith("/lecturer")) {
+    return NextResponse.redirect(new URL("/logout", url));
   }
 
   if (role !== "admin" && url.pathname.startsWith("/sakera/")) {
-    return NextResponse.redirect(new URL("/forbidden", url));
+    return NextResponse.redirect(new URL("/logout", url));
   }
 
   return NextResponse.next();
 }
 
 export const config = {
-  matcher: ["/student/:path*", "/login", "/sakera-login", "/sakera/:path*"],
+  matcher: [
+    "/student/:path*",
+    "/login",
+    "/sakera-login",
+    "/sakera/:path*",
+    "/lecturer/:path*",
+  ],
 };
 
 function decodeJWT(token: string) {

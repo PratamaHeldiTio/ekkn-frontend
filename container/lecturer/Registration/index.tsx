@@ -6,27 +6,29 @@ import language from "@/global/language.json";
 import dataFakultas from "@/global/fakultas.json";
 import dataProdi from "@/global/prodi.json";
 import InputSubmit from "@/components/InputSubmit";
-import { IRegisterPage, IInputValue } from "./Register.types";
 import { useEffect, useState } from "react";
 import axios from "axios";
 import Cookies from "universal-cookie";
 import Alert from "@/components/Alert";
 import router from "next/router";
+import { IRegistration } from "@/pages/lecturer/registration/registration.type";
 
 // import layout
-const StudentLayout = dynamic(() => import("@/layout/StudentLayout"));
-export default function Register({ periods, student }: IRegisterPage) {
-  // init cookies
+const LecturerLayout = dynamic(() => import("@/layout/LecturerLayout"));
+export default function Register({ periods, lecturer }: IRegistration) {
+  // get cookies
   const cookies = new Cookies();
+  const token = cookies.get("AUTH_LGN");
 
   // create state like input
-  const [inputvalue, setInputValue] = useState<IInputValue>({
-    nim: student.nim,
-    name: student.name,
-    gender: student.gender,
-    fakultas: student.fakultas,
-    prodi: student.prodi,
-    maduraLang: student.maduraLang,
+  const [inputvalue, setInputValue] = useState({
+    id: lecturer.id,
+    name: lecturer.name,
+    gender: lecturer.gender,
+    fakultas: lecturer.fakultas,
+    prodi: lecturer.prodi,
+    maduraLang: lecturer.maduraLang,
+    contact: lecturer.contact,
     periodInput: "",
   });
 
@@ -38,8 +40,16 @@ export default function Register({ periods, student }: IRegisterPage) {
     window.scrollTo(0, 0);
   }, [alertFail, alertSuccess]);
 
-  const { nim, name, gender, fakultas, prodi, maduraLang, periodInput } =
-    inputvalue;
+  const {
+    id,
+    name,
+    gender,
+    fakultas,
+    prodi,
+    maduraLang,
+    contact,
+    periodInput,
+  } = inputvalue;
 
   const handleChangeField = (e: React.ChangeEvent<HTMLInputElement>) => {
     const { name, value } = e.target;
@@ -60,19 +70,17 @@ export default function Register({ periods, student }: IRegisterPage) {
   const handleRegister = (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
 
-    // get token from cookies
-    const token = cookies.get("AUTH_LGN");
-
-    //
     axios
       .all([
         axios.put(
-          `${process.env.BASE_URL_V1}/student`,
+          `${process.env.BASE_URL_V1}/lecturer`,
           {
+            id,
             name,
             gender,
             fakultas,
             prodi,
+            contact,
             madura_lang: maduraLang,
           },
           {
@@ -82,7 +90,7 @@ export default function Register({ periods, student }: IRegisterPage) {
           }
         ),
         axios.post(
-          `${process.env.BASE_URL_V1}/student/registration`,
+          `${process.env.BASE_URL_V1}/lecturer/registration`,
           {
             period_id: periodInput,
           },
@@ -100,7 +108,7 @@ export default function Register({ periods, student }: IRegisterPage) {
         }, 1500);
 
         setTimeout(() => {
-          router.push("register/history");
+          router.push("/lecturer/registration/history");
         }, 2000);
       })
       .catch(() => {
@@ -114,96 +122,98 @@ export default function Register({ periods, student }: IRegisterPage) {
   const navigations = [
     {
       title: "Pendaftaran",
-      link: "/student/register",
+      link: "/lecturer/registration",
       isActive: true,
     },
     {
       title: "Riwayat",
-      link: "/student/register/history",
+      link: "/lecturer/registration/history",
     },
   ];
   // return element
   return (
-    <StudentLayout navigations={navigations}>
+    <LecturerLayout navigations={navigations}>
       <div>
         <div className="my-20 lg:m-0 rounded-3xl lg:mt-8 lg:p-8 p-6 bg-secondary">
           {alertSuccess && (
             <Alert
               background="bg-active"
-              message="Pendaftaran KKN berhasil dilakukan"
+              message="Pendaftaran dosen pembimbing lapangan berhasil dilakukan"
             />
           )}
 
           {alertFail && (
             <Alert
               background="bg-danger"
-              message="Pendaftaran KKN gagal dilakukan"
+              message="Pendaftaran dosen pembimbing lapangan gagal dilakukan"
             />
           )}
 
-          <form onSubmit={handleRegister}>
+          <form
+            onSubmit={handleRegister}
+            className="grid lg:grid-cols-2 gap-6 mt-5"
+          >
+            <InputField label="NIP" value={id} readOnly />
             <InputSelect
               label="Periode"
               options={periods}
               name="periodInput"
               onChange={handleChangeSelect}
-              required={true}
+              required
             />
-            <div className="grid lg:grid-cols-2 gap-6 mt-5">
-              <InputField
-                label="NIM"
-                value={nim}
-                readOnly={true}
-                name="nim"
-                onChange={handleChangeField}
-              />
-              <InputSelect
-                label="Fakultas"
-                value={fakultas}
-                name="fakultas"
-                options={dataFakultas}
-                onChange={handleChangeSelect}
-                required={true}
-              />
-              <InputField
-                label="Nama"
-                name="name"
-                value={name}
-                onChange={handleChangeField}
-                required={true}
-              />
-              <InputSelect
-                label="Prodi"
-                name="prodi"
-                value={prodi}
-                options={dataProdi}
-                onChange={handleChangeSelect}
-                required={true}
-              />
-              <InputSelect
-                label="Jenis Kelamin"
-                name="gender"
-                value={gender}
-                options={dataGender}
-                onChange={handleChangeSelect}
-                required={true}
-              />
-              <InputSelect
-                label="Penguasaan Bahasa Madura"
-                name="maduraLang"
-                value={maduraLang}
-                options={language}
-                onChange={handleChangeSelect}
-                required={true}
-              />
-            </div>
+            <InputField
+              label="Nama"
+              name="name"
+              value={name}
+              onChange={handleChangeField}
+              required
+            />
+            <InputSelect
+              label="Fakultas"
+              value={fakultas}
+              name="fakultas"
+              options={dataFakultas}
+              onChange={handleChangeSelect}
+              required
+            />
+            <InputSelect
+              label="Jenis Kelamin"
+              name="gender"
+              value={gender}
+              options={dataGender}
+              onChange={handleChangeSelect}
+              required
+            />
+            <InputSelect
+              label="Prodi"
+              name="prodi"
+              value={prodi}
+              options={dataProdi}
+              onChange={handleChangeSelect}
+              required
+            />
+            <InputField
+              label="Nomor ponsel"
+              name="contact"
+              value={contact}
+              onChange={handleChangeField}
+              required
+            />
+            <InputSelect
+              label="Penguasaan Bahasa Madura"
+              name="maduraLang"
+              value={maduraLang}
+              options={language}
+              onChange={handleChangeSelect}
+              required
+            />
 
-            <div className="lg:w-80 lg:mx-auto my-4 h-10">
+            <div className="lg:w-80 lg:mx-auto my-4 h-10 lg:col-span-2">
               <InputSubmit value="Daftar" />
             </div>
           </form>
         </div>
       </div>
-    </StudentLayout>
+    </LecturerLayout>
   );
 }
