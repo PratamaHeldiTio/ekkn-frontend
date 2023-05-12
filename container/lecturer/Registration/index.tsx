@@ -67,7 +67,7 @@ export default function Register({ periods, lecturer }: IRegistration) {
     }));
   };
 
-  const handleRegister = (e: React.FormEvent<HTMLFormElement>) => {
+  const handleRegistration = (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
 
     axios
@@ -150,7 +150,7 @@ export default function Register({ periods, lecturer }: IRegistration) {
           )}
 
           <form
-            onSubmit={handleRegister}
+            onSubmit={handleRegistration}
             className="grid lg:grid-cols-2 gap-6 mt-5"
           >
             <InputField label="NIP" value={id} readOnly />
@@ -208,7 +208,7 @@ export default function Register({ periods, lecturer }: IRegistration) {
               required
             />
 
-            <div className="lg:w-80 lg:mx-auto my-4 h-10 lg:col-span-2">
+            <div className="lg:w-80 lg:mx-auto mb-4 h-10 lg:col-span-2">
               <InputSubmit value="Daftar" />
             </div>
           </form>
