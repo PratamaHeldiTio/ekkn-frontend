@@ -1,11 +1,15 @@
 import React from "react";
 import dynamic from "next/dynamic";
 import axios from "axios";
-import { mapingData } from "./history.types";
-const History = dynamic(() => import("@/container/History"));
+import { ILecturerRegistrationHistories, mapingData } from "./history.types";
+const History = dynamic(() => import("@/container/lecturer/History"));
 
-export default function HistoryPage({ studentRegistrations }: any) {
-  return <History studentRegistrations={studentRegistrations} />;
+export default function HistoryLecturerRegistrationPage({
+  lecturerRegistrationHistories,
+}: ILecturerRegistrationHistories) {
+  return (
+    <History lecturerRegistrationHistories={lecturerRegistrationHistories} />
+  );
 }
 
 export async function getServerSideProps(context: any) {
@@ -14,7 +18,7 @@ export async function getServerSideProps(context: any) {
 
   // get period
   const dataAPI = await axios
-    .get(`${process.env.BASE_URL_V1}/student/registration`, {
+    .get(`${process.env.BASE_URL_V1}/lecturer/registration/history`, {
       headers: {
         Authorization: `Bearer ${token}`,
       },
@@ -23,10 +27,10 @@ export async function getServerSideProps(context: any) {
       return response.data.data;
     });
 
-  const studentRegistrations = mapingData(dataAPI);
+  const lecturerRegistrationHistories = mapingData(dataAPI);
   return {
     props: {
-      studentRegistrations,
+      lecturerRegistrationHistories,
     },
   };
 }

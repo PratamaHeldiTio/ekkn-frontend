@@ -1,21 +1,21 @@
-export interface IStudentRegistration {
-  studentRegistrationId: string;
+export interface ILecturerRegistrationHistory {
+  id: string;
   semester: string;
   tahunAjaran: string;
   status: string;
   createdAt: number;
 }
 
-export interface IStudentRegistrations {
-  studentRegistrations: IStudentRegistration[];
+export interface ILecturerRegistrationHistories {
+  lecturerRegistrationHistories: ILecturerRegistrationHistory[];
 }
 
-export const mapingData = (dataAPI: any): IStudentRegistration[] => {
-  const studentRegistrations: IStudentRegistration[] = [];
+export const mapingData = (dataAPI: any): ILecturerRegistrationHistory[] => {
+  const LecturerRegistrationHistories: ILecturerRegistrationHistory[] = [];
 
   dataAPI.map((data: any) => {
-    studentRegistrations.push({
-      studentRegistrationId: data.student_registration_id,
+    LecturerRegistrationHistories.push({
+      id: data.id,
       semester: data.semester,
       tahunAjaran: data.tahun_ajaran,
       status: data.status,
@@ -23,5 +23,5 @@ export const mapingData = (dataAPI: any): IStudentRegistration[] => {
     });
   });
 
-  return studentRegistrations;
+  return LecturerRegistrationHistories;
 };
