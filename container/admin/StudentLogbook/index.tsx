@@ -59,6 +59,9 @@ export default function DetailLogbook({
                 <p className="font-light text-sm">
                   Dikirim pada {formatTimeUnix(logbook.submitted)} WIB
                 </p>
+                <p className="font-light text-sm">
+                  Dikirim pada radius {logbook.radius} meter dari pusat desa
+                </p>
                 <hr className="border-2 border-primary mt-2" />
                 <p className="font-light text-lg mt-8 text-justify px-12">
                   {logbook.activity}

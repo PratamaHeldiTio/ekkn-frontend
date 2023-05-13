@@ -62,6 +62,7 @@ export async function getServerSideProps(context: any) {
           date: data.date,
           activity: data.activity,
           image: data.image,
+          radius: data.radius,
           submitted: data.submitted,
         };
         logbooks.push(logbook);

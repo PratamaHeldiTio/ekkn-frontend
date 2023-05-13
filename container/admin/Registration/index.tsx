@@ -34,7 +34,7 @@ export default function Regitration({ periods }: IRegistration) {
                     src={studentHero}
                     className="rounded-t-3xl max-h-60 max-w-xl mx-auto"
                   />
-                  <p className="font-bold p-4 text-2xl capitalize">
+                  <p className="font-bold p-4 ml-8 text-2xl capitalize">
                     Pendaftaran Mahasiswa Periode Semester {period.semester}{" "}
                     {period.tahunAjaran}
                   </p>
@@ -56,7 +56,7 @@ export default function Regitration({ periods }: IRegistration) {
                     src={lectureHero}
                     className="rounded-t-3xl max-h-60 max-w-xl mx-auto"
                   />
-                  <p className="font-bold p-4 text-2xl capitalize">
+                  <p className="font-bold p-4 ml-8 text-2xl capitalize">
                     Pendaftaran Dosen Pembimbing Lapangan Periode Semester{" "}
                     {period.semester} {period.tahunAjaran}
                   </p>
@@ -78,7 +78,7 @@ export default function Regitration({ periods }: IRegistration) {
                     src={groupHero}
                     className="rounded-t-3xl max-h-60 max-w-xl mx-auto"
                   />
-                  <p className="font-bold p-4 text-2xl capitalize">
+                  <p className="font-bold p-4 ml-8 text-2xl capitalize">
                     Pendaftaran Kelompok Periode Semester {period.semester}{" "}
                     {period.tahunAjaran}
                   </p>

@@ -1,9 +1,6 @@
 import Alert from "@/components/Alert";
 import InputField from "@/components/InputField";
 import InputSubmit from "@/components/InputSubmit";
-import trash from "@/public/delete.png";
-import resetPassword from "@/public/resetPassword.png";
-import edit from "@/public/edit.png";
 import {
   IStudent,
   IStudentPage,

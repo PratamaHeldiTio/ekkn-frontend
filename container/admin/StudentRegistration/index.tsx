@@ -140,6 +140,9 @@ export default function StudenRegistration({
                           value="Validasi"
                           onClick={() => handleValidasi(registration.id)}
                           disabled={registration.status == "true" && true}
+                          background={
+                            registration.status == "true" ? "bg-gray-700" : ""
+                          }
                         />
                       </div>
                     </td>
