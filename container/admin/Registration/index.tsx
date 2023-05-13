@@ -47,7 +47,7 @@ export default function Regitration({ periods }: IRegistration) {
           periods.map((period: IPeriod) => {
             return (
               <Link
-                href={`/sakera/registration/lecture/${period.id}`}
+                href={`/sakera/registration/lecturer/${period.id}`}
                 key={period.id}
               >
                 <div className="bg-secondary rounded-3xl mb-8">

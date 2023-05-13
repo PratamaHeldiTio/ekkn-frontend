@@ -25,13 +25,13 @@ export default function History({
   ];
   return (
     <LecturerLayout navigations={navigations}>
-      <div className="mt-16 lg:mt-8">
+      <div className="mt-20 lg:mt-8">
         {lecturerRegistrationHistories.map(
           (lecturerRegistrationHistory: ILecturerRegistrationHistory) => {
             return (
               <div
                 key={lecturerRegistrationHistory.id}
-                className="bg-secondary rounded-2xl mt-6 py-3 px-8 flex flex-col-reverse lg:grid lg:grid-cols-6 lg:items-center"
+                className="bg-secondary rounded-2xl mt-6 py-6 px-8 flex flex-col-reverse lg:grid lg:grid-cols-6 lg:items-center"
               >
                 <div className="lg:col-span-4">
                   <h3 className="lg:text-xl font-bold mt-1">
