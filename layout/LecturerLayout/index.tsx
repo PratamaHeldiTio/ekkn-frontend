@@ -24,18 +24,13 @@ export default function StudentLayout({
               icon={register}
               content="Pendaftaran"
             />
-            {/* <SideLink
-              role="student"
-              destination="kki"
-              icon={contract}
-              content="KKI"
-            />
             <SideLink
-              role="student"
+              role="lecturer"
               destination="logbook"
               icon={logbook}
               content="Logbookk"
             />
+            {/* 
             <SideLink
               role="student"
               destination="output"
