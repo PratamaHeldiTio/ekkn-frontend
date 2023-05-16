@@ -59,7 +59,9 @@ export default function DetailLogbook({ group, logbooks }: ILogbookDetail) {
     e.preventDefault();
 
     if (latitude == 0 || longitude == 0) {
-      setAlertMessage("Tidak dapat mengisi logbook jika lokasi ditolak");
+      setAlertMessage(
+        "Tidak dapat mengisi logbook jika lokasi ditolak atau tidak ada koneksi internet"
+      );
       setAlertFail(!alertFail);
       setTimeout(() => {
         setAlertFail((prev) => !prev);
