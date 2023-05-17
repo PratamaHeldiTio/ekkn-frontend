@@ -1,16 +1,13 @@
 import axios from "axios";
 import dynamic from "next/dynamic";
-import {
-  ILogbookPeriodPage,
-  mapToGroupByPeriodLecturer,
-} from "./logbook.types";
+import { IGroupByPeriodPage, mapToGroupByPeriodLecturer } from "./group.types";
 
-const LogbookByPeriod = dynamic(
-  () => import("@/container/lecturer/LogbookByPeriod")
+const GroupByPeriod = dynamic(
+  () => import("@/container/lecturer/GroupByPeriod")
 );
 
-export default function LogbookPage({ groups }: ILogbookPeriodPage) {
-  return <LogbookByPeriod groups={groups} />;
+export default function LogbookPage({ groups }: IGroupByPeriodPage) {
+  return <GroupByPeriod groups={groups} />;
 }
 
 export async function getServerSideProps(context: any) {

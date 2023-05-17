@@ -30,6 +30,12 @@ export default function StudentLayout({
               icon={logbook}
               content="Logbookk"
             />
+            <SideLink
+              role="lecturer"
+              destination="group"
+              icon={group}
+              content="Kelompok"
+            />
             {/* 
             <SideLink
               role="student"
@@ -37,12 +43,7 @@ export default function StudentLayout({
               icon={output}
               content="Luaran"
             />
-            <SideLink
-              role="student"
-              destination="group"
-              icon={group}
-              content="Kelompok"
-            /> */}
+*/}
           </div>
         </SidebarLayout>
       </div>

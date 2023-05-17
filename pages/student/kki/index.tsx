@@ -1,10 +1,6 @@
-import React from "react";
+import dynamic from "next/dynamic";
 
+const KKI = dynamic(() => import("@/container/KKI"));
 export default function KKIPage() {
-  return (
-    <div>
-      KKI hanya program kerja individu dan luaran individu soon dikerjain
-      barengan sama luaran
-    </div>
-  );
+  return <KKI />;
 }
