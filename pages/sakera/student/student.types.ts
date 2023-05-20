@@ -2,7 +2,7 @@ export interface IStudent {
   nim: string;
   name: string;
   prodi: string;
-  grade: string;
+  fakultas: string;
 }
 
 export interface IStudentPage {
@@ -16,7 +16,7 @@ export const mapingDataToStudents = (dataAPI: any): IStudent[] => {
       nim: data.nim,
       name: data.name,
       prodi: data.prodi,
-      grade: data.grade,
+      fakultas: data.fakultas,
     });
   });
 

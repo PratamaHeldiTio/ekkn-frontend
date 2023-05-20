@@ -39,8 +39,6 @@ export async function getServerSideProps(context: any) {
 
   const students = mapingDataToStudents(dataAPI);
 
-  const redirect = null;
-
   return {
     props: {
       students,

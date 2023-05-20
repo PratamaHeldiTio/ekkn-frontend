@@ -206,7 +206,7 @@ export default function Student({ students }: IStudentPage) {
                   scope="col"
                   className="px-6 py-4 font-bold text-primary text-center"
                 >
-                  Nilai
+                  Fakultas
                 </th>
                 <th
                   scope="col"
@@ -217,13 +217,13 @@ export default function Student({ students }: IStudentPage) {
               </tr>
             </thead>
             <tbody className="divide-y divide-gray-100 border-t border-gray-100">
-              {statestudents.map((student: IStudent, index: any) => {
+              {statestudents.map((student: IStudent) => {
                 return (
                   <tr className="hover:bg-gray-100" key={student.nim}>
                     <td className="px-6 py-4">{student.nim}</td>
                     <td className="px-6 py-4">{student.name}</td>
                     <td className="px-6 py-4">{student.prodi}</td>
-                    <td className="px-6 py-4">{student.grade}</td>
+                    <td className="px-6 py-4">{student.fakultas}</td>
                     <td className="px-6 py-5 flex justify-center gap-4">
                       <svg
                         xmlns="http://www.w3.org/2000/svg"
