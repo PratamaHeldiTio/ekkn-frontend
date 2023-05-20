@@ -120,7 +120,7 @@ export default function GradeByGroup({
             <InputSubmit value="Tambah" />
           </div>
         </form>
-        <div className="overflow-x-scroll rounded-lg border border-gray-200 shadow-md mt-20">
+        <div className="overflow-x-scroll rounded-lg border border-gray-200 shadow-md mt-12">
           <table className="w-full border-collapse bg-white text-left text-gray-500">
             <thead className="bg-gray-200">
               <tr>

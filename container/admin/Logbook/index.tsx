@@ -11,22 +11,24 @@ export default function Logbook({ periods }: ILogbookPage) {
     <AdminLayout
       navigations={[{ title: "Daftar Logbook", link: "/sakera/logbook" }]}
     >
-      {periods.map((period: IPeriod) => {
-        return (
-          <Link href={`/sakera/logbook/${period.id}`} key={period.id}>
-            <div className="bg-secondary rounded-3xl my-8">
-              <Image
-                alt="hero kelompok registration"
-                src={logbookHero}
-                className="max-h-60 rounded-t-3xl w-full"
-              />
-              <p className="font-bold p-4 text-2xl ml-10 capitalize">
-                data logbook periode {period.semester} {period.tahunAjaran}
-              </p>
-            </div>
-          </Link>
-        );
-      })}
+      <div className="grid grid-cols-2 gap-8 mt-8">
+        {periods.map((period: IPeriod) => {
+          return (
+            <Link href={`/sakera/logbook/${period.id}`} key={period.id}>
+              <div className="bg-secondary rounded-3xl">
+                <Image
+                  alt="hero kelompok registration"
+                  src={logbookHero}
+                  className="max-h-60 rounded-t-3xl w-full"
+                />
+                <p className="p-4 text-xl ml-4 capitalize">
+                  data logbook periode {period.semester} {period.tahunAjaran}
+                </p>
+              </div>
+            </Link>
+          );
+        })}
+      </div>
     </AdminLayout>
   );
 }

@@ -20,7 +20,7 @@ export default function Regitration({ periods }: IRegistration) {
       setPage={setCurrentPage}
       page={currentPage}
     >
-      <div className="mt-8">
+      <div className="mt-8 grid grid-cols-2 gap-8">
         {currentPage == "Mahasiswa" &&
           periods.map((period: IPeriod) => {
             return (
@@ -28,13 +28,13 @@ export default function Regitration({ periods }: IRegistration) {
                 href={`/sakera/registration/student/${period.id}`}
                 key={period.id}
               >
-                <div className="bg-secondary rounded-3xl mb-8">
+                <div className="bg-secondary rounded-3xl">
                   <Image
                     alt="hero mahasiswa registration"
                     src={studentHero}
-                    className="rounded-t-3xl max-h-60 max-w-xl mx-auto"
+                    className="rounded-t-3xl max-h-52"
                   />
-                  <p className="font-bold p-4 ml-8 text-2xl capitalize">
+                  <p className="p-4 ml-8 text-xl capitalize">
                     Pendaftaran Mahasiswa Periode Semester {period.semester}{" "}
                     {period.tahunAjaran}
                   </p>
@@ -54,9 +54,9 @@ export default function Regitration({ periods }: IRegistration) {
                   <Image
                     alt="hero dosen registration"
                     src={lectureHero}
-                    className="rounded-t-3xl max-h-60 max-w-xl mx-auto"
+                    className="rounded-t-3xl max-h-52"
                   />
-                  <p className="font-bold p-4 ml-8 text-2xl capitalize">
+                  <p className="p-4 ml-8 text-xl capitalize">
                     Pendaftaran Dosen Pembimbing Lapangan Periode Semester{" "}
                     {period.semester} {period.tahunAjaran}
                   </p>
@@ -76,9 +76,9 @@ export default function Regitration({ periods }: IRegistration) {
                   <Image
                     alt="hero kelompok registration"
                     src={groupHero}
-                    className="rounded-t-3xl max-h-60 max-w-xl mx-auto"
+                    className="rounded-t-3xl max-h-52"
                   />
-                  <p className="font-bold p-4 ml-8 text-2xl capitalize">
+                  <p className="p-4 ml-8 text-xl capitalize">
                     Pendaftaran Kelompok Periode Semester {period.semester}{" "}
                     {period.tahunAjaran}
                   </p>
