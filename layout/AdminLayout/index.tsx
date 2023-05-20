@@ -4,6 +4,7 @@ import lecturer from "@/public/lecturer.png";
 import period from "@/public/period.png";
 import register from "@/public/register.png";
 import village from "@/public/village.png";
+import grade from "@/public/grade.png";
 import logbook from "@/public/logbook.png";
 import logout from "@/public/logout.png";
 import SideLink from "@/components/SideLink";
@@ -59,6 +60,12 @@ export default function StudentLayout({
               destination="logbook"
               icon={logbook}
               content="Logbook"
+            />
+            <SideLink
+              role="sakera"
+              destination="grade"
+              icon={grade}
+              content="Nilai"
             />
             <SideLink
               role="sakera"

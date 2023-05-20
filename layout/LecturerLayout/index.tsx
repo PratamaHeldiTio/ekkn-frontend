@@ -1,8 +1,7 @@
 import { IStudentLayout } from "./StudentLayout.types";
 import register from "@/public/register.png";
-import contract from "@/public/contract.png";
+import grade from "@/public/grade.png";
 import logbook from "@/public/logbook.png";
-import output from "@/public/output.png";
 import group from "@/public/group.png";
 import SideLink from "@/components/SideLink";
 import dynamic from "next/dynamic";
@@ -36,14 +35,12 @@ export default function StudentLayout({
               icon={group}
               content="Kelompok"
             />
-            {/* 
             <SideLink
-              role="student"
-              destination="output"
-              icon={output}
-              content="Luaran"
+              role="lecturer"
+              destination="grade"
+              icon={grade}
+              content="Penilaian"
             />
-*/}
           </div>
         </SidebarLayout>
       </div>
