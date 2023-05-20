@@ -1,78 +1,39 @@
-import Alert from "@/components/Alert";
-import InputSubmit from "@/components/InputSubmit";
-import TextArea from "@/components/TextArea";
-import axios from "axios";
 import dynamic from "next/dynamic";
-import React, { use, useState } from "react";
-import Cookies from "universal-cookie";
+import Image from "next/image";
+import contractHero from "@/public/contractHero.jpg";
+import Link from "next/link";
+import { IKKI, IRegisteredStudent } from "@/pages/student/kki/kki.types";
 const StudentLayout = dynamic(() => import("@/layout/StudentLayout"));
-
-export default function KKI() {
-  // get token
-  const cookies = new Cookies();
-  const token = cookies.get("AUTH_LGN");
-
-  const [alertSuccess, setAlertSuccess] = useState(false);
-  const [alertFail, setAlertFail] = useState(false);
-  const [alertMessage, setAlertMessage] = useState("");
-  const [proker, setProker] = useState("");
-
-  const handleProker = (e: React.FormEvent<HTMLFormElement>) => {
-    e.preventDefault();
-
-    axios
-      .put(
-        `${process.env.BASE_URL_V1}/student/registration/proker`,
-        {
-          proker,
-        },
-        {
-          headers: {
-            Authorization: `Bearer ${token}`,
-          },
-        }
-      )
-      .then((response) => {
-        setAlertMessage(response.data.message);
-        setAlertSuccess(!alertSuccess);
-        setTimeout(() => {
-          setAlertSuccess((prev) => !prev);
-        }, 2000);
-      })
-      .catch((response) => {
-        setAlertMessage(response.response.data.message);
-        setAlertFail(!alertFail);
-        setTimeout(() => {
-          setAlertFail((prev) => !prev);
-        }, 2000);
-      });
-  };
-
+export default function KKIPage({ registeredStudents }: IKKI) {
+  const navigations = [
+    {
+      title: "Kontrak Kinerja Individu",
+      link: "/student/kki",
+    },
+  ];
   return (
-    <StudentLayout
-      navigations={[{ title: "Kontrak Kinerja", link: "/student/kki" }]}
-    >
-      <div className="mt-20 lg:m-0 rounded-3xl lg:mt-8 lg:p-8 p-6 bg-secondary">
-        {alertSuccess && (
-          <Alert background="bg-active" message={alertMessage} />
-        )}
-
-        {alertFail && <Alert background="bg-danger" message={alertMessage} />}
-
-        <form onSubmit={handleProker}>
-          <TextArea
-            placeholder="Jelaskan program kerja dalam bentuk paragraf"
-            label="Program Kerja"
-            name="proker"
-            onChange={(e) => setProker(e.target.value)}
-          />
-          <div className="lg:w-80 lg:mx-auto h-10 mb-4">
-            <InputSubmit value="Simpan" />
-          </div>
-        </form>
-
-        {/* Ouput section */}
-        <h1 className="text-xl lg:text-2xl font-bold mt-16">Luaran</h1>
+    <StudentLayout navigations={navigations}>
+      <div className="md:grid md:grid-cols-2 md:gap-8 my-20 lg:my-8">
+        {registeredStudents.map((registeredStudent: IRegisteredStudent) => {
+          return (
+            <Link
+              href={`/student/kki/${registeredStudent.id}`}
+              key={registeredStudent.periodId}
+            >
+              <div className="bg-secondary rounded-3xl mb-6">
+                <Image
+                  alt="picture kelompok"
+                  src={contractHero}
+                  className="rounded-t-3xl"
+                />
+                <p className="font-bold p-4 md:text-xl">
+                  Periode Semester {registeredStudent.semester}{" "}
+                  {registeredStudent.tahunAjaran}
+                </p>
+              </div>
+            </Link>
+          );
+        })}
       </div>
     </StudentLayout>
   );

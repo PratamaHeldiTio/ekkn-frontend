@@ -13,7 +13,7 @@ import Cookies from "universal-cookie";
 
 const AdminLayout = dynamic(() => import("@/layout/AdminLayout"));
 
-export default function DetailGroup({ group, lecturers }: IGroupPage) {
+export default function DetailGroup({ group, lecturers, prokers }: IGroupPage) {
   const cookies = new Cookies();
   const token = cookies.get("AUTH_LGN");
   const router = useRouter();
@@ -214,7 +214,7 @@ export default function DetailGroup({ group, lecturers }: IGroupPage) {
         <div className="mt-16">
           {/* section description village */}
           <h1 className="font-bold text-2xl mb-4">Deskripsi Desa</h1>
-          <div className="grid grid-cols-2 gap-8">
+          <div className="grid grid-cols-1 xl:grid-cols-2 gap-8">
             <div className="bg-gray-200 rounded-3xl">
               <h2 className="font-bold text-center text-xl bg-primary text-secondary rounded-t-3xl py-2">
                 Strength
@@ -252,6 +252,26 @@ export default function DetailGroup({ group, lecturers }: IGroupPage) {
 
         <div className="mt-16">
           <h1 className="font-bold text-2xl mb-4">Program Kerja Anggota</h1>
+          <div className="grid grid-cols-1 xl:grid-cols-2 gap-8">
+            {prokers.map((proker) => {
+              return (
+                <div
+                  key={proker.studentId}
+                  className="bg-gray-200 rounded-3xl "
+                >
+                  <div className="bg-primary text-secondary rounded-t-3xl p-4 lg:px-8">
+                    <h2 className="font-bold lg:text-xl">{proker.name}</h2>
+                    <h3 className="font-light text-sm lg:text-base">
+                      {proker.studentId}, {proker.prodi}
+                    </h3>
+                  </div>
+                  <p className="px-8 py-4 text-justify leading-7">
+                    {group.village.strength}
+                  </p>
+                </div>
+              );
+            })}
+          </div>
         </div>
       </div>
     </AdminLayout>

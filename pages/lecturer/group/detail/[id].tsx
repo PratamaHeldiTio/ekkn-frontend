@@ -1,11 +1,15 @@
 import axios from "axios";
-import { IGroupDetailPage, mapToDetailGroup } from "./detailGroup.types";
+import {
+  IGroupDetailPage,
+  mapToDetailGroup,
+  mapToProker,
+} from "./detailGroup.types";
 import dynamic from "next/dynamic";
 
 const DetailGroup = dynamic(() => import("@/container/lecturer/DetailGroup"));
 
-export default function DetailGroupPage({ group }: IGroupDetailPage) {
-  return <DetailGroup group={group} />;
+export default function DetailGroupPage({ group, prokers }: IGroupDetailPage) {
+  return <DetailGroup group={group} prokers={prokers} />;
 }
 
 export async function getServerSideProps(context: any) {
@@ -27,10 +31,26 @@ export async function getServerSideProps(context: any) {
       return null;
     });
 
+  // get student registration
+  const dataAPIStudentRegistration = await axios
+    .get(`${process.env.BASE_URL_V1}/student/registration/group/${id}`, {
+      headers: {
+        Authorization: `Bearer ${token}`,
+      },
+    })
+    .then((response) => {
+      return response.data.data;
+    })
+    .catch(() => {
+      return [];
+    });
+
   const group = mapToDetailGroup(dataAPI);
+  const prokers = mapToProker(dataAPIStudentRegistration);
   return {
     props: {
       group,
+      prokers,
     },
   };
 }

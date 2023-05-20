@@ -10,6 +10,13 @@ export interface IGroup {
   lecturer: ILecturerGroup;
 }
 
+export interface IProker {
+  studentId: string;
+  name: string;
+  prodi: string;
+  proker: string;
+}
+
 export interface IVillage {
   lokasi: string;
   strength: string;
@@ -33,6 +40,7 @@ export interface ILecturerGroup {
 
 export interface IGroupDetailPage {
   group: IGroup;
+  prokers: IProker[];
 }
 
 export const mapToDetailGroup = (dataAPI: any): IGroup => {
@@ -74,4 +82,19 @@ export const mapToDetailGroup = (dataAPI: any): IGroup => {
   };
 
   return group;
+};
+
+export const mapToProker = (dataAPI: any): IProker[] => {
+  const prokers: IProker[] = [];
+  dataAPI.forEach((proker: any) => {
+    const prokerData: IProker = {
+      studentId: proker.nim,
+      name: proker.name,
+      prodi: proker.prodi,
+      proker: proker.proker,
+    };
+    prokers.push(prokerData);
+  });
+
+  return prokers;
 };
