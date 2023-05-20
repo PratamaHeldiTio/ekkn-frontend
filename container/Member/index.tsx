@@ -225,7 +225,9 @@ export default function Member({ group, leader }: any) {
             </li>
             <li className="my-2 truncate">
               Pembimbing :{" "}
-              {group.mentor ? group.mentor : "Belum ada pembimbing"}
+              {group.lecturer.name
+                ? group.lecturer.name
+                : "Belum ada pembimbing"}
             </li>
           </ul>
 

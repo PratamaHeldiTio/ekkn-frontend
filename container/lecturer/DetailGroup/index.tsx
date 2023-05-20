@@ -195,7 +195,7 @@ export default function DetailGroup({ group, prokers }: IGroupDetailPage) {
                     </h3>
                   </div>
                   <p className="px-8 py-4 text-justify leading-7">
-                    {group.village.strength}
+                    {proker.proker}
                   </p>
                 </div>
               );
