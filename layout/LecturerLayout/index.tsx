@@ -1,4 +1,4 @@
-import { IStudentLayout } from "./StudentLayout.types";
+import { ILecturerLayout } from "./LecturerLayout.types";
 import register from "@/public/register.png";
 import grade from "@/public/grade.png";
 import logbook from "@/public/logbook.png";
@@ -11,12 +11,12 @@ const SidebarLayout = dynamic(() => import("@/layout/SidebarLayout"));
 export default function StudentLayout({
   children,
   navigations = [],
-}: IStudentLayout) {
+}: ILecturerLayout) {
   return (
     <div className="lg:p-10 p-6 lg:grid lg:grid-cols-12 lg:min-h-screen">
       <div className="lg:col-span-4 xl:col-span-3">
         <SidebarLayout>
-          <div className="grid grid-cols-4 p-3 lg:inline-block">
+          <div className="grid grid-cols-4 p-3 px-8 lg:inline-block">
             <SideLink
               role="lecturer"
               destination="registration"

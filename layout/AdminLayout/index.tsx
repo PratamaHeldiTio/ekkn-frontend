@@ -6,6 +6,7 @@ import register from "@/public/register.png";
 import village from "@/public/village.png";
 import grade from "@/public/grade.png";
 import logbook from "@/public/logbook.png";
+import output from "@/public/output.png";
 import logout from "@/public/logout.png";
 import SideLink from "@/components/SideLink";
 import dynamic from "next/dynamic";
@@ -60,6 +61,12 @@ export default function StudentLayout({
               destination="logbook"
               icon={logbook}
               content="Logbook"
+            />
+            <SideLink
+              role="sakera"
+              destination="output"
+              icon={output}
+              content="Luaran"
             />
             <SideLink
               role="sakera"

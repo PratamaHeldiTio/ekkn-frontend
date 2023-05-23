@@ -20,9 +20,8 @@ export default function Village({ periods }: IVillagePage) {
                   src={villageHero}
                   className="max-h-60 rounded-t-3xl w-full"
                 />
-                <p className="p-4 text-xl ml-4 capitalize">
-                  Data Desa Periode Semester {period.semester}{" "}
-                  {period.tahunAjaran}
+                <p className="font-bold text-center py-4 px-8 text-xl capitalize">
+                  Periode Semester {period.semester} {period.tahunAjaran}
                 </p>
               </div>
             </Link>

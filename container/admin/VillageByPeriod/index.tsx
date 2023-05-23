@@ -157,7 +157,7 @@ export default function VillageByPeriod({ villages }: IVillageByPeriodPage) {
         </form>
       </div>
       <div className="rounded-3xl p-8 bg-secondary">
-        <h1 className="text-2xl font-bold mb-12 ml-5">Daftar Mahasiswa</h1>
+        <h1 className="text-2xl font-bold mb-12 ml-5">Daftar Desa</h1>
         <div className="overflow-x-scroll rounded-lg border border-gray-200 shadow-md m-5">
           <table className="w-full border-collapse bg-secondary text-left text-gray-500">
             <thead className="bg-gray-200">

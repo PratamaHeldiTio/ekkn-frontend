@@ -193,7 +193,7 @@ export default function Member({ group, leader }: any) {
   } else {
     return (
       <StudentLayout navigations={navigations}>
-        <div className="my-16 lg:m-0 lg:mt-8 p-6 bg-secondary rounded-3xl">
+        <div className="my-20 lg:m-0 lg:mt-8 p-6 bg-secondary rounded-3xl">
           <h1 className="font-bold text-center text-xl lg:text-2xl mb-4">
             Anggota Kelompok
           </h1>

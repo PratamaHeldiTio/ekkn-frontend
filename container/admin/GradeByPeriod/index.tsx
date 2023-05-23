@@ -18,7 +18,7 @@ export default function GradeByPeriod({ groups }: IGradePeriodPage) {
                   src={gradeHero}
                   className="rounded-t-3xl max-h-60"
                 />
-                <div className="lg:p-8 p-4">
+                <div className="p-4">
                   <p className="font-ligth px-4 capitalize">
                     Kelompok: {group.name}
                   </p>

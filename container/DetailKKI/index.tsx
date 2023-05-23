@@ -70,9 +70,6 @@ export default function DetailKKI({ studentProker }: IDetailKKIPage) {
             <InputSubmit value="Simpan" />
           </div>
         </form>
-
-        {/* Ouput section */}
-        <h1 className="text-xl lg:text-2xl font-bold mt-16">Luaran</h1>
       </div>
     </StudentLayout>
   );

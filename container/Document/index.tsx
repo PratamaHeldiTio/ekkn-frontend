@@ -188,7 +188,7 @@ export default function Document({ group, villages }: IDocumentPage) {
   } else {
     return (
       <StudentLayout navigations={navigations}>
-        <div className="my-16 lg:my-8">
+        <div className="my-20 lg:my-8">
           {alertSuccess && (
             <Alert background="bg-active" message={alertMessage} />
           )}
@@ -265,7 +265,7 @@ export default function Document({ group, villages }: IDocumentPage) {
             {/* potential village section */}
             {group.potential != "" ? (
               <div>
-                <h1 className="font-bold lg:text-lg mt-6">Potensi Desa</h1>
+                <h1 className="font-bold lg:text-lg mt-16">Potensi Desa</h1>
                 <div className="text-center px-5 mt-4 flex flex-col justify-center py-10 border-2 border-gray-300 border-dashed rounded-lg cursor-pointer bg-secondary  hover:bg-gray-100">
                   <a
                     href={`${process.env.BASE_URL}/static/potential/${group.potential}`}

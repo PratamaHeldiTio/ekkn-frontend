@@ -1,6 +1,6 @@
 import dynamic from "next/dynamic";
 import studentHero from "@/public/studentHero.jpg";
-import lectureHero from "@/public/lectureHero.jpg";
+import lecturerHero from "@/public/lecturerHero.jpg";
 import groupHero from "@/public/groupHero.jpg";
 import Image from "next/image";
 import Link from "next/link";
@@ -29,12 +29,15 @@ export default function Regitration({ periods }: IRegistration) {
                 key={period.id}
               >
                 <div className="bg-secondary rounded-3xl">
-                  <Image
-                    alt="hero mahasiswa registration"
-                    src={studentHero}
-                    className="rounded-t-3xl max-h-52"
-                  />
-                  <p className="p-4 ml-8 text-xl capitalize">
+                  <div className="max-h-52 overflow-hidden">
+                    <Image
+                      alt="hero mahasiswa registration"
+                      src={studentHero}
+                      className="rounded-t-3xl"
+                    />
+                  </div>
+
+                  <p className="font-bold text-center p-4 px-8 text-xl capitalize">
                     Pendaftaran Mahasiswa Periode Semester {period.semester}{" "}
                     {period.tahunAjaran}
                   </p>
@@ -50,15 +53,17 @@ export default function Regitration({ periods }: IRegistration) {
                 href={`/sakera/registration/lecturer/${period.id}`}
                 key={period.id}
               >
-                <div className="bg-secondary rounded-3xl mb-8">
-                  <Image
-                    alt="hero dosen registration"
-                    src={lectureHero}
-                    className="rounded-t-3xl max-h-52"
-                  />
-                  <p className="p-4 ml-8 text-xl capitalize">
-                    Pendaftaran Dosen Pembimbing Lapangan Periode Semester{" "}
-                    {period.semester} {period.tahunAjaran}
+                <div className="bg-secondary rounded-3xl">
+                  <div className="max-h-52 overflow-hidden">
+                    <Image
+                      alt="hero dosen registration"
+                      src={lecturerHero}
+                      className="rounded-t-3xl"
+                    />
+                  </div>
+                  <p className="font-bold text-center p-4 px-8 text-xl capitalize">
+                    Pendaftaran DPL Periode Semester {period.semester}{" "}
+                    {period.tahunAjaran}
                   </p>
                 </div>
               </Link>
@@ -72,13 +77,15 @@ export default function Regitration({ periods }: IRegistration) {
                 href={`/sakera/registration/group/${period.id}`}
                 key={period.id}
               >
-                <div className="bg-secondary rounded-3xl mb-8">
-                  <Image
-                    alt="hero kelompok registration"
-                    src={groupHero}
-                    className="rounded-t-3xl max-h-52"
-                  />
-                  <p className="p-4 ml-8 text-xl capitalize">
+                <div className="bg-secondary rounded-3xl">
+                  <div className="max-h-52 overflow-hidden">
+                    <Image
+                      alt="hero kelompok registration"
+                      src={groupHero}
+                      className="rounded-t-3xl bg-cover"
+                    />
+                  </div>
+                  <p className="font-bold text-center p-4 px-8 text-xl capitalize">
                     Pendaftaran Kelompok Periode Semester {period.semester}{" "}
                     {period.tahunAjaran}
                   </p>
