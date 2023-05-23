@@ -10,7 +10,7 @@ export default function OutputPeriod({ groups }: IOutputPeriodPage) {
   return (
     <AdminLayout navigations={[{ title: "Kembali", link: "/sakera/output" }]}>
       <div className="bg-secondary p-8 rounded-3xl my-8">
-        <h1 className="text-2xl font-bold mb-12">Luaran Kelompok</h1>
+        <h1 className="text-2xl font-bold mb-12 ml-4">Luaran Kelompok</h1>
         <div className="overflow-scroll rounded-lg border border-gray-200 shadow-md m-5 max-h-[35rem]">
           <table className="w-full border-collapse bg-white text-left text-gray-500">
             <thead className="bg-gray-200">

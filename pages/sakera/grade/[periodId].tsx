@@ -1,6 +1,6 @@
 import axios from "axios";
 import dynamic from "next/dynamic";
-import { IGradePeriodPage, mapToGroupByPeriodLecturer } from "./grade.types";
+import { IGradePeriodPage, mapToGroup } from "./grade.types";
 
 const GradeByPeriod = dynamic(() => import("@/container/admin/GradeByPeriod"));
 
@@ -24,7 +24,7 @@ export async function getServerSideProps(context: any) {
       return response.data.data;
     });
 
-  const groups = mapToGroupByPeriodLecturer(dataAPI);
+  const groups = mapToGroup(dataAPI);
 
   return {
     props: {

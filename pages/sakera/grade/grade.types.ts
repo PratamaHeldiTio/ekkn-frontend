@@ -7,9 +7,10 @@ export interface IPeriod {
 export interface IGroup {
   id: string;
   name: string;
-  location: string;
+  village: string;
+  kecamatan: string;
+  kabupaten: string;
 }
-
 export interface IGradePage {
   periods: IPeriod[];
 }
@@ -33,13 +34,15 @@ export const mapToPeriod = (dataAPI: any): IPeriod[] => {
   return periods;
 };
 
-export const mapToGroupByPeriodLecturer = (dataAPI: any): IGroup[] => {
+export const mapToGroup = (dataAPI: any): IGroup[] => {
   const groups: IGroup[] = [];
-  dataAPI.forEach((groupData: any) => {
+  dataAPI.forEach((groupAPI: any) => {
     const group: IGroup = {
-      id: groupData.id,
-      name: groupData.name,
-      location: `Desa ${groupData.village.name}, Kecamatan ${groupData.village.kecamatan}, Kabupaten ${groupData.village.kabupaten}`,
+      id: groupAPI.id,
+      name: groupAPI.name,
+      village: groupAPI.village.name,
+      kecamatan: groupAPI.village.kecamatan,
+      kabupaten: groupAPI.village.kabupaten,
     };
 
     groups.push(group);
