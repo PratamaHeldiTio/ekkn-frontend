@@ -1,4 +1,5 @@
 import Alert from "@/components/Alert";
+import InputField from "@/components/InputField";
 import InputSubmit from "@/components/InputSubmit";
 import {
   IStudentRegistration,
@@ -23,6 +24,7 @@ export default function StudenRegistration({
   const [alertFail, setAlertFail] = useState(false);
   const [alertMessage, setAlertMessage] = useState("");
   const [registrationState, setRegistration] = useState(registration);
+  const [search, setSearch] = useState<string>();
 
   const handleValidasi = (id: string) => {
     axios
@@ -72,6 +74,31 @@ export default function StudenRegistration({
       });
   };
 
+  const handleSearch = (e: React.FormEvent<HTMLFormElement>) => {
+    e.preventDefault();
+
+    axios
+      .get(
+        `${process.env.BASE_URL_V1}/student/registrations/${periodId}?search=${search}`,
+        {
+          headers: {
+            Authorization: `Bearer ${token}`,
+          },
+        }
+      )
+      .then((response) => {
+        const students = mapToStudentRegistration(response.data.data);
+        setRegistration(students);
+      })
+      .catch((response) => {
+        setAlertMessage(response.response.data.message);
+        setAlertFail(!alertFail);
+        setTimeout(() => {
+          setAlertFail((prev) => !prev);
+        }, 2000);
+      });
+  };
+
   return (
     <AdminLayout
       navigations={[{ title: "Kembali", link: "/sakera/registration" }]}
@@ -86,6 +113,21 @@ export default function StudenRegistration({
 
         {alertFail && <Alert background="bg-danger" message={alertMessage} />}
 
+        <form
+          onSubmit={handleSearch}
+          className="mx-6 grid grid-cols-5 items-center gap-8"
+        >
+          <div className="col-span-4">
+            <InputField
+              value={search}
+              placeholder="Cari berdasarkan NIM"
+              onChange={(e) => setSearch(e.target.value)}
+            />
+          </div>
+          <div className="h-11">
+            <InputSubmit value="Cari" />
+          </div>
+        </form>
         <div className="overflow-scroll rounded-lg border border-gray-200 shadow-md m-5 max-h-[35rem]">
           <table className="w-full border-collapse bg-white text-left text-gray-500">
             <thead className="bg-gray-200">

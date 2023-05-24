@@ -143,7 +143,7 @@ export default function LecturerRegistration({
                         ? "Diterima"
                         : "Ditolak"}
                     </td>
-                    <td className="pb-4 grid grid-cols-2">
+                    <td className="pb-4 grid grid-cols-2 pt-4">
                       <div className="w-20 h-8">
                         <InputSubmit
                           value="Terima"
