@@ -91,7 +91,7 @@ export default function LoginComp() {
               onChange={handleChange}
               required={true}
             />
-            <div className="h-10">
+            <div className="h-10 my-4">
               <InputSubmit value="Login" />
             </div>
           </form>

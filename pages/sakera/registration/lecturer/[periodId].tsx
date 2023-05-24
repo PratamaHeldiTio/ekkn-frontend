@@ -35,8 +35,6 @@ export async function getServerSideProps(context: any) {
       return null;
     });
 
-  console.log(dataAPI);
-
   const registration = mapToLecturerRegistration(dataAPI);
 
   return {

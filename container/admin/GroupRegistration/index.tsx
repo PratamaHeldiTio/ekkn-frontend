@@ -15,7 +15,7 @@ export default function GroupRegistration({ groups }: IGroupRegistrationPage) {
       navigations={[{ title: "Kembali", link: "/sakera/registration" }]}
     >
       <div className="bg-secondary p-8 rounded-3xl my-8">
-        <h1 className="text-2xl font-bold mb-12">
+        <h1 className="text-2xl font-bold mb-12 ml-4">
           Kelompok Yang Telah Terdaftar
         </h1>
 

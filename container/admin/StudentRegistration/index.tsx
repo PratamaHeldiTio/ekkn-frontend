@@ -77,7 +77,7 @@ export default function StudenRegistration({
       navigations={[{ title: "Kembali", link: "/sakera/registration" }]}
     >
       <div className="bg-secondary p-8 rounded-3xl my-8">
-        <h1 className="text-2xl font-bold mb-12">
+        <h1 className="text-2xl font-bold mb-12 ml-4">
           Mahasiswa yang telah terdaftar
         </h1>
         {alertSuccess && (

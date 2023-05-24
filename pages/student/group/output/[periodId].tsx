@@ -41,7 +41,6 @@ export async function getServerSideProps(context: any) {
     });
 
   const outputs = toMapOutput(dataAPI);
-  console.log(outputs);
 
   return {
     props: {

@@ -24,6 +24,7 @@ export default function Student({ students }: IStudentPage) {
   const [alertSuccess, setAlertSuccess] = useState<boolean>();
   const [alertFail, setAlertFail] = useState<boolean>();
   const [alertMessage, setAlertMessage] = useState();
+  const [search, setSearch] = useState<string>();
   const [statestudents, setStudents] = useState(students);
 
   // to top after register
@@ -145,6 +146,28 @@ export default function Student({ students }: IStudentPage) {
       });
   };
 
+  const handleSearch = (e: React.FormEvent<HTMLFormElement>) => {
+    e.preventDefault();
+
+    axios
+      .get(`${process.env.BASE_URL_V1}/students?search=${search}`, {
+        headers: {
+          Authorization: `Bearer ${token}`,
+        },
+      })
+      .then((response) => {
+        const students = mapingDataToStudents(response.data.data);
+        setStudents(students);
+      })
+      .catch((response) => {
+        setAlertMessage(response.response.data.message);
+        setAlertFail(!alertFail);
+        setTimeout(() => {
+          setAlertFail((prev) => !prev);
+        }, 2000);
+      });
+  };
+
   return (
     <AdminLayout
       navigations={[{ title: "Mahasiswa", link: "/sakera/student" }]}
@@ -179,7 +202,22 @@ export default function Student({ students }: IStudentPage) {
         </form>
       </div>
       <div className="rounded-3xl p-8 bg-secondary">
-        <h1 className="text-2xl font-bold mb-12 ml-5">Daftar Mahasiswa</h1>
+        <h1 className="text-2xl font-bold mb-8 ml-5">Daftar Mahasiswa</h1>
+        <form
+          onSubmit={handleSearch}
+          className="mx-6 grid grid-cols-5 items-center gap-8"
+        >
+          <div className="col-span-4">
+            <InputField
+              value={search}
+              placeholder="Cari berdasarkan nim / nama / prodi / fakultas"
+              onChange={(e) => setSearch(e.target.value)}
+            />
+          </div>
+          <div className="h-11">
+            <InputSubmit value="Cari" />
+          </div>
+        </form>
         <div className="overflow-scroll rounded-lg border border-gray-200 shadow-md m-5 max-h-[35rem]">
           <table className="w-full border-collapse bg-secondary text-left text-gray-500">
             <thead className="bg-gray-200">

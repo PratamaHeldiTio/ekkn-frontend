@@ -77,7 +77,9 @@ export default function LecturerRegistration({
       navigations={[{ title: "Kembali", link: "/sakera/registration" }]}
     >
       <div className="bg-secondary p-8 rounded-3xl my-8">
-        <h1 className="text-2xl font-bold mb-12">Dosen Yang Telah Mendaftar</h1>
+        <h1 className="text-2xl font-bold mb-12 ml-4">
+          Dosen Yang Telah Mendaftar
+        </h1>
         {alertSuccess && (
           <Alert background="bg-active" message={alertMessage} />
         )}
