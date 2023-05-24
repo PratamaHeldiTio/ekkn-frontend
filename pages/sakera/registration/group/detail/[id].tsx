@@ -72,7 +72,6 @@ export async function getServerSideProps(context: any) {
   const group = mapToDetailGroup(dataAPI);
   const prokers = mapToProker(dataAPIStudentRegistration);
 
-  console.log(dataAPI);
   return {
     props: {
       group,
