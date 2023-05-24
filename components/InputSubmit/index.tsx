@@ -12,7 +12,7 @@ export default function InputSubmit({
       value={value}
       className={`w-full h-full ${
         background ? background : "bg-primary hover:bg-active"
-      } text-slate-50 font-bold rounded-lg my-3`}
+      } text-slate-50 font-bold rounded-lg`}
       disabled={disabled}
       onClick={onClick}
     />

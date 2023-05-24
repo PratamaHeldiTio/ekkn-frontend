@@ -139,38 +139,40 @@ export default function Output({ groupId, outputs }: IOutputPage) {
       {/* section list output */}
       <div className="mt-8 mb-20 lg:m-0 lg:mt-8 lg:p-10 p-6 bg-secondary rounded-3xl">
         <h1 className="text-xl lg:text-2xl font-bold">Daftar Luaran</h1>
-        {outputs.map((output: IOutput) => {
-          return (
-            <div key={output.id} className="bg-gray-200 rounded-xl my-8">
-              <div className="bg-primary text-secondary rounded-t-xl px-4 py-2 lg:px-8">
-                <h2 className="font-bold lg:text-xl capitalize text-center">
-                  {output.type}
-                </h2>
+        <div className="grid grid-cols-1 gap-8 xl:grid-cols-2">
+          {outputs.map((output: IOutput) => {
+            return (
+              <div key={output.id} className="bg-gray-200 rounded-xl">
+                <div className="bg-primary text-secondary rounded-t-xl px-4 py-3 lg:px-8 flex items-center place-content-between text-base">
+                  <h2 className="font-bold capitalize text-center mr-4">
+                    {output.type}
+                  </h2>
+                  <a
+                    className="block h-8 w-32"
+                    href={output.file}
+                    target="_blank"
+                  >
+                    <InputSubmit value="Buka Luaran" background="bg-success" />
+                  </a>
+                </div>
+                <div className="px-6 py-4">
+                  <h2 className="font-bold lg:text-xl capitalize">
+                    Deskripsi Luaran
+                  </h2>
+                  <p className="text-justify leading-7">{output.description}</p>
+                  <h2 className="font-bold lg:text-xl mt-4 capitalize">
+                    Kontribusi
+                  </h2>
+                  <ul className="list-decimal ml-4">
+                    {output.contribution.map((student: any, index: number) => {
+                      return <li key={index}>{student}</li>;
+                    })}
+                  </ul>
+                </div>
               </div>
-              <div className="px-6 py-4">
-                <h2 className="font-bold lg:text-xl capitalize">
-                  Deskripsi Luaran
-                </h2>
-                <p className="text-justify leading-7">{output.description}</p>
-                <h2 className="font-bold lg:text-xl mt-4 capitalize">
-                  Kontribusi
-                </h2>
-                <ul className="list-decimal ml-4">
-                  {output.contribution.map((student: any, index: number) => {
-                    return <li key={index}>{student}</li>;
-                  })}
-                </ul>
-                <a
-                  className="block h-10 w-6/12 mx-auto my-4"
-                  href={output.file}
-                  target="_blank"
-                >
-                  <InputSubmit value="Buka Luaran" background="bg-success" />
-                </a>
-              </div>
-            </div>
-          );
-        })}
+            );
+          })}
+        </div>
       </div>
     </StudentLayout>
   );

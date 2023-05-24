@@ -93,7 +93,7 @@ export default function DetailGroup({ group, lecturers, prokers }: IGroupPage) {
             Data Kelompok
           </h1>
           <ul className="lg:text-lg">
-            <li className="my-2 truncate">Nama : {group.name}</li>
+            <li className="my-2 truncate">Kelompok : {group.name}</li>
             <li className="my-2 truncate">Ketua : {group.leader}</li>
             <li className="my-2 truncate">
               Lokasi :{" "}
