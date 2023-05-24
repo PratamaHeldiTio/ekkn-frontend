@@ -237,7 +237,7 @@ export default function Profile({ lecturer }: IProfilePage) {
             value={repeatNewPassword}
             required
           />
-          <div className="lg:w-80 lg:mx-auto mb-4">
+          <div className="lg:w-80 h-10 lg:mx-auto mb-4">
             <InputSubmit value="Ubah Password" />
           </div>
         </form>

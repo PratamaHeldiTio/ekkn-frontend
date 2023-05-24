@@ -14,7 +14,7 @@ export default function Group({ registeredStudents }: IRegisteredStudents) {
   ];
   return (
     <StudentLayout navigations={navigations}>
-      <div className="md:grid md:grid-cols-2 md:gap-8 my-16 lg:my-8">
+      <div className="md:grid xl:grid-cols-2 md:gap-8 my-20 lg:my-8">
         {registeredStudents.map((registeredStudent: IRegisteredStudent) => {
           return (
             <Link
@@ -27,7 +27,7 @@ export default function Group({ registeredStudents }: IRegisteredStudents) {
                   src={heroGroup}
                   className="rounded-t-3xl"
                 />
-                <p className="font-bold p-4 md:text-xl">
+                <p className="font-bold p-4 md:text-xl capitalize text-center">
                   Periode Semester {registeredStudent.semester}{" "}
                   {registeredStudent.tahunAjaran}
                 </p>

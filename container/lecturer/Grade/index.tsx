@@ -10,7 +10,7 @@ export default function Grade({ periods }: IGradePage) {
     <LecturerLayout
       navigations={[{ title: "Penilaian", link: "/lecturer/grade" }]}
     >
-      <div className="md:grid md:grid-cols-2 md:gap-8 my-16 lg:my-8">
+      <div className="md:grid xl:grid-cols-2 md:gap-8 my-20 lg:my-8">
         {periods.map((period: IPeriod) => {
           return (
             <Link href={`/lecturer/grade/${period.id}`} key={period.id}>

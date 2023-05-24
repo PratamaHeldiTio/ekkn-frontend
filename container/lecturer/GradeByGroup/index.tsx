@@ -99,7 +99,7 @@ export default function GradeByGroup({
 
         {alertFail && <Alert background="bg-danger" message={alertMessage} />}
         <form onSubmit={handleSaveGrade}>
-          <div className="grid grid-cols-2 gap-8">
+          <div className="grid grid-cols-1 lg:grid-cols-2 gap-4">
             <InputField
               label="NIM"
               placeholder="Masukan NIM"
@@ -116,8 +116,8 @@ export default function GradeByGroup({
               onChange={(e) => setGrade(parseInt(e.target.value))}
             />
           </div>
-          <div className="w-40 lg:w-80 mx-auto h-10">
-            <InputSubmit value="Tambah" />
+          <div className="w-40 lg:w-80 mx-auto mt-6 h-10">
+            <InputSubmit value="Simpan" />
           </div>
         </form>
         <div className="overflow-x-scroll rounded-lg border border-gray-200 shadow-md mt-12">

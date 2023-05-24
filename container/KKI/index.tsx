@@ -13,7 +13,7 @@ export default function KKIPage({ registeredStudents }: IKKI) {
   ];
   return (
     <StudentLayout navigations={navigations}>
-      <div className="md:grid md:grid-cols-2 md:gap-8 my-20 lg:my-8">
+      <div className="md:grid xl:grid-cols-2 md:gap-8 my-20 lg:my-8">
         {registeredStudents.map((registeredStudent: IRegisteredStudent) => {
           return (
             <Link
@@ -21,12 +21,14 @@ export default function KKIPage({ registeredStudents }: IKKI) {
               key={registeredStudent.periodId}
             >
               <div className="bg-secondary rounded-3xl mb-6">
-                <Image
-                  alt="picture kelompok"
-                  src={contractHero}
-                  className="rounded-t-3xl"
-                />
-                <p className="font-bold p-4 md:text-xl">
+                <div className="max-h-52 overflow-hidden">
+                  <Image
+                    alt="picture kelompok"
+                    src={contractHero}
+                    className="rounded-t-3xl"
+                  />
+                </div>
+                <p className="font-bold p-4 md:text-xl capitalize text-center">
                   Periode Semester {registeredStudent.semester}{" "}
                   {registeredStudent.tahunAjaran}
                 </p>

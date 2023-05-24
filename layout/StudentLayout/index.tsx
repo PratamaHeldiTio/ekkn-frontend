@@ -2,7 +2,7 @@ import { IStudentLayout } from "./StudentLayout.types";
 import register from "@/public/register.png";
 import contract from "@/public/contract.png";
 import logbook from "@/public/logbook.png";
-import output from "@/public/output.png";
+import profile from "@/public/profile.png";
 import group from "@/public/group.png";
 import SideLink from "@/components/SideLink";
 import dynamic from "next/dynamic";
@@ -17,7 +17,7 @@ export default function StudentLayout({
     <div className="lg:p-10 p-6 lg:grid lg:grid-cols-12 lg:min-h-screen">
       <div className="lg:col-span-4 xl:col-span-3">
         <SidebarLayout>
-          <div className="grid grid-cols-4 p-3 lg:inline-block px-8">
+          <div className="grid grid-cols-5 p-3 lg:inline-block">
             <SideLink
               role="student"
               destination="register"
@@ -42,6 +42,14 @@ export default function StudentLayout({
               icon={group}
               content="Kelompok"
             />
+            <div className="lg:hidden">
+              <SideLink
+                role="student"
+                destination="profile"
+                icon={profile}
+                content="Akun"
+              />
+            </div>
           </div>
         </SidebarLayout>
       </div>

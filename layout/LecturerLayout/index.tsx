@@ -3,6 +3,7 @@ import register from "@/public/register.png";
 import grade from "@/public/grade.png";
 import logbook from "@/public/logbook.png";
 import group from "@/public/group.png";
+import profile from "@/public/profile.png";
 import SideLink from "@/components/SideLink";
 import dynamic from "next/dynamic";
 import Header from "@/components/Header";
@@ -16,7 +17,7 @@ export default function StudentLayout({
     <div className="lg:p-10 p-6 lg:grid lg:grid-cols-12 lg:min-h-screen">
       <div className="lg:col-span-4 xl:col-span-3">
         <SidebarLayout>
-          <div className="grid grid-cols-4 p-3 px-8 lg:inline-block">
+          <div className="grid grid-cols-5 p-3 lg:inline-block">
             <SideLink
               role="lecturer"
               destination="registration"
@@ -41,6 +42,14 @@ export default function StudentLayout({
               icon={grade}
               content="Penilaian"
             />
+            <div className="lg:hidden">
+              <SideLink
+                role="lecturer"
+                destination="profile"
+                icon={profile}
+                content="Akun"
+              />
+            </div>
           </div>
         </SidebarLayout>
       </div>

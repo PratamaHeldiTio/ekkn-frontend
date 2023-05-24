@@ -66,7 +66,7 @@ export default function DetailKKI({ studentProker }: IDetailKKIPage) {
             value={proker}
             onChange={(e) => setProker(e.target.value)}
           />
-          <div className="lg:w-80 lg:mx-auto h-10 mb-4">
+          <div className="lg:w-80 lg:mx-auto h-10 my-4">
             <InputSubmit value="Simpan" />
           </div>
         </form>

@@ -10,7 +10,7 @@ export default function LogbookByPeriod({ groups }: IGroupByPeriodPage) {
     <LecturerLayout
       navigations={[{ title: "Kembali", link: "/lecturer/group" }]}
     >
-      <div className="md:gap-8 my-20 lg:my-8">
+      <div className="gap-8 my-20 lg:my-8 grid grid-cols-1 xl:grid-cols-2">
         {groups.map((group: IGroup) => {
           return (
             <Link href={`/lecturer/group/detail/${group.id}`} key={group.id}>
@@ -21,10 +21,10 @@ export default function LogbookByPeriod({ groups }: IGroupByPeriodPage) {
                   className="rounded-t-3xl max-h-60"
                 />
                 <div className="lg:p-8 p-4">
-                  <p className="font-bold px-4 md:text-xl capitalize">
-                    Nama Kelompok: {group.name}
+                  <p className="px-4 md:text-xl capitalize">
+                    Kelompok: {group.name}
                   </p>
-                  <p className="font-bold px-4 md:text-xl capitalize">
+                  <p className="px-4 md:text-xl capitalize">
                     Lokasi: {group.location}
                   </p>
                 </div>

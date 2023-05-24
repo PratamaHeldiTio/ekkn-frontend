@@ -13,7 +13,7 @@ export default function Logbook({ registeredStudents }: IRegisteredStudents) {
     <StudentLayout
       navigations={[{ title: "Logbook", link: "/student/logbook" }]}
     >
-      <div className="md:grid md:grid-cols-2 md:gap-8 my-16 lg:my-8">
+      <div className="md:grid xl:grid-cols-2 md:gap-8 my-20 lg:my-8">
         {registeredStudents.map((registeredStudent: IRegisteredStudent) => {
           return (
             <Link
@@ -26,7 +26,7 @@ export default function Logbook({ registeredStudents }: IRegisteredStudents) {
                   src={heroLogbook}
                   className="rounded-t-3xl max-h-60"
                 />
-                <p className="font-bold p-4 md:text-xl">
+                <p className="font-bold p-4 md:text-xl capitalize text-center">
                   Periode Semester {registeredStudent.semester}{" "}
                   {registeredStudent.tahunAjaran}
                 </p>

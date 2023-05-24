@@ -130,7 +130,7 @@ export default function Output({ groupId, outputs }: IOutputPage) {
               Note: setiap nama pisahkan dengan koma (,)
             </p>
           </div>
-          <div className="w-80 h-10 my-4 mx-auto">
+          <div className="w-80 h-10 mt-8 mb-4 mx-auto">
             <InputSubmit value="kirim" />
           </div>
         </form>
@@ -138,7 +138,7 @@ export default function Output({ groupId, outputs }: IOutputPage) {
 
       {/* section list output */}
       <div className="mt-8 mb-20 lg:m-0 lg:mt-8 lg:p-10 p-6 bg-secondary rounded-3xl">
-        <h1 className="text-xl lg:text-2xl font-bold">Daftar Luaran</h1>
+        <h1 className="text-xl lg:text-2xl font-bold mb-8">Daftar Luaran</h1>
         <div className="grid grid-cols-1 gap-8 xl:grid-cols-2">
           {outputs.map((output: IOutput) => {
             return (

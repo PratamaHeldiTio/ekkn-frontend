@@ -144,7 +144,7 @@ export default function DetailLogbook({ group, logbooks }: ILogbookDetail) {
     <StudentLayout
       navigations={[{ title: "Kembali ", link: "/student/logbook" }]}
     >
-      <div className="my-16 lg:my-8">
+      <div className="mt-20 lg:my-8">
         {alertSuccess && (
           <Alert background="bg-active" message={alertMessage} />
         )}
@@ -152,10 +152,12 @@ export default function DetailLogbook({ group, logbooks }: ILogbookDetail) {
         {alertFail && <Alert background="bg-danger" message={alertMessage} />}
 
         {/* section add logbook */}
-        <div className="bg-secondary rounded-3xl lg:mt-8 lg:p-8 lg:text-xl p-6 font-bold">
+        <div className="bg-secondary rounded-3xl lg:mt-8 mb-8 lg:p-8 lg:text-xl p-6">
           <h1>Kelompok: {group.name}</h1>
           <h1>Desa: {`${group.village}`}</h1>
-          <h1 className="my-6 text-center">Apa Kegiatanmu Hari Ini</h1>
+          <h1 className="mt-8 mb-4 text-center font-bold">
+            Apa Kegiatanmu Hari Ini
+          </h1>
           <form onSubmit={handleSubmit}>
             <InputField
               label="Tanggal"
@@ -191,12 +193,12 @@ export default function DetailLogbook({ group, logbooks }: ILogbookDetail) {
             </div>
           </form>
         </div>
-        <div className="grid grid-cols-1 gap-6 mt-6">
+        <div className="grid grid-cols-1 gap-8">
           {logbooksData.map((logbook: any) => {
             return (
               <div
                 key={logbook.id}
-                className="bg-secondary rounded-3xl lg:p-12 p-6 lg:text-xl font-bold mt-8"
+                className="bg-secondary rounded-3xl lg:p-12 p-6 lg:text-xl font-bold"
               >
                 <h1>{formatTimeUnix(logbook.date).split(",")[0]}</h1>
                 <p className="font-light text-sm">

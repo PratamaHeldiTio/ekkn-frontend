@@ -19,7 +19,7 @@ export default function LogbookByPeriod({
         { title: "Kembali", link: `/lecturer/logbook/${periodId}` },
       ]}
     >
-      <div className="rounded-3xl p-8 bg-secondary my-8">
+      <div className="my-20 rounded-3xl p-8 bg-secondary lg:my-8">
         <h1 className="text-2xl font-bold mb-12 ml-6">Logbook Mahasiwa</h1>
 
         <div className="overflow-scroll rounded-lg border border-gray-200 shadow-md m-5 max-h-[35rem]">
