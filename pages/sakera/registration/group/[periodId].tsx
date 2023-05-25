@@ -31,7 +31,7 @@ export async function getServerSideProps(context: any) {
       return response.data.data;
     })
     .catch(() => {
-      return null;
+      return [];
     });
 
   const groups = mapToGroupRegistration(dataAPI);

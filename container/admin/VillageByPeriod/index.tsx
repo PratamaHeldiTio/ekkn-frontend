@@ -26,6 +26,7 @@ export default function VillageByPeriod({ villages }: IVillageByPeriodPage) {
   const [kecamatan, setKecamatan] = useState<string>();
   const [kabupaten, setKabupaten] = useState<string>();
   const [stateVillages, setVillages] = useState(villages);
+  const [search, setSearch] = useState<string>();
 
   const handleCreateVillage = (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
@@ -116,6 +117,31 @@ export default function VillageByPeriod({ villages }: IVillageByPeriodPage) {
       });
   };
 
+  const handleSearch = (e: React.FormEvent<HTMLFormElement>) => {
+    e.preventDefault();
+
+    axios
+      .get(
+        `${process.env.BASE_URL_V1}/village/period/${periodId}?search=${search}`,
+        {
+          headers: {
+            Authorization: `Bearer ${token}`,
+          },
+        }
+      )
+      .then((response) => {
+        const villages = mapDataToVillages(response.data.data);
+        setVillages(villages);
+      })
+      .catch((response) => {
+        setAlertMessage(response.response.data.message);
+        setAlertFail(!alertFail);
+        setTimeout(() => {
+          setAlertFail((prev) => !prev);
+        }, 2000);
+      });
+  };
+
   return (
     <AdminLayout navigations={[{ title: "Kembali", link: "/sakera/village" }]}>
       <div className="rounded-3xl p-8 bg-secondary my-8">
@@ -124,7 +150,6 @@ export default function VillageByPeriod({ villages }: IVillageByPeriodPage) {
         {alertSuccess && (
           <Alert background="bg-active" message={alertMessage} />
         )}
-
         {alertFail && <Alert background="bg-danger" message={alertMessage} />}
 
         <form onSubmit={handleCreateVillage}>
@@ -157,7 +182,22 @@ export default function VillageByPeriod({ villages }: IVillageByPeriodPage) {
         </form>
       </div>
       <div className="rounded-3xl p-8 bg-secondary">
-        <h1 className="text-2xl font-bold mb-12 ml-5">Daftar Desa</h1>
+        <h1 className="text-2xl font-bold mb-8 ml-5">Daftar Desa</h1>
+        <form
+          onSubmit={handleSearch}
+          className="mx-6 grid grid-cols-5 items-center gap-8"
+        >
+          <div className="col-span-4">
+            <InputField
+              value={search}
+              placeholder="Cari berdasarkan nama desa"
+              onChange={(e) => setSearch(e.target.value)}
+            />
+          </div>
+          <div className="h-11">
+            <InputSubmit value="Cari" />
+          </div>
+        </form>
         <div className="overflow-x-scroll rounded-lg border border-gray-200 shadow-md m-5">
           <table className="w-full border-collapse bg-secondary text-left text-gray-500">
             <thead className="bg-gray-200">
