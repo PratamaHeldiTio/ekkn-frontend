@@ -28,6 +28,7 @@ export async function getServerSideProps(context: any) {
     fakultas: dataAPI.fakultas,
     gender: dataAPI.gender,
     maduraLang: dataAPI.madura_lang,
+    profile: dataAPI.profile,
   };
 
   return {

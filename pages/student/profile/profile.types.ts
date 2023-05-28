@@ -5,6 +5,7 @@ export interface IStudent {
   fakultas: string;
   gender: string;
   maduraLang: string;
+  profile: string;
 }
 
 export interface IProfile {

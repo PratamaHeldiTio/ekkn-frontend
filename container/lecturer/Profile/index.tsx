@@ -1,3 +1,4 @@
+/* eslint-disable @next/next/no-img-element */
 import React, { useEffect, useState } from "react";
 import dynamic from "next/dynamic";
 import InputField from "@/components/InputField";
@@ -11,12 +12,16 @@ import dataFakultas from "@/global/fakultas.json";
 import dataProdi from "@/global/prodi.json";
 import Alert from "@/components/Alert";
 import { IProfilePage } from "@/pages/lecturer/profile/profile.types";
+import { useRouter } from "next/router";
 const LecturerLayout = dynamic(() => import("@/layout/LecturerLayout"));
 export default function Profile({ lecturer }: IProfilePage) {
   // get token
   const cookies = new Cookies();
   const token = cookies.get("AUTH_LGN");
+  const router = useRouter();
 
+  const [profile, setProfile] = useState<string>("");
+  const [newProfile, setNewProfile] = useState<string | Blob>("");
   // create state like input
   const [inputvalue, setInputValue] = useState({
     nip: lecturer.nip,
@@ -52,6 +57,12 @@ export default function Profile({ lecturer }: IProfilePage) {
   useEffect(() => {
     window.scrollTo(0, 0);
   }, [alertFail, alertSuccess]);
+
+  useEffect(() => {
+    if (lecturer.profile != "") {
+      setProfile(`${process.env.BASE_URL}/static/profile/${lecturer.profile}`);
+    }
+  }, []);
 
   // handler change input field
   const handleChangeField = (e: React.ChangeEvent<HTMLInputElement>) => {
@@ -141,14 +152,73 @@ export default function Profile({ lecturer }: IProfilePage) {
       });
   };
 
+  const handleUploadProfile = (e: React.FormEvent<HTMLFormElement>) => {
+    e.preventDefault();
+
+    const formData = new FormData();
+    formData.append("profile", newProfile);
+
+    axios
+      .put(`${process.env.BASE_URL_V1}/lecturer/profile`, formData, {
+        headers: {
+          "Content-Type": "multipart/form-data",
+          Authorization: `Bearer ${token}`,
+        },
+      })
+      .then((response) => {
+        setAlertMessage(response.data.message);
+        setAlertSuccess(!alertSuccess);
+        setTimeout(() => {
+          setAlertSuccess((prev) => !prev);
+        }, 1000);
+
+        setTimeout(() => {
+          router.reload();
+        }, 1500);
+      })
+      .catch((response) => {
+        setAlertMessage(response.response.data.message);
+        setAlertFail(!alertFail);
+        setTimeout(() => {
+          setAlertFail((prev) => !prev);
+        }, 1500);
+      });
+  };
+
   return (
     <LecturerLayout navigations={[{ title: "Keluar", link: "/logout" }]}>
       <div className="mt-20 lg:m-0 rounded-3xl lg:mt-8 lg:p-8 p-6 bg-secondary">
         {alertSuccess && (
           <Alert background="bg-active" message={alertMessage} />
         )}
-
         {alertFail && <Alert background="bg-danger" message={alertMessage} />}
+        <div className="w-24 h-24 overflow-hidden cursor-pointer rounded-full mx-auto">
+          <div className="w-24 h-24 overflow-hidden cursor-pointer rounded-full mx-auto">
+            <img
+              alt="profile user"
+              src={profile != "" ? profile : "/user.png"}
+            />
+          </div>
+        </div>
+
+        <div className="grid grid-cols-1 justify-items-center mt-8 mb-16">
+          <div>
+            <form className="flex gap-4" onSubmit={handleUploadProfile}>
+              <input
+                type="file"
+                className="file:hidden pt-2 px-4 outline lg:text-lg outline-2 outline-slate-400 rounded-lg font-light h-10 w-56 md:w-80"
+                onChange={(e: any) => {
+                  setNewProfile(e.target.files[0]);
+                  setProfile(URL.createObjectURL(e.target.files[0]));
+                }}
+              />
+              <div className="h-10 w-24 md:w-32">
+                <InputSubmit value="Simpan" />
+              </div>
+            </form>
+            <p className="text-sm mt-2">Note: Maksimal ukuran file 1 MB</p>
+          </div>
+        </div>
 
         <form onSubmit={handleSaveProfile}>
           <h1 className=" text-xl lg:text-2xl font-bold">Informasi Pribadi</h1>

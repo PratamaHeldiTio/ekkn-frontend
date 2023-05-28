@@ -176,7 +176,7 @@ export default function DetailLogbook({ group, logbooks }: ILogbookDetail) {
             <div className="mt-6">
               <InputFile
                 format="png, jpg, jpeg"
-                maxSize={5}
+                maxSize={1}
                 label="dokumentasi kegiatan"
                 file={imagePreview}
                 onChange={(e: any) => {

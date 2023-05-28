@@ -1,3 +1,4 @@
+/* eslint-disable @next/next/no-img-element */
 import React, { useEffect, useState } from "react";
 import dynamic from "next/dynamic";
 import InputField from "@/components/InputField";
@@ -11,11 +12,13 @@ import dataFakultas from "@/global/fakultas.json";
 import dataProdi from "@/global/prodi.json";
 import { IProfile } from "@/pages/student/profile/profile.types";
 import Alert from "@/components/Alert";
+import { useRouter } from "next/router";
 const StudentLayout = dynamic(() => import("@/layout/StudentLayout"));
 export default function Profile({ student }: IProfile) {
   // get token
   const cookies = new Cookies();
   const token = cookies.get("AUTH_LGN");
+  const router = useRouter();
 
   // create state like input
   const [inputvalue, setInputValue] = useState({
@@ -30,14 +33,22 @@ export default function Profile({ student }: IProfile) {
     repeatNewPassword: "",
   });
 
+  const [profile, setProfile] = useState<string>("");
   const [alertSuccess, setAlertSuccess] = useState(false);
   const [alertFail, setAlertFail] = useState(false);
   const [alertMessage, setAlertMessage] = useState("");
+  const [newProfile, setNewProfile] = useState<string | Blob>("");
 
   // to top after register
   useEffect(() => {
     window.scrollTo(0, 0);
   }, [alertFail, alertSuccess]);
+
+  useEffect(() => {
+    if (student.profile != "") {
+      setProfile(`${process.env.BASE_URL}/static/profile/${student.profile}`);
+    }
+  }, []);
 
   const {
     nim,
@@ -49,6 +60,7 @@ export default function Profile({ student }: IProfile) {
     oldPassword,
     newPassword,
     repeatNewPassword,
+    // profile,
   } = inputvalue;
 
   // handler change input field
@@ -137,14 +149,68 @@ export default function Profile({ student }: IProfile) {
       });
   };
 
+  const handleUploadProfile = (e: React.FormEvent<HTMLFormElement>) => {
+    e.preventDefault();
+
+    const formData = new FormData();
+    formData.append("profile", newProfile);
+
+    axios
+      .put(`${process.env.BASE_URL_V1}/student/profile`, formData, {
+        headers: {
+          "Content-Type": "multipart/form-data",
+          Authorization: `Bearer ${token}`,
+        },
+      })
+      .then((response) => {
+        setAlertMessage(response.data.message);
+        setAlertSuccess(!alertSuccess);
+        setTimeout(() => {
+          setAlertSuccess((prev) => !prev);
+        }, 1000);
+
+        setTimeout(() => {
+          router.reload();
+        }, 1500);
+      })
+      .catch((response) => {
+        setAlertMessage(response.response.data.message);
+        setAlertFail(!alertFail);
+        setTimeout(() => {
+          setAlertFail((prev) => !prev);
+        }, 1500);
+      });
+  };
+
   return (
     <StudentLayout navigations={[{ title: "Keluar", link: "/logout" }]}>
       <div className="mt-20 lg:m-0 rounded-3xl lg:mt-8 lg:p-8 p-6 bg-secondary">
         {alertSuccess && (
           <Alert background="bg-active" message={alertMessage} />
         )}
-
         {alertFail && <Alert background="bg-danger" message={alertMessage} />}
+        <div className="w-24 h-24 overflow-hidden cursor-pointer rounded-full mx-auto">
+          <img alt="profile user" src={profile != "" ? profile : "/user.png"} />
+        </div>
+
+        <div className="grid grid-cols-1 justify-items-center mt-8 mb-16">
+          <div>
+            <form className="flex gap-4" onSubmit={handleUploadProfile}>
+              <input
+                type="file"
+                className="file:hidden pt-2 px-4 outline lg:text-lg outline-2 outline-slate-400 rounded-lg font-light h-10 w-56 md:w-80"
+                onChange={(e: any) => {
+                  setNewProfile(e.target.files[0]);
+                  setProfile(URL.createObjectURL(e.target.files[0]));
+                }}
+              />
+              <div className="h-10 w-24 md:w-32">
+                <InputSubmit value="Simpan" />
+              </div>
+            </form>
+            <p className="text-sm mt-2">Note: Maksimal ukuran file 1 MB</p>
+          </div>
+        </div>
 
         <form onSubmit={handleSaveProfile}>
           <h1 className=" text-xl lg:text-2xl font-bold">Informasi Pribadi</h1>

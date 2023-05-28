@@ -6,6 +6,7 @@ export interface ILecturer {
   gender: string;
   contact: string;
   maduraLang: string;
+  profile: string;
 }
 
 export interface IProfilePage {
@@ -22,6 +23,7 @@ export const mapToEditLecturer = (dataAPI: any): ILecturer => {
       gender: "",
       contact: "",
       maduraLang: "",
+      profile: "",
     };
 
     return lecturer;
@@ -34,6 +36,7 @@ export const mapToEditLecturer = (dataAPI: any): ILecturer => {
     gender: dataAPI.gender,
     contact: dataAPI.contact,
     maduraLang: dataAPI.madura_lang,
+    profile: dataAPI.profile,
   };
 
   return lecturer;
