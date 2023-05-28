@@ -1,7 +1,6 @@
 export interface IHeader {
   navigations: INavigation[];
-  admin?: boolean;
-  role?: string;
+  role: string;
 }
 
 export interface INavigation {

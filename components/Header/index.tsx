@@ -5,27 +5,29 @@ import { useEffect, useState } from "react";
 import Cookies from "universal-cookie";
 import axios from "axios";
 
-export default function Header({ navigations = [], admin, role }: IHeader) {
+export default function Header({ navigations = [], role }: IHeader) {
   const cookies = new Cookies();
   const token = cookies.get("AUTH_LGN");
   const [profileImage, setProfile] = useState<string>("");
 
   useEffect(() => {
-    axios
-      .get(`${process.env.BASE_URL_V1}/${role}`, {
-        headers: {
-          Authorization: `Bearer ${token}`,
-        },
-      })
-      .then((response) => {
-        if (response.data.data.profile != undefined) {
-          setProfile(response.data.data.profile);
-          return;
-        }
+    if (role != "admin") {
+      axios
+        .get(`${process.env.BASE_URL_V1}/${role}`, {
+          headers: {
+            Authorization: `Bearer ${token}`,
+          },
+        })
+        .then((response) => {
+          if (response.data.data.profile != undefined) {
+            setProfile(response.data.data.profile);
+            return;
+          }
 
-        setProfile("");
-      })
-      .catch(() => setProfile(""));
+          setProfile("");
+        })
+        .catch(() => setProfile(""));
+    }
   }, []);
 
   return (
@@ -46,7 +48,7 @@ export default function Header({ navigations = [], admin, role }: IHeader) {
             );
           })}
         </ul>
-        {admin == false && (
+        {role != "admin" && (
           <Link
             className="w-12 h-12 overflow-hidden justify-self-end cursor-pointer rounded-full"
             href={`/${role}/profile`}

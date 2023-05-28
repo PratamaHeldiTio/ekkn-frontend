@@ -54,7 +54,7 @@ export default function StudentLayout({
         </SidebarLayout>
       </div>
       <div className="lg:col-span-8 xl:col-span-9 lg:ml-12">
-        <Header navigations={navigations} admin={false} role="lecturer" />
+        <Header navigations={navigations} role="lecturer" />
         {children}
       </div>
     </div>

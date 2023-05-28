@@ -93,7 +93,7 @@ export default function StudentLayout({
         )}
 
         {navigations.length > 0 && (
-          <Header navigations={navigations} admin={true} />
+          <Header navigations={navigations} role="admin" />
         )}
         {children}
       </div>
