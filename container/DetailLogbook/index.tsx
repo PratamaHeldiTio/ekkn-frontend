@@ -41,10 +41,12 @@ export default function DetailLogbook({ group, logbooks }: ILogbookDetail) {
         (position) => {
           setLatitude(position.coords.latitude);
           setLongitude(position.coords.longitude);
+          console.log(position.coords.latitude, position.coords.longitude);
         },
         (err) => {
           alert("Tidak dapat mengisi logbook jika lokasi ditolak");
-        }
+        },
+        { enableHighAccuracy: true, maximumAge: 2000, timeout: 5000 }
       );
     }
     // eslint-disable-next-line react-hooks/exhaustive-deps

@@ -14,6 +14,7 @@ import {
   IOutput,
   IOutputPage,
 } from "@/pages/student/group/output/output.types";
+import LockAcces from "@/components/LockAccess";
 
 const StudentLayout = dynamic(() => import("@/layout/StudentLayout"));
 
@@ -88,6 +89,15 @@ export default function Output({ groupId, outputs }: IOutputPage) {
         }, 2000);
       });
   };
+
+  // condition render component
+  if (groupId == null) {
+    return (
+      <StudentLayout navigations={navigations}>
+        <LockAcces message="Anda tidak memiliki akses pada halaman ini" />;
+      </StudentLayout>
+    );
+  }
 
   return (
     <StudentLayout navigations={navigations}>

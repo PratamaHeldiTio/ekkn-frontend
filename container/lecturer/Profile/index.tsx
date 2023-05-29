@@ -141,7 +141,8 @@ export default function Profile({ lecturer }: IProfilePage) {
         setAlertSuccess(!alertSuccess);
         setTimeout(() => {
           setAlertSuccess((prev) => !prev);
-        }, 2000);
+          router.reload();
+        }, 1500);
       })
       .catch((response) => {
         setAlertMessage(response.response.data.message);

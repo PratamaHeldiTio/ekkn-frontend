@@ -184,24 +184,26 @@ export default function LecturerRegistration({
                         ? "Diterima"
                         : "Ditolak"}
                     </td>
-                    <td className="pb-4 grid grid-cols-2 pt-4">
-                      <div className="w-20 h-8">
-                        <InputSubmit
-                          value="Terima"
-                          background="bg-success"
-                          onClick={() =>
-                            handleValidasi(registration.id, "true")
-                          }
-                        />
-                      </div>
-                      <div className="w-20 h-8">
-                        <InputSubmit
-                          value="Tolak"
-                          background="bg-danger"
-                          onClick={() =>
-                            handleValidasi(registration.id, "false")
-                          }
-                        />
+                    <td>
+                      <div className="grid grid-cols-1 gap-2 py-4">
+                        <div className="w-20 h-8">
+                          <InputSubmit
+                            value="Terima"
+                            background="bg-success"
+                            onClick={() =>
+                              handleValidasi(registration.id, "true")
+                            }
+                          />
+                        </div>
+                        <div className="w-20 h-8">
+                          <InputSubmit
+                            value="Tolak"
+                            background="bg-danger"
+                            onClick={() =>
+                              handleValidasi(registration.id, "false")
+                            }
+                          />
+                        </div>
                       </div>
                     </td>
                   </tr>

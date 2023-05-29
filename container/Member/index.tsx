@@ -17,6 +17,7 @@ export default function Member({ group, leader }: any) {
   const [referral, setReferral] = useState("");
   const [alertSuccess, setAlertSuccess] = useState(false);
   const [alertFail, setAlertFail] = useState(false);
+  const [alertMessage, setAlertMessage] = useState("");
   // get cookie
   const cookies = new Cookies();
   const token = cookies.get("AUTH_LGN");
@@ -55,14 +56,16 @@ export default function Member({ group, leader }: any) {
           },
         }
       )
-      .then(() => {
+      .then((response) => {
+        setAlertMessage(response.data.message);
         setAlertSuccess(!alertSuccess);
         setTimeout(() => {
           setAlertSuccess((prev) => !prev);
           router.reload();
         }, 1500);
       })
-      .catch(() => {
+      .catch((response) => {
+        setAlertMessage(response.response.data.message);
         setAlertFail(!alertFail);
         setTimeout(() => {
           setAlertFail((prev) => !prev);
@@ -84,14 +87,16 @@ export default function Member({ group, leader }: any) {
           },
         }
       )
-      .then(() => {
+      .then((response) => {
+        setAlertMessage(response.data.message);
         setAlertSuccess(!alertSuccess);
         setTimeout(() => {
           setAlertSuccess((prev) => !prev);
           router.reload();
         }, 1500);
       })
-      .catch(() => {
+      .catch((response) => {
+        setAlertMessage(response.response.data.message);
         setAlertFail(!alertFail);
         setTimeout(() => {
           setAlertFail((prev) => !prev);
@@ -111,14 +116,16 @@ export default function Member({ group, leader }: any) {
           },
         }
       )
-      .then(() => {
+      .then((response) => {
+        setAlertMessage(response.data.message);
         setAlertSuccess(!alertSuccess);
         setTimeout(() => {
           setAlertSuccess((prev) => !prev);
           router.reload();
         }, 1500);
       })
-      .catch(() => {
+      .catch((response) => {
+        setAlertMessage(response.response.data.message);
         setAlertFail(!alertFail);
         setTimeout(() => {
           setAlertFail((prev) => !prev);
@@ -132,18 +139,10 @@ export default function Member({ group, leader }: any) {
       <StudentLayout navigations={navigations}>
         <div className="mt-16 lg:mt-8">
           {alertSuccess && (
-            <Alert
-              background="bg-active"
-              message="Kelompok berhasil dibuat/bergabung"
-            />
+            <Alert background="bg-active" message={alertMessage} />
           )}
 
-          {alertFail && (
-            <Alert
-              background="bg-danger"
-              message="Kelompok gagal dibuat/bergabung"
-            />
-          )}
+          {alertFail && <Alert background="bg-danger" message={alertMessage} />}
           <div className="p-6 bg-secondary rounded-3xl">
             <div className="lg:w-9/12 mx-auto xl:w-6/12">
               <h1 className="font-bold text-xl text-center mb-4">
@@ -279,6 +278,7 @@ export default function Member({ group, leader }: any) {
                 <InputSubmit
                   value={group.status == "true" ? "Terdaftar" : "Daftarkan"}
                   disabled={group.status == "true" && true}
+                  background={group.status == "true" ? "bg-gray-700" : ""}
                 />
               </div>
             </form>

@@ -63,6 +63,7 @@ export const mapToDetailGroup = (dataAPI: any): IGroup => {
     };
     members.push(studentData);
   });
+  members.sort((a, b) => a.id.localeCompare(b.id));
 
   const lecturer: ILecturerGroup = {
     id: dataAPI.lecturer.id,
