@@ -8,7 +8,7 @@ export default function UnauthorizedPage() {
   const router = useRouter();
   useEffect(() => {
     setTimeout(() => {
-      router.replace("/");
+      router.replace("/logout");
     }, 3000);
   });
 

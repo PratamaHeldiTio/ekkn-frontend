@@ -1,9 +1,7 @@
-import Navbar from "@/components/Navbar";
+import dynamic from "next/dynamic";
 
-export default function Home() {
-  return (
-    <>
-      <Navbar />
-    </>
-  );
+const Login = dynamic(() => import("@/container/Login"));
+
+export default function LoginPage() {
+  return <Login />;
 }
