@@ -1,5 +1,4 @@
 import axios from "axios";
-import React from "react";
 import { IGradeByGroupPage, mapToGradeByGroup } from "../grade.types";
 import dynamic from "next/dynamic";
 const GradeByGroup = dynamic(() => import("@/container/admin/GradeByGroup"));

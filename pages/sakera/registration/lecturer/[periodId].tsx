@@ -1,7 +1,6 @@
 import axios from "axios";
 import dynamic from "next/dynamic";
 import {
-  ILecturerRegistration,
   ILecturerRegistrationPage,
   mapToLecturerRegistration,
 } from "./lecturerRegistration.types";

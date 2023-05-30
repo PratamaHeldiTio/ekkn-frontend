@@ -1,7 +1,5 @@
 import { useRouter } from "next/router";
 import { useEffect } from "react";
-import Cookies from "universal-cookie";
-const cookies = new Cookies();
 import Link from "next/link";
 
 export default function UnauthorizedPage() {

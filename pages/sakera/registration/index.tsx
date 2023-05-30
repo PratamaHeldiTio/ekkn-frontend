@@ -1,6 +1,5 @@
 import axios from "axios";
 import dynamic from "next/dynamic";
-import React from "react";
 import { IPeriod, IRegistration, mapToPeriod } from "./registration.types";
 
 const Registration = dynamic(

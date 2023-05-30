@@ -1,7 +1,6 @@
 import axios from "axios";
 import dynamic from "next/dynamic";
 import { IPeriod, IPeriodAPI, IRegister, IStudent } from "./register.type";
-import { decodeJWT } from "@/helper";
 
 const Register = dynamic(() => import("@/container/Register"));
 export default function RegisterPage({ periods, student }: IRegister) {

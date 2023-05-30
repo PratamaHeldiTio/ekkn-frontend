@@ -1,5 +1,4 @@
 import axios from "axios";
-import React from "react";
 import { IOutputPeriodPage, mapToGroup } from "./output.types";
 import dynamic from "next/dynamic";
 

@@ -1,6 +1,6 @@
 import axios from "axios";
 import dynamic from "next/dynamic";
-import { IPeriod, IPeriodPage, mapingDataToPeriods } from "./period.types";
+import { IPeriodPage, mapingDataToPeriods } from "./period.types";
 
 const Period = dynamic(() => import("@/container/admin/Period"));
 export default function PeriodPage({ periods }: IPeriodPage) {

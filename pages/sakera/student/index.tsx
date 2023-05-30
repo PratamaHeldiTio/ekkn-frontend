@@ -1,7 +1,6 @@
 import axios from "axios";
 import dynamic from "next/dynamic";
 import { IStudentPage, mapingDataToStudents } from "./student.types";
-import { redirect } from "next/dist/server/api-utils";
 const Student = dynamic(() => import("@/container/admin/Student"));
 
 export default function StudentPage({ students }: IStudentPage) {

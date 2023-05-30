@@ -1,10 +1,6 @@
 import axios from "axios";
 import dynamic from "next/dynamic";
-import {
-  IEditPeriod,
-  IEditPeriodPage,
-  mapToEditPeriod,
-} from "./editPeriod.types";
+import { IEditPeriodPage, mapToEditPeriod } from "./editPeriod.types";
 
 const EditPeriod = dynamic(() => import("@/container/admin/EditPeriod"));
 export default function EditPeriodPage({ period }: IEditPeriodPage) {
