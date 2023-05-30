@@ -41,20 +41,29 @@ export default function History({
                   </p>
                 </div>
                 <div className="lg:w-40 w-32 lg:col-span-2 lg:justify-self-end text-sm lg:text-base">
-                  <Alert
-                    background={
-                      studentRegistration.status == "true"
-                        ? "bg-active"
-                        : "bg-warning"
-                    }
-                    message={
-                      studentRegistration.status == "true"
-                        ? "Terdaftar"
-                        : "Belum Validasi"
-                    }
-                    margin="my-0"
-                    padding="p-1 lg:p-2"
-                  />
+                  {studentRegistration.status == "" ? (
+                    <Alert
+                      background="bg-warning"
+                      message="Belum Validasi"
+                      margin="my-0"
+                      padding="p-1 lg:p-2"
+                    />
+                  ) : (
+                    <Alert
+                      background={
+                        studentRegistration.status == "true"
+                          ? "bg-success"
+                          : "bg-danger"
+                      }
+                      message={
+                        studentRegistration.status == "true"
+                          ? "Diterima"
+                          : "Ditolak"
+                      }
+                      margin="my-0"
+                      padding="p-1 lg:p-2"
+                    />
+                  )}
                 </div>
               </div>
             );

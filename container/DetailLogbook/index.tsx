@@ -29,6 +29,7 @@ export default function DetailLogbook({ group, logbooks }: ILogbookDetail) {
   const [activity, setActivity] = useState("");
   const [latitude, setLatitude] = useState(0);
   const [longitude, setLongitude] = useState(0);
+  const [accuracy, setAccuracy] = useState(0);
 
   const [image, setImage] = useState<string | Blob>("");
   const [alertSuccess, setAlertSuccess] = useState(false);
@@ -41,7 +42,7 @@ export default function DetailLogbook({ group, logbooks }: ILogbookDetail) {
         (position) => {
           setLatitude(position.coords.latitude);
           setLongitude(position.coords.longitude);
-          console.log(position.coords.latitude, position.coords.longitude);
+          setAccuracy(position.coords.accuracy);
         },
         (err) => {
           alert("Tidak dapat mengisi logbook jika lokasi ditolak");
@@ -68,6 +69,17 @@ export default function DetailLogbook({ group, logbooks }: ILogbookDetail) {
       setTimeout(() => {
         setAlertFail((prev) => !prev);
       }, 3000);
+      return;
+    }
+
+    if (accuracy > 1000) {
+      setAlertMessage(
+        "sepertinya akurasi lokasi anda sangat buruk melebihi 1000 meter coba menggunakan device lain atau coba lagi nanti"
+      );
+      setAlertFail(!alertFail);
+      setTimeout(() => {
+        setAlertFail((prev) => !prev);
+      }, 5000);
       return;
     }
 
@@ -195,7 +207,7 @@ export default function DetailLogbook({ group, logbooks }: ILogbookDetail) {
             </div>
           </form>
         </div>
-        <div className="grid grid-cols-1 gap-8">
+        <div className="grid grid-cols-1 gap-8 mb-16">
           {logbooksData.map((logbook: any) => {
             return (
               <div

@@ -198,7 +198,7 @@ export default function Profile({ student }: IProfile) {
             <form className="flex gap-4" onSubmit={handleUploadProfile}>
               <input
                 type="file"
-                className="file:hidden pt-2 px-4 outline lg:text-lg outline-2 outline-slate-400 rounded-lg font-light h-10 w-56 md:w-80"
+                className="file:hidden pt-2 px-4 outline lg:text-lg outline-2 outline-slate-400 rounded-lg font-light h-10 w-48 md:w-80"
                 onChange={(e: any) => {
                   setNewProfile(e.target.files[0]);
                   setProfile(URL.createObjectURL(e.target.files[0]));

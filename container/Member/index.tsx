@@ -210,19 +210,19 @@ export default function Member({ group, leader }: any) {
             />
           )}
           <ul className="lg:text-lg">
-            <li className="my-2 truncate">Nama : {group.name}</li>
-            <li className="my-2 truncate">Ketua : {group.leader}</li>
-            <li className="my-2 truncate">
+            <li className="my-2">Nama : {group.name}</li>
+            <li className="my-2">Ketua : {group.leader}</li>
+            <li className="my-2">
               Tempat :{" "}
               {group.village.name != ""
                 ? `Desa ${group.village.name}, Kecamatan ${group.village.kecamatan}, Kabupaten ${group.village.kabupaten}`
                 : "Belum ada desa"}{" "}
             </li>
-            <li className="my-2 truncate">
+            <li className="my-2">
               Status :{" "}
               {group.status == "true" ? "Terdaftar" : "Belum terdaftar"}
             </li>
-            <li className="my-2 truncate">
+            <li className="my-2">
               Pembimbing :{" "}
               {group.lecturer.name
                 ? group.lecturer.name

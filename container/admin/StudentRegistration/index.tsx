@@ -26,12 +26,12 @@ export default function StudenRegistration({
   const [registrationState, setRegistration] = useState(registration);
   const [search, setSearch] = useState<string>();
 
-  const handleValidasi = (id: string) => {
+  const handleValidasi = (id: string, status: string) => {
     axios
       .put(
-        `${process.env.BASE_URL_V1}/student/registration/${id}`,
+        `${process.env.BASE_URL_V1}/student/registration/validation/${id}`,
         {
-          status: "true",
+          status: status,
         },
         {
           headers: {
@@ -172,20 +172,32 @@ export default function StudenRegistration({
                     <td className="px-6 py-4">{registration.name}</td>
                     <td className="px-6 py-4">{registration.prodi}</td>
                     <td className="px-6 py-4">
-                      {registration.status == "true"
-                        ? "Telah divalidasi"
-                        : "Belum divalidasi"}
+                      {registration.status == ""
+                        ? "Belum divalidasi"
+                        : registration.status == "true"
+                        ? "Diterima"
+                        : "Ditolak"}
                     </td>
-                    <td className="px-6 py-4">
-                      <div className="w-20 h-8 flex place-items-center">
-                        <InputSubmit
-                          value="Validasi"
-                          onClick={() => handleValidasi(registration.id)}
-                          disabled={registration.status == "true" && true}
-                          background={
-                            registration.status == "true" ? "bg-gray-700" : ""
-                          }
-                        />
+                    <td>
+                      <div className="grid grid-cols-1 gap-2 py-4">
+                        <div className="w-20 h-8">
+                          <InputSubmit
+                            value="Terima"
+                            background="bg-success"
+                            onClick={() =>
+                              handleValidasi(registration.id, "true")
+                            }
+                          />
+                        </div>
+                        <div className="w-20 h-8">
+                          <InputSubmit
+                            value="Tolak"
+                            background="bg-danger"
+                            onClick={() =>
+                              handleValidasi(registration.id, "false")
+                            }
+                          />
+                        </div>
                       </div>
                     </td>
                   </tr>
