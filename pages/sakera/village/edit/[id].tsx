@@ -21,7 +21,6 @@ export async function getServerSideProps(context: any) {
     .then((response) => response.data.data)
     .catch(() => null);
 
-  console.log(dataAPI);
   const village = mapToEditVillage(dataAPI);
 
   return {

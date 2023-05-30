@@ -26,7 +26,6 @@ export async function getServerSideProps(context: any) {
       return null;
     });
 
-  console.log(dataAPI);
   const studentProker = mapToStudentProker(dataAPI);
   return {
     props: {

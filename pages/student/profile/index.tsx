@@ -16,8 +16,7 @@ export async function getServerSideProps(context: any) {
         Authorization: `Bearer ${token}`,
       },
     })
-    .then((response) => response.data.data)
-    .catch((err) => console.log(err));
+    .then((response) => response.data.data);
 
   // map data to type student
   const student: IStudent = {

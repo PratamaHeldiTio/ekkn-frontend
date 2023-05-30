@@ -35,8 +35,6 @@ export async function getServerSideProps(context: any) {
 
   const outputs = toOutput(dataAPI);
   const group = mapToDetailGroup(groupAPI);
-  console.log(outputs);
-  console.log(group);
 
   return {
     props: {
