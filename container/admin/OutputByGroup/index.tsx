@@ -47,7 +47,7 @@ export default function OutputGroup({ outputs, group }: IOutputGroupPage) {
                   </h2>
                   <p className="text-justify leading-7">{output.description}</p>
                   <h2 className="font-bold lg:text-xl mt-4 capitalize">
-                    Kontribusi
+                    Kontributor
                   </h2>
                   <ul className="list-decimal ml-4">
                     {output.contribution.map((student: any, index: number) => {
