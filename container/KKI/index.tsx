@@ -13,7 +13,7 @@ export default function KKIPage({ registeredStudents }: IKKI) {
   ];
   return (
     <StudentLayout navigations={navigations}>
-      <div className="md:grid xl:grid-cols-2 md:gap-8 my-20 lg:my-8">
+      <div className="md:grid xl:grid-cols-2 md:gap-x-8 md:gap-y-4 my-20 lg:my-8">
         {registeredStudents.map((registeredStudent: IRegisteredStudent) => {
           return (
             <Link
