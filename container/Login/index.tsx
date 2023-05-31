@@ -111,12 +111,6 @@ export default function LoginComp() {
               <InputSubmit value="Login" />
             </div>
           </form>
-          <p className="mt-8 font-semibold">
-            Kembali ke{" "}
-            <Link href="/" className="text-active">
-              beranda
-            </Link>
-          </p>
         </div>
         <div className="lg:col-span-6 hidden lg:block">
           <Image

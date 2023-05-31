@@ -15,10 +15,10 @@ export const formatTimeUnix = (time: number): string => {
     day: "numeric",
   }).format(date);
 
-  const stringTime = new Intl.DateTimeFormat("en", {
+  const stringTime = new Intl.DateTimeFormat("en-GB", {
+    hour: "2-digit",
     minute: "2-digit",
-    second: "2-digit",
-  }).format(time);
+  }).format(time * 1000);
 
   return `${stringDate}, ${stringTime}`;
 };
