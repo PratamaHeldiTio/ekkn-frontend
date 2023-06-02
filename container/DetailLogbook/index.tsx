@@ -104,35 +104,8 @@ export default function DetailLogbook({ group, logbooks }: ILogbookDetail) {
         setAlertSuccess(!alertSuccess);
         setTimeout(() => {
           setAlertSuccess((prev) => !prev);
-        }, 2000);
-
-        setActivity("");
-        setDate("");
-        setImage("");
-        setImagePreview({ name: "", fileUrl: "" });
-
-        axios
-          .get(`${process.env.BASE_URL_V1}/logbooks/${periodID}`, {
-            headers: {
-              Authorization: `Bearer ${token}`,
-            },
-          })
-          .then((response) => {
-            const logbooks: any = [];
-            response.data.data.map((data: any) => {
-              const logbook = {
-                id: data.id,
-                date: data.date,
-                activity: data.activity,
-                image: data.image,
-                submitted: data.submitted,
-              };
-              logbooks.push(logbook);
-            });
-
-            setLogbooks(logbooks);
-          })
-          .catch(() => setLogbooks([]));
+          router.reload();
+        }, 1000);
       })
       .catch((response) => {
         setAlertMessage(response.response.data.message);
