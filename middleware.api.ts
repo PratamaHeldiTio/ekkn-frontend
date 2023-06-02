@@ -25,6 +25,9 @@ export function middleware(request: NextRequest) {
   }
 
   if (url.pathname != "/" && url.pathname != "/sakera-login" && !cookie) {
+    if (url.pathname.startsWith("/sakera")) {
+      return NextResponse.redirect(new URL("/sakera-login", url));
+    }
     return NextResponse.redirect(new URL("/", url));
   }
 
