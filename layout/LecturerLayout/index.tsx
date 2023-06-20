@@ -28,7 +28,7 @@ export default function StudentLayout({
               role="lecturer"
               destination="logbook"
               icon={logbook}
-              content="Logbookk"
+              content="Logbook"
             />
             <SideLink
               role="lecturer"
