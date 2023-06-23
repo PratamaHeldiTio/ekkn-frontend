@@ -60,6 +60,7 @@ export interface IStudentRegistration {
 export interface IGradeByGroupPage {
   studentRegistrations: IStudentRegistration[];
   periodId: string;
+  grade: number[];
 }
 
 export const mapToGradeByGroup = (dataApi: any): IStudentRegistration[] => {

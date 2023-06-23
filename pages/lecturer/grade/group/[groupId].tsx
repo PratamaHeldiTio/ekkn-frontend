@@ -5,11 +5,13 @@ const GradeByGroup = dynamic(() => import("@/container/lecturer/GradeByGroup"));
 export default function GradeByGroupPage({
   studentRegistrations,
   periodId,
+  grade,
 }: IGradeByGroupPage) {
   return (
     <GradeByGroup
       periodId={periodId}
       studentRegistrations={studentRegistrations}
+      grade={grade}
     />
   );
 }
@@ -32,10 +34,16 @@ export async function getServerSideProps(context: any) {
 
   const studentRegistrations = mapToGradeByGroup(dataAPI);
 
+  const grade: number[] = [];
+  studentRegistrations.forEach((data) => {
+    grade.push(parseInt(data.grade));
+  });
+
   return {
     props: {
       studentRegistrations,
       periodId: dataAPI[0].period_id,
+      grade,
     },
   };
 }
