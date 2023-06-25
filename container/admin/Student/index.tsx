@@ -10,8 +10,8 @@ import axios from "axios";
 import dynamic from "next/dynamic";
 import React, { useEffect, useState } from "react";
 import Cookies from "universal-cookie";
-import Image from "next/image";
 import { useRouter } from "next/router";
+import Papa from "papaparse";
 const AdminLayout = dynamic(() => import("@/layout/AdminLayout"));
 
 export default function Student({ students }: IStudentPage) {
@@ -26,6 +26,7 @@ export default function Student({ students }: IStudentPage) {
   const [alertMessage, setAlertMessage] = useState();
   const [search, setSearch] = useState<string>();
   const [statestudents, setStudents] = useState(students);
+  const [newStudents, setNewStudents] = useState<Array<object> | unknown>();
 
   // to top after register
   useEffect(() => {
@@ -168,6 +169,57 @@ export default function Student({ students }: IStudentPage) {
       });
   };
 
+  const handleImportStudents = (e: React.FormEvent<HTMLFormElement>) => {
+    e.preventDefault();
+
+    axios
+      .post(
+        `${process.env.BASE_URL_V1}/student/import`,
+        {
+          data: newStudents,
+        },
+        {
+          headers: {
+            Authorization: `Bearer ${token}`,
+          },
+        }
+      )
+      .then((response) => {
+        setAlertMessage(response.data.message);
+        setAlertSuccess(!alertSuccess);
+        setTimeout(() => {
+          setAlertSuccess((prev) => !prev);
+        }, 2000);
+        setNim("");
+        setName("");
+
+        axios
+          .get(`${process.env.BASE_URL_V1}/students`, {
+            headers: {
+              Authorization: `Bearer ${token}`,
+            },
+          })
+          .then((response) => {
+            const students = mapingDataToStudents(response.data.data);
+            setStudents(students);
+          })
+          .catch((response) => {
+            setAlertMessage(response.response.data.message);
+            setAlertFail(!alertFail);
+            setTimeout(() => {
+              setAlertFail((prev) => !prev);
+            }, 2000);
+          });
+      })
+      .catch((response) => {
+        setAlertMessage(response.response.data.message);
+        setAlertFail(!alertFail);
+        setTimeout(() => {
+          setAlertFail((prev) => !prev);
+        }, 2000);
+      });
+  };
+
   return (
     <AdminLayout
       navigations={[{ title: "Mahasiswa", link: "/sakera/student" }]}
@@ -178,7 +230,33 @@ export default function Student({ students }: IStudentPage) {
         )}
 
         {alertFail && <Alert background="bg-danger" message={alertMessage} />}
-        <h1 className="text-2xl font-bold mb-6">Tambah Mahasiwa</h1>
+        <h1 className="text-2xl font-bold mb-6">Import Mahasiwa</h1>
+        <div>
+          <form className="flex gap-4" onSubmit={handleImportStudents}>
+            <input
+              type="file"
+              className="file:hidden pt-2 px-4 outline lg:text-lg outline-2 outline-slate-400 rounded-lg font-light h-10 w-56 md:w-80"
+              accept=".csv"
+              required
+              onChange={(e: any) => {
+                Papa.parse(e.target.files[0], {
+                  header: true,
+                  skipEmptyLines: true,
+                  complete: function (results) {
+                    setNewStudents(results.data);
+                  },
+                });
+              }}
+            />
+            <div className="h-10 w-24 md:w-32">
+              <InputSubmit value="Simpan" />
+            </div>
+          </form>
+          <p className="text-sm mt-2 mb-12">Note: File harus berformat CSV</p>
+        </div>
+
+        <h1 className="text-2xl font-bold mb-6">Tambah Mahasiswa</h1>
+
         <form onSubmit={handleAddStudent}>
           <div className="grid grid-cols-2 gap-8 mb-6">
             <InputField

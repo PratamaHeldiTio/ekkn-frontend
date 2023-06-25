@@ -1,16 +1,8 @@
-import Alert from "@/components/Alert";
-import InputField from "@/components/InputField";
-import InputSubmit from "@/components/InputSubmit";
 import {
   IGradeByGroupPage,
   IStudentRegistration,
-  mapToGradeByGroup,
-} from "@/pages/lecturer/grade/grade.types";
-import axios from "axios";
+} from "@/pages/sakera/grade/grade.types";
 import dynamic from "next/dynamic";
-import { useRouter } from "next/router";
-import React, { useState } from "react";
-import Cookies from "universal-cookie";
 const AdminLayout = dynamic(() => import("@/layout/AdminLayout"));
 
 export default function GradeByGroup({
