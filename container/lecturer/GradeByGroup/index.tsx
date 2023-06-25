@@ -9,7 +9,7 @@ import {
 import axios from "axios";
 import dynamic from "next/dynamic";
 import { useRouter } from "next/router";
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import Cookies from "universal-cookie";
 const LecturerLayout = dynamic(() => import("@/layout/LecturerLayout"));
 
@@ -27,6 +27,11 @@ export default function GradeByGroup({
   const [alertMessage, setAlertMessage] = useState("");
   const [gradeData, setGrade] = useState(grade);
   const [students, setStudents] = useState(studentRegistrations);
+
+  // to top after register
+  useEffect(() => {
+    window.scrollTo(0, 0);
+  }, [alertFail, alertSuccess]);
 
   const handleSaveGrade = (nim: string, index: number) => {
     axios
