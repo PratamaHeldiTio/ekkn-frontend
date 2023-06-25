@@ -29,7 +29,6 @@ export default function GradeByGroup({
   const [students, setStudents] = useState(studentRegistrations);
 
   const handleSaveGrade = (nim: string, index: number) => {
-    console.log(typeof gradeData[index]);
     axios
       .put(
         `${process.env.BASE_URL_V1}/student/registration/grade/${periodId}/${nim}`,
